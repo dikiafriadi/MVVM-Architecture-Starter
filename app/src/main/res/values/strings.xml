@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MDVK ARCH</string>
+    <string name="app_desc">Just Demo of MVDK Arch</string>
+    <string name="app_ver">1.0</string>
+    <string name="app_about">>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend tincidunt turpis nec viverra.</string>
+
+    <!-- MSG AREA -->
+    <string name="msg_no_connection_title">Tidak Ada Koneksi</string>
+    <string name="msg_no_connection">Anda tampaknya tidak memiliki koneksi internet, aplikasi ini membutuhkan internet untuk memuat konten terbaru.</string>
+    <string name="username">USERNAME</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend tincidunt turpis nec viverra. Curabitur vel felis elit. Vivamus volutpat lectus efficitur justo tristique pharetra. In sed dictum augue. Duis dolor elit, ultricies ac semper sed, scelerisque vel magna. Praesent consequat commodo sagittis. Sed euismod sem vel dapibus ultricies.
+Nunc gravida diam a laoreet mattis. Praesent ac turpis purus. Donec cursus posuere ornare. Cras sit amet nulla neque. Suspendisse sit amet sagittis magna, id scelerisque urna. Donec at iaculis ipsum. Duis molestie dolor odio, in dignissim nisi semper et. Praesent magna tellus, porttitor sit amet viverra a, malesuada vitae quam.</string>
+    <string name="password">PASSWORD</string>
+    <string name="pilih_bahasa">Select Language</string>
+
+    <!-- AREA BUTTON -->
+    <string name="btn_login">S I G N I N</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+    <string name="title_activity_customer">CustomerActivity</string>
+
+</resources>
