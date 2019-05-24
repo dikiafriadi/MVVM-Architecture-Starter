@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.module.auth;
+package com.aditp.mdvkarch.ui.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,8 @@ import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.BaseView;
 import com.aditp.mdvkarch.core.SharedPref;
 import com.aditp.mdvkarch.databinding.ActivitySplashBinding;
-import com.aditp.mdvkarch.module.main.MainActivity;
+import com.aditp.mdvkarch.ui.login.LoginActivity;
+import com.aditp.mdvkarch.ui.main.MainActivity;
 import com.aditp.mdvkarch.utils.Tools;
 import com.aditp.mdvkarch.utils.Utility;
 import com.aditp.mdvkarch.utils.ViewAnimation;
@@ -44,12 +45,12 @@ public class SplashActivity extends AppCompatActivity implements BaseView {
             if (token.isEmpty()) {
                 runApps(500, LoginActivity.class);
             } else {
-                runApps(2000, MainActivity.class);
+                runApps(700, MainActivity.class);
             }
         } else {
             // .: PRODUCTION :.
             if (isOnline(this)) {
-                runApps(1500, LoginActivity.class);
+                runApps(600, LoginActivity.class);
             } else {
                 showCustomDialog(this,
                         getString(R.string.msg_no_connection_title),

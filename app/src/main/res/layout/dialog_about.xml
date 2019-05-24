@@ -106,7 +106,7 @@
                 style="@style/RippleStyleWhite"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spacing_xxlarge"
-                android:background="@color/mainColor">
+                android:background="@color/mdvk_main">
 
                 <TextView
                     android:layout_width="wrap_content"

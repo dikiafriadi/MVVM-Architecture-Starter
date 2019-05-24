@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.module.auth;
+package com.aditp.mdvkarch.ui.login;
 
 import android.content.Context;
 import android.os.Handler;
@@ -16,14 +16,14 @@ public class LoginBL extends ViewModel {
     private OnLoginSuccess onLoginSuccess;
 
 
-    // Trigger Technique
-    public void setOnLoginSuccess(final OnLoginSuccess onLoginSuccess) {
-        this.onLoginSuccess = onLoginSuccess;
-    }
-
     public LoginBL(Context context, ActivityLoginBinding binding) {
         this.context = context;
         this.binding = binding;
+    }
+
+    // Trigger Technique
+    public void setOnLoginSuccess(final OnLoginSuccess onLoginSuccess) {
+        this.onLoginSuccess = onLoginSuccess;
     }
 
     public void doLogin(String username, String password) {

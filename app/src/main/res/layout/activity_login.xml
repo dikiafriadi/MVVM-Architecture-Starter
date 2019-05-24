@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".module.authentification.LoginActivity">
+    tools:context=".ui.authentification.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -88,8 +87,8 @@
                     android:maxLength="50"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="@color/mdtp_white"
-                    android:textColorHint="@color/mdtp_white"
+                    android:textColor="@color/mdvk_white"
+                    android:textColorHint="@color/mdvk_white"
                     android:theme="@style/EditText.Flat.Grey" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -115,8 +114,8 @@
                     android:maxLength="50"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="@color/mdtp_white"
-                    android:textColorHint="@color/mdtp_white"
+                    android:textColor="@color/mdvk_white"
+                    android:textColorHint="@color/mdvk_white"
                     android:theme="@style/EditText.Grey" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -138,10 +137,10 @@
                     android:layout_margin="@dimen/spacing_large"
                     android:paddingStart="6dp"
                     android:paddingEnd="6dp"
-                    fancy:fb_borderColor="@color/mainColor"
+                    fancy:fb_borderColor="@color/mdvk_main"
                     fancy:fb_borderWidth="1dp"
-                    fancy:fb_defaultColor="@color/mainColor"
-                    fancy:fb_focusColor="@color/mdtp_white"
+                    fancy:fb_defaultColor="@color/mdvk_main"
+                    fancy:fb_focusColor="@color/mdvk_white"
                     fancy:fb_radius="25dp"
                     fancy:fb_text="LOG IN" />
 

@@ -28,26 +28,28 @@ public abstract class MyActivity extends AppCompatActivity implements BaseView {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // change SystemBar UI
-        Tools.setSystemBarColor(this, R.color.mdtp_white);
+        Tools.setSystemBarColor(this, R.color.mdvk_white);
         Tools.setSystemBarLight(this);
     }
 
     protected void initToolbar(String title) {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.grey_60), PorterDuff.Mode.SRC_ATOP);
+        Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.grey_60), PorterDuff.Mode.SRC_ATOP);
+        toolbar.setTitle(title);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.grey_60));
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle(title);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
-    protected void initToolbar(String title, int toolbarColor) {
+    protected void initToolbar(String title, int drawable) {
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(toolbarColor), PorterDuff.Mode.SRC_ATOP);
+        toolbar.setNavigationIcon(drawable);
+        Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.grey_60), PorterDuff.Mode.SRC_ATOP);
+        toolbar.setTitle(title);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.grey_60));
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle(title);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

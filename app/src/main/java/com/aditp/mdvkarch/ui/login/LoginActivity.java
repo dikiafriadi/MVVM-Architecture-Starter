@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.module.auth;
+package com.aditp.mdvkarch.ui.login;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.BaseView;
 import com.aditp.mdvkarch.databinding.ActivityLoginBinding;
-import com.aditp.mdvkarch.module.main.MainActivity;
+import com.aditp.mdvkarch.ui.main.MainActivity;
 import com.aditp.mdvkarch.utils.Tools;
 import com.aditp.mdvkarch.utils.Utility;
 
@@ -58,7 +58,8 @@ public class LoginActivity extends AppCompatActivity implements BaseView {
             Handler handler = new Handler();
             handler.postDelayed(() -> {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
-             }, 2500);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }, 2500);
 
         });
 

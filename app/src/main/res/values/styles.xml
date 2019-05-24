@@ -59,7 +59,7 @@
 
     <style name="Button.White.Primary" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/green_600</item>
-        <item name="android:textColor">@color/mdtp_white</item>
+        <item name="android:textColor">@color/mdvk_white</item>
     </style>
 
     <style name="Button.White.TextDark" parent="@style/Widget.AppCompat.Button.Colored">
@@ -69,8 +69,10 @@
 
     <style name="Button.White.Accent" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/green_600</item>
-        <item name="android:textColor">@color/mdtp_white</item>
+        <item name="android:textColor">@color/mdvk_white</item>
     </style>
+
+
     <!--style for ripple library-->
     <style name="RippleStyleWhite">
         <item name="mrl_rippleOverlay">true</item>
@@ -82,6 +84,11 @@
     <style name="RippleStyleBlack" parent="RippleStyleWhite">
         <item name="mrl_rippleColor">#8096989A</item>
     </style>
+
+    <style name="RippleStyleMain" parent="RippleStyleWhite">
+        <item name="mrl_rippleColor">@color/mdvk_second</item>
+    </style>
+
 
     <style name="RippleStyleDark" parent="RippleStyleWhite">
         <item name="mrl_rippleColor">#80000000</item>

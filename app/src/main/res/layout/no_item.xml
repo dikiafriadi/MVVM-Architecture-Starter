@@ -112,13 +112,13 @@
                     android:focusable="true"
                     android:paddingStart="6dp"
                     android:paddingEnd="6dp"
-                    fancy:fb_borderColor="@color/mainColor"
+                    fancy:fb_borderColor="@color/mdvk_main"
                     fancy:fb_borderWidth="1dp"
                     fancy:fb_defaultColor="@color/transparent"
-                    fancy:fb_focusColor="@color/mainColor"
+                    fancy:fb_focusColor="@color/mdvk_main"
                     fancy:fb_radius="5dp"
                     fancy:fb_text=".: NO DATA :."
-                    fancy:fb_textColor="@color/mainColor" />
+                    fancy:fb_textColor="@color/mdvk_main" />
 
             </LinearLayout>
 

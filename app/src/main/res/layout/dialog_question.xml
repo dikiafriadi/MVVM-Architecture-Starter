@@ -23,7 +23,7 @@
                     android:id="@+id/ivImage"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
-                    android:background="#68DC4675"
+                    android:background="@color/mdvk_second"
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerCrop" />
 
@@ -34,7 +34,7 @@
                     android:layout_centerVertical="true"
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerCrop"
-                    android:src="@color/mainColor" />
+                    android:src="@color/mdvk_main" />
 
             </RelativeLayout>
 

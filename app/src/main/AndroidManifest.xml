@@ -15,15 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".module.auth.LoginActivity" />
-        <activity android:name=".module.main.MainActivity" />
-        <activity android:name=".module.auth.SplashActivity">
+
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.main.MainActivity" />
+
+        <!-- APP START -->
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#DC4675</color>
-    <color name="colorPrimaryDark">#DC4675</color>
-    <color name="colorPrimaryLight">#DC4675</color>
-    <color name="colorAccent">#fff</color>
+    <color name="colorPrimary">#C64271</color>
+    <color name="colorPrimaryDark">#C64271</color>
+    <color name="colorPrimaryLight">#C64271</color>
+    <color name="colorAccent">#000</color>
     <color name="colorAccentDark">#eee</color>
-    <color name="colorAccentLight">#ccc</color>
+    <color name="colorAccentLight">#ddd</color>
 
     <!-- APP THEME -->
-    <color name="mainColor">#DC4675</color>
-    <color name="mdtp_white">#fff</color>
-
-
+    <color name="mdvk_main">#C64271</color>
+    <color name="mdvk_second">#80C64271</color>
+    <color name="mdvk_white">#fff</color>
+    <color name="mdvk_black">#000</color>
 
 
     <color name="overlay_dark_10">#1A000000</color>

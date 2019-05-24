@@ -13,6 +13,7 @@ public class CONSTANT {
     // ------------------------------------------------------------------------
     // AREA END POINT
     // ------------------------------------------------------------------------
+    public static final String BASE_URL = "https://api.github.com/";
     public static final String X_AUTH_TOKEN = "X-Auth-Token";
 
     // GET

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:orientation="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@color/mdvk_main" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/mdvk_second" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivSelfieHeader"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="@dimen/spacing_large"
+            android:src="@color/mdvk_main"
+            app:civ_border_color="@color/mdvk_white"
+            app:civ_border_width="2dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/spacing_large"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNamaKaryawanHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:text="Aditya Pratama"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/mdvk_white" />
+
+            <TextView
+                android:id="@+id/tvIdKaryawanHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="abehbatre@gmail.com"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/mdvk_white" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
