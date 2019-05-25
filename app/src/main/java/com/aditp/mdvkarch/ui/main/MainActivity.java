@@ -13,7 +13,7 @@ import com.aditp.mdvkarch.core.CONSTANT;
 import com.aditp.mdvkarch.core.MyActivity;
 import com.aditp.mdvkarch.core.SharedPref;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
-import com.aditp.mdvkarch.helper.MDVK;
+import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.aditp.mdvkarch.ui.login.LoginActivity;
 import com.aditp.mdvkarch.utils.SpacesItemDecoration;
 
@@ -49,7 +49,7 @@ public class MainActivity extends MyActivity {
         mainBL.getDataUserRepos(getUsernameFromSharedPref);
 
         binding.btnFab.setOnClickListener(v -> {
-            MDVK.DIALOG_TOOLS.showAboutDialog(this);
+            MDVKHelper.DIALOG_TOOLS.showAboutDialog(this);
         });
         binding.swipeRefreshLayout.setOnRefreshListener(() -> {
             mainBL.getDataUsers(getUsernameFromSharedPref);
@@ -74,10 +74,10 @@ public class MainActivity extends MyActivity {
                 case R.id.nav_home:
                     break;
                 case R.id.nav_logout:
-                    MDVK.DIALOG_TOOLS.showCustomDialog(MainActivity.this,
+                    MDVKHelper.DIALOG_TOOLS.showCustomDialog(MainActivity.this,
                             "Logout",
                             "Would you really like to logout?",
-                            new MDVK.ActionDialogListener() {
+                            new MDVKHelper.ActionDialogListener() {
                                 @Override
                                 public void executeNo() {
                                     // ignore

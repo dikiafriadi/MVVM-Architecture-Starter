@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.aditp.mdvkarch.R;
-import com.aditp.mdvkarch.helper.MDVK;
+import com.aditp.mdvkarch.helper.MDVKHelper;
 
 import java.util.Objects;
 
@@ -25,8 +25,8 @@ public abstract class MyActivity extends AppCompatActivity implements BaseView {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // change SystemBar UI
-        MDVK.WINDOW_TOOLS.setSystemBarColor(this, R.color.mdvk_white);
-        MDVK.WINDOW_TOOLS.setSystemBarLight(this);
+        MDVKHelper.WINDOW_TOOLS.setSystemBarColor(this, R.color.mdvk_white);
+        MDVKHelper.WINDOW_TOOLS.setSystemBarLight(this);
     }
 
     protected void initToolbar(String title) {

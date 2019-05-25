@@ -4,7 +4,7 @@ package com.aditp.mdvkarch.data.remote;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.aditp.mdvkarch.helper.MDVK.MY_UNSAFE_OKHTTP_CLIENT;
+import static com.aditp.mdvkarch.helper.MDVKHelper.MY_UNSAFE_OKHTTP_CLIENT;
 
 
 public class RetrofitClient {

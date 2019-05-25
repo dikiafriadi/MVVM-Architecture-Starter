@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="-4dp"
                     android:layout_marginRight="-4dp"
-                    android:hint="USERNAME"
+                    android:hint="GITHUB USERNAME"
                     android:inputType="text"
                     android:maxLength="50"
                     android:maxLines="1"

@@ -8,8 +8,8 @@
     <color name="colorAccentLight">#ddd</color>
 
     <!-- APP THEME -->
-    <color name="mdvk_main">#C64271</color>
-    <color name="mdvk_second">#80C64271</color>
+    <color name="mdvk_main">#2C3E50</color>
+    <color name="mdvk_second">#802C3E50</color>
     <color name="mdvk_white">#fff</color>
     <color name="mdvk_black">#000</color>
 

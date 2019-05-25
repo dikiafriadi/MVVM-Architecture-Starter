@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.BaseView;
 import com.aditp.mdvkarch.databinding.ActivityLoginBinding;
-import com.aditp.mdvkarch.helper.MDVK;
+import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.aditp.mdvkarch.ui.main.MainActivity;
 
 import java.util.Objects;
@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements BaseView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MDVK.WINDOW_TOOLS.setActivityToFullScreen(this);
+        MDVKHelper.WINDOW_TOOLS.setActivityToFullScreen(this);
         binding = DataBindingUtil.setContentView(this, LAYOUT);
         loginBL = new LoginBL(this, binding);
         onActionComponent();
@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements BaseView {
         });
 
         loginBL.setOnLoginSuccess(() -> {
-            Dialog dialog = MDVK.DIALOG_TOOLS.showProgressDialog(this);
+            Dialog dialog = MDVKHelper.DIALOG_TOOLS.showProgressDialog(this);
             dialog.show();
             Handler handler = new Handler();
             handler.postDelayed(() -> {

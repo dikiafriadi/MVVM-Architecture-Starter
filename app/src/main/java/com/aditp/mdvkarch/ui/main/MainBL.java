@@ -12,7 +12,7 @@ import com.aditp.mdvkarch.data.remote.RetrofitClient;
 import com.aditp.mdvkarch.data.remote.api_response.ResponseArray;
 import com.aditp.mdvkarch.data.remote.api_response.ResponseObject;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
-import com.aditp.mdvkarch.helper.MDVK;
+import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.aditp.mdvkarch.helper.PicassoHelper;
 
 import java.util.List;
@@ -40,7 +40,7 @@ public class MainBL {
     }
 
     public void getDataUsers(String username) {
-        Dialog dialog = MDVK.DIALOG_TOOLS.showProgressDialog(context, "Load Data User ..");
+        Dialog dialog = MDVKHelper.DIALOG_TOOLS.showProgressDialog(context, "Load Data User ..");
         dialog.show();
         dialog.setCancelable(false);
         Endpoint endpoint = RetrofitClient.getClient().create(Endpoint.class);
@@ -68,7 +68,7 @@ public class MainBL {
     }
 
     public void getDataUserRepos(String username) {
-        Dialog dialog = MDVK.DIALOG_TOOLS.showProgressDialog(context, "Load Repo User ..");
+        Dialog dialog = MDVKHelper.DIALOG_TOOLS.showProgressDialog(context, "Load Repo User ..");
         dialog.show();
         dialog.setCancelable(false);
         Endpoint endpoint = RetrofitClient.getClient().create(Endpoint.class);

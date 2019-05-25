@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.data.remote.api_response.ResponseArray;
 import com.aditp.mdvkarch.databinding.ItemRepoBinding;
-import com.aditp.mdvkarch.helper.MDVK;
+import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
@@ -65,12 +65,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
 
 
         holder.binding.lytParent.setOnClickListener(view1 -> {
-            MDVK.DIALOG_TOOLS.showCustomDialog(context,
+            MDVKHelper.DIALOG_TOOLS.showCustomDialog(context,
                     String.valueOf(items.getFullName()),
                     "Language : " + items.getLanguage() + "\n" +
                             "Star : " + items.getStargazersCount(),
                     R.drawable.flag_question,
-                    new MDVK.ActionDialogListener() {
+                    new MDVKHelper.ActionDialogListener() {
                         @Override
                         public void executeNo() {
 
