@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto">
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="MainModel"
-            type="com.aditp.mdvkarch.ui.main.MainModel" />
-    </data>
-
-    <androidx.drawerlayout.widget.DrawerLayout xmlns:tools="http://schemas.android.com/tools"
+    <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -72,6 +66,7 @@
                                         android:id="@+id/imgBg"
                                         android:layout_width="match_parent"
                                         android:layout_height="130dp"
+                                        android:contentDescription="TODO"
                                         android:scaleType="centerCrop"
                                         android:src="@color/mdvk_main" />
 
@@ -80,68 +75,52 @@
                                         android:layout_height="130dp"
                                         android:background="@color/mdvk_second" />
 
+                                    <de.hdodenhof.circleimageview.CircleImageView
+                                        android:id="@+id/iv_selfie"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:layout_margin="@dimen/spacing_large"
+                                        android:src="@color/mdvk_main"
+                                        app:civ_border_color="@color/mdvk_white"
+                                        app:civ_border_width="2dp" />
+
+
                                     <LinearLayout
-                                        android:layout_width="fill_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/spacing_mlarge"
-                                        android:layout_marginTop="@dimen/spacing_large"
-                                        android:layout_marginRight="@dimen/spacing_mlarge"
-                                        android:orientation="horizontal">
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_margin="@dimen/spacing_large"
+                                        android:layout_toEndOf="@id/iv_selfie"
+                                        android:orientation="vertical">
 
-                                        <de.hdodenhof.circleimageview.CircleImageView
-                                            android:id="@+id/iv_selfie"
-                                            android:layout_width="60dp"
-                                            android:layout_height="60dp"
-                                            android:layout_margin="@dimen/spacing_large"
-                                            android:src="@color/mdvk_main"
-                                            app:civ_border_color="@color/mdvk_white"
-                                            app:civ_border_width="2dp" />
-
-                                        <View
-                                            android:layout_width="0.0dip"
-                                            android:layout_height="0.0dip"
-                                            android:layout_weight="1.0" />
-
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
+                                        <TextView
+                                            android:id="@+id/tvname"
+                                            android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:gravity="end"
-                                            android:orientation="vertical">
+                                            android:fontFamily="sans-serif-light"
+                                            android:textAlignment="textEnd"
+                                            android:textColor="@color/mdvk_white"
+                                            android:textSize="18sp"
+                                            app:textAllCaps="true" />
 
-                                            <TextView
-                                                android:id="@+id/tvname"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="@={MainModel.name}"
-                                                android:textColor="@color/mdvk_white"
-                                                android:textSize="18sp" />
+                                        <TextView
+                                            android:id="@+id/tvCompany"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="6dp"
+                                            android:fontFamily="sans-serif-light"
+                                            android:textAlignment="textEnd"
+                                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                            android:textColor="@color/grey_10" />
 
-                                            <TextView
-                                                android:id="@+id/tvCompany"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="6dp"
-                                                android:text="Sales Executive"
-                                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                                android:textColor="@color/grey_10" />
+                                        <TextView
+                                            android:id="@+id/tvBio"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="sans-serif-light"
+                                            android:maxLines="3"
+                                            android:textAlignment="textEnd"
+                                            android:textColor="@color/grey_10" />
 
-                                            <LinearLayout
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="@dimen/spacing_large"
-                                                android:gravity="center_vertical"
-                                                android:orientation="horizontal">
-
-
-                                                <TextView
-                                                    android:id="@+id/tvBio"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:maxLines="3"
-                                                    android:textColor="@color/grey_10" />
-
-                                            </LinearLayout>
-                                        </LinearLayout>
                                     </LinearLayout>
                                 </RelativeLayout>
 
@@ -198,6 +177,7 @@
                                                         <ImageView
                                                             android:layout_width="44dp"
                                                             android:layout_height="44dp"
+                                                            android:contentDescription="TODO"
                                                             android:padding="8dp"
                                                             app:srcCompat="@color/mdvk_main" />
 
@@ -241,6 +221,7 @@
                                                         <ImageView
                                                             android:layout_width="44dp"
                                                             android:layout_height="44dp"
+                                                            android:contentDescription="TODO"
                                                             android:padding="8dp"
                                                             app:srcCompat="@color/mdvk_main" />
 
@@ -273,7 +254,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="sans-serif-light"
-                                        android:text="More Example"
+                                        android:text="List Repository"
                                         android:textColor="@color/overlay_dark_90"
                                         android:textSize="18sp" />
 
@@ -285,138 +266,13 @@
 
 
                                 </LinearLayout>
-
-                                <LinearLayout
+                                <!-- LIST REPO -->
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rvList"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/spacing_mlarge"
-                                    android:layout_marginTop="@dimen/spacing_middle"
-                                    android:layout_marginEnd="@dimen/spacing_mlarge"
-                                    android:orientation="vertical">
-
-                                    <com.balysv.materialripple.MaterialRippleLayout
-                                        style="@style/RippleStyleMain"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="80dp"
-                                        app:cardCornerRadius="6dp"
-                                        app:cardElevation="2dip">
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:background="@color/mdvk_white"
-                                            android:clickable="true"
-                                            android:focusable="true"
-                                            android:orientation="horizontal">
-
-                                            <RelativeLayout
-                                                android:layout_width="100dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@color/mdvk_main">
-
-                                                <ImageView
-                                                    android:layout_width="24dp"
-                                                    android:layout_height="24dp"
-                                                    android:layout_centerHorizontal="true"
-                                                    android:layout_centerVertical="true"
-                                                    android:src="@color/mdvk_white" />
-                                            </RelativeLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="vertical">
-
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginStart="@dimen/spacing_large"
-                                                    android:layout_marginTop="@dimen/spacing_medium"
-                                                    android:layout_marginEnd="@dimen/spacing_large"
-                                                    android:text="Tab"
-                                                    android:textColor="@color/overlay_dark_90"
-                                                    android:textSize="18sp" />
-
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginStart="@dimen/spacing_large"
-                                                    android:layout_marginEnd="@dimen/spacing_large"
-                                                    android:maxLines="2"
-                                                    android:text="@string/lorem"
-                                                    android:textSize="12sp" />
-
-                                            </LinearLayout>
-
-
-                                        </LinearLayout>
-                                    </com.balysv.materialripple.MaterialRippleLayout>
-
-
-                                    <View
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="@dimen/spacing_middle" />
-
-                                    <com.balysv.materialripple.MaterialRippleLayout
-                                        style="@style/RippleStyleMain"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="80dp"
-                                        app:cardCornerRadius="6dp"
-                                        app:cardElevation="2dip">
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:background="@color/mdvk_white"
-                                            android:clickable="true"
-                                            android:focusable="true"
-                                            android:orientation="horizontal">
-
-                                            <RelativeLayout
-                                                android:layout_width="100dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@color/mdvk_second">
-
-                                                <ImageView
-                                                    android:layout_width="24dp"
-                                                    android:layout_height="24dp"
-                                                    android:layout_centerHorizontal="true"
-                                                    android:layout_centerVertical="true"
-                                                    android:src="@color/mdvk_white" />
-                                            </RelativeLayout>
-
-                                            <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="vertical">
-
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginStart="@dimen/spacing_large"
-                                                    android:layout_marginTop="@dimen/spacing_medium"
-                                                    android:layout_marginEnd="@dimen/spacing_large"
-                                                    android:text="Bottom Navigation"
-                                                    android:textColor="@color/overlay_dark_90"
-                                                    android:textSize="18sp" />
-
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginStart="@dimen/spacing_large"
-                                                    android:layout_marginEnd="@dimen/spacing_large"
-                                                    android:maxLines="2"
-                                                    android:text="@string/lorem"
-                                                    android:textSize="12sp" />
-
-                                            </LinearLayout>
-
-
-                                        </LinearLayout>
-                                    </com.balysv.materialripple.MaterialRippleLayout>
-
-                                </LinearLayout>
-
+                                    android:layout_height="200dp"
+                                    tools:listitem="@layout/item_repo"
+                                    tools:itemCount="5"/>
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -474,6 +330,7 @@
                                                 <ImageView
                                                     android:layout_width="44dp"
                                                     android:layout_height="44dp"
+                                                    android:contentDescription="TODO"
                                                     android:padding="8dp"
                                                     app:srcCompat="@color/mdvk_main" />
 
@@ -517,6 +374,7 @@
                                                 <ImageView
                                                     android:layout_width="44dp"
                                                     android:layout_height="44dp"
+                                                    android:contentDescription="TODO"
                                                     android:padding="8dp"
                                                     app:srcCompat="@color/mdvk_main" />
 
@@ -560,6 +418,7 @@
                                                 <ImageView
                                                     android:layout_width="44dp"
                                                     android:layout_height="44dp"
+                                                    android:contentDescription="TODO"
                                                     android:padding="8dp"
                                                     app:srcCompat="@color/mdvk_main" />
 

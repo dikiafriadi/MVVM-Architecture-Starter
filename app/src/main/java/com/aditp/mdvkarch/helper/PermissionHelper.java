@@ -9,7 +9,6 @@ import android.provider.Settings;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.aditp.mdvkarch.BuildConfig;
-import com.aditp.mdvkarch.utils.Utility;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -17,8 +16,6 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.List;
-
-import static com.aditp.mdvkarch.utils.Utility.showCustomDialog;
 
 public class PermissionHelper {
 
@@ -34,9 +31,7 @@ public class PermissionHelper {
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        if (report.areAllPermissionsGranted()) {
-                            // OKE ~
-                        } else if (report.isAnyPermissionPermanentlyDenied()) {
+                       if (report.isAnyPermissionPermanentlyDenied()) {
                             showMessageWarning(context, "Kami memerlukan Akses Lokasi .");
                         }
                     }
@@ -61,9 +56,7 @@ public class PermissionHelper {
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        if (report.areAllPermissionsGranted()) {
-                            // OKE ~
-                        } else if (report.isAnyPermissionPermanentlyDenied()) {
+                        if (report.isAnyPermissionPermanentlyDenied()) {
                             showMessageWarning(context, "Kami memerlukan Akses Storage.");
                         }
                     }
@@ -84,9 +77,7 @@ public class PermissionHelper {
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        if (report.areAllPermissionsGranted()) {
-
-                        } else if (report.isAnyPermissionPermanentlyDenied()) {
+                       if (report.isAnyPermissionPermanentlyDenied()) {
                             showMessageWarning(context, "Kami memerlukan Akses ke kamera .");
                         }
                     }
@@ -99,9 +90,9 @@ public class PermissionHelper {
     }
 
     private static void showMessageWarning(Context context, String msg) {
-        showCustomDialog(context,
+        MDVK.DIALOG_TOOLS.showCustomDialog(context,
                 "Permissions required!", msg,
-                new Utility.ActionDialogListener() {
+                new MDVK.ActionDialogListener() {
                     @Override
                     public void executeNo() {
 

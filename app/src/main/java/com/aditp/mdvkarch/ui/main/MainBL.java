@@ -1,52 +1,98 @@
 package com.aditp.mdvkarch.ui.main;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
-import com.aditp.mdvkarch.data.retrofit.GithubService;
-import com.aditp.mdvkarch.data.retrofit.RetrofitClient;
+import androidx.annotation.NonNull;
+
+import com.aditp.mdvkarch.data.remote.GithubService;
+import com.aditp.mdvkarch.data.remote.RetrofitClient;
+import com.aditp.mdvkarch.data.remote.api_response.ResponseArray;
+import com.aditp.mdvkarch.data.remote.api_response.ResponseObject;
+import com.aditp.mdvkarch.databinding.ActivityMainBinding;
+import com.aditp.mdvkarch.helper.MDVK;
+import com.aditp.mdvkarch.helper.PicassoHelper;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SuppressWarnings("WeakerAccess")
 public class MainBL {
     private Context context;
-    private MainModel model;
-    private OnSuccess onSuccess;
+    private ActivityMainBinding binding;
+    MainAdapter adapter;
+    List<ResponseArray> items;
 
-    // Trigger Technique
-    public void setOnSuccess(final OnSuccess onSuccess) {
-        this.onSuccess = onSuccess;
+
+    {
+        Log.d("KVDM", "instance initializer: ");
+        adapter = new MainAdapter(context, null);
     }
 
-    public MainBL(Context context, MainModel model) {
+    public MainBL(Context context, ActivityMainBinding binding) {
         this.context = context;
-        this.model = model;
+        this.binding = binding;
     }
 
-
-    public void getUsers(String username) {
+    public void getDataUsers(String username) {
+        Dialog dialog = MDVK.DIALOG_TOOLS.showProgressDialog(context, "Load Data User ..");
+        dialog.show();
+        dialog.setCancelable(false);
         GithubService githubService = RetrofitClient.getClient().create(GithubService.class);
-        Call<MainModel> call = githubService.getUser(username);
-        call.enqueue(new Callback<MainModel>() {
+        Call<ResponseObject> call = githubService.getUser(username);
+        call.enqueue(new Callback<ResponseObject>() {
             @Override
-            public void onResponse(Call<MainModel> call, Response<MainModel> response) {
-                model.setName(response.body().getName());
-                model.setBio(response.body().getBio());
+            public void onResponse(@NonNull Call<ResponseObject> call, @NonNull Response<ResponseObject> response) {
+                if (response.isSuccessful()) {
+                    binding.tvname.setText(response.body().getName());
+                    binding.tvCompany.setText(response.body().getCompany());
+                    binding.tvBio.setText(response.body().getBio());
+                    PicassoHelper.load(response.body().getAvatarUrl(), binding.ivSelfie);
+                }
+                binding.swipeRefreshLayout.setRefreshing(false);
+                dialog.dismiss();
             }
 
             @Override
-            public void onFailure(Call<MainModel> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<ResponseObject> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                binding.swipeRefreshLayout.setRefreshing(false);
+                dialog.dismiss();
             }
         });
     }
 
+    public void getDataUserRepos(String username) {
+        Dialog dialog = MDVK.DIALOG_TOOLS.showProgressDialog(context, "Load Repo User ..");
+        dialog.show();
+        dialog.setCancelable(false);
+        GithubService githubService = RetrofitClient.getClient().create(GithubService.class);
+        Call<List<ResponseArray>> call = githubService.listRepos(username);
+        call.enqueue(new Callback<List<ResponseArray>>() {
+            @Override
+            public void onResponse(Call<List<ResponseArray>> call, Response<List<ResponseArray>> response) {
+                if (response.isSuccessful()) {
+                    items = response.body();
+                    adapter = new MainAdapter(context, items);
+                    binding.rvList.setAdapter(adapter);
+                }
+                binding.swipeRefreshLayout.setRefreshing(false);
+                dialog.dismiss();
 
-    // ------------------------------------------------------------------------
-    // IFACE
-    // ------------------------------------------------------------------------
-    public interface OnSuccess {
-        void onSuccess();
+            }
+
+            @Override
+            public void onFailure(Call<List<ResponseArray>> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                binding.swipeRefreshLayout.setRefreshing(false);
+                dialog.dismiss();
+            }
+        });
     }
+
 }

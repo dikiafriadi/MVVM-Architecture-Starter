@@ -6,30 +6,73 @@ import android.view.View;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.MyActivity;
 import com.aditp.mdvkarch.core.SharedPref;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
+import com.aditp.mdvkarch.helper.MDVK;
 import com.aditp.mdvkarch.ui.login.LoginActivity;
-import com.aditp.mdvkarch.utils.Utility;
+import com.aditp.mdvkarch.utils.SpacesItemDecoration;
 
-import static com.aditp.mdvkarch.utils.Utility.showCustomDialog;
 
 public class MainActivity extends MyActivity {
     ActivityMainBinding binding;
-    MainBL mainBL;
-    MainModel model;
     int LAYOUT = R.layout.activity_main;
+    MainBL mainBL;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, LAYOUT);
-        mainBL = new MainBL(this, model);
+        mainBL = new MainBL(this, binding);
 
         initToolbar("Main Menu");
         initNavigationMenu();
+
+        // setup RecyclerView
+        binding.rvList.setHasFixedSize(true);
+        binding.rvList.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvList.addItemDecoration(new SpacesItemDecoration(5));
+
+    }
+
+
+    @Override
+    public void onActionComponent() {
+        // load data
+        mainBL.getDataUsers("abehbatre");
+        mainBL.getDataUserRepos("abehbatre");
+
+        binding.btnFab.setOnClickListener(v -> {
+            MDVK.DIALOG_TOOLS.showAboutDialog(this);
+        });
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
+            mainBL.getDataUsers("abehbatre");
+            mainBL.getDataUserRepos("abehbatre");
+
+        });
+
+        mainBL.adapter.setOnItemClickListener((view, obj, pos) -> {
+            MDVK.DIALOG_TOOLS.showCustomDialog(this,
+                    String.valueOf(obj.getId()),
+                    "Language : " + obj.getLanguage() + "\n" +
+                            "Star :" + obj.getSize(),
+                    R.drawable.flag_question,
+                    new MDVK.ActionDialogListener() {
+                        @Override
+                        public void executeNo() {
+
+                        }
+
+                        @Override
+                        public void executeYes() {
+
+                        }
+                    });
+        });
 
     }
 
@@ -49,10 +92,10 @@ public class MainActivity extends MyActivity {
                 case R.id.nav_home:
                     break;
                 case R.id.nav_logout:
-                    showCustomDialog(MainActivity.this,
+                    MDVK.DIALOG_TOOLS.showCustomDialog(MainActivity.this,
                             "Logout",
                             "Would you really like to logout?",
-                            new Utility.ActionDialogListener() {
+                            new MDVK.ActionDialogListener() {
                                 @Override
                                 public void executeNo() {
                                     // ignore
@@ -72,12 +115,4 @@ public class MainActivity extends MyActivity {
         });
     }
 
-    @Override
-    public void onActionComponent() {
-        binding.btnFab.setOnClickListener(v -> Utility.showAboutDialog(this));
-        mainBL.getUsers("abehbatre");
-        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
-            mainBL.getUsers("abehbatre");
-        });
-    }
 }
