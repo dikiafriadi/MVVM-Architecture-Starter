@@ -11,6 +11,7 @@ import static com.aditp.mdvkarch.helper.MDVK.MY_UNSAFE_OKHTTP_CLIENT;
 
 public class RetrofitClient {
     private static Retrofit retrofit;
+    private static final String BASE_URL = "https://api.github.com/";
 
     // ------------------------------------------------------------------------
     // SINGLETON PATTERN + synchronized
@@ -19,7 +20,7 @@ public class RetrofitClient {
         synchronized (RetrofitClient.class) {
             if (retrofit == null) {
                 retrofit = new Retrofit.Builder()
-                        .baseUrl(CONSTANT.BASE_URL)
+                        .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .client(MY_UNSAFE_OKHTTP_CLIENT())
                         .build();

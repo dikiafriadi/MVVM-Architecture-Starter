@@ -26,10 +26,10 @@ public class LoginBL extends ViewModel {
         this.onLoginSuccess = onLoginSuccess;
     }
 
-    public void doLogin(String username, String password) {
+    public void doLogin(String username) {
         binding.pb1.setVisibility(View.VISIBLE);
         binding.btnLogin.setVisibility(View.GONE);
-        SharedPref.getInstance().saveString(CONSTANT.KEY_USER_TOKEN, username);
+        SharedPref.getInstance().saveString(CONSTANT.KEY_USERNAME, username);
         Handler handler = new Handler();
         handler.postDelayed(() -> {
             binding.pb1.setVisibility(View.GONE);
@@ -39,7 +39,7 @@ public class LoginBL extends ViewModel {
                 onLoginSuccess.onSuccess();
             }
 
-        }, 1000);
+        }, 500);
 
     }
 

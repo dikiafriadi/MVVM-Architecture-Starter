@@ -9,29 +9,12 @@ public class CONSTANT {
     // ------------------------------------------------------------------------
     public static final boolean IS_DEV_MODE = true;
 
-
-    // ------------------------------------------------------------------------
-    // AREA END POINT
-    // ------------------------------------------------------------------------
-    public static final String BASE_URL = "https://api.github.com/";
-    public static final String X_AUTH_TOKEN = "X-Auth-Token";
-
-    // GET
-
-
-    // POST
-
-
-    // DELETE
-
-
     // ------------------------------------------------------------------------
     // AREA STRING
     // ------------------------------------------------------------------------
 
     // SHARED PREF
-    public static final String KEY_USER_TOKEN = "KEY_USER_TOKEN";
-
+    public static final String KEY_USERNAME = "KEY_USERNAME";
 
     // ------------------------------------------------------------------------
     // AREA INTEGER

@@ -10,7 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface GithubService {
+public interface Endpoint {
     @GET("users/{username}")
     Call<ResponseObject> getUser(@Path("username") String username);
 

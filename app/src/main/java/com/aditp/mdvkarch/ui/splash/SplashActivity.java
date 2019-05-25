@@ -19,7 +19,7 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import static com.aditp.mdvkarch.core.CONSTANT.IS_DEV_MODE;
-import static com.aditp.mdvkarch.core.CONSTANT.KEY_USER_TOKEN;
+import static com.aditp.mdvkarch.core.CONSTANT.KEY_USERNAME;
 
 public class SplashActivity extends AppCompatActivity implements BaseView {
     ActivitySplashBinding binding;
@@ -44,7 +44,7 @@ public class SplashActivity extends AppCompatActivity implements BaseView {
     public void onActionComponent() {
         if (IS_DEV_MODE) {
             // .: DEV MODE :.
-            String token = SharedPref.getInstance().getString(KEY_USER_TOKEN, "");
+            String token = SharedPref.getInstance().getString(KEY_USERNAME, "");
             if (token.isEmpty()) {
                 runApps(500, LoginActivity.class);
             } else {

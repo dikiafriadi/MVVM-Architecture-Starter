@@ -26,7 +26,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
     private List<ResponseArray> items;
     private ItemRepoBinding binding;
     private int LAYOUT = R.layout.item_repo;
-
     private OnItemClickListener onItemClickListener;
 
     // Trigger Technique

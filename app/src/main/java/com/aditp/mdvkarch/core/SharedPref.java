@@ -23,7 +23,7 @@ public class SharedPref {
      * using example :
      * <p>
      * GET DATA
-     * object = SharedPref.getInstance().getString(KEY_USER_TOKEN, "");
+     * object = SharedPref.getInstance().getString(KEY_USERNAME, "");
      * <p>
      * SAVE DATA
      * SharedPref.getInstance().saveString(object);

@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.aditp.mdvkarch.data.remote.GithubService;
+import com.aditp.mdvkarch.data.remote.Endpoint;
 import com.aditp.mdvkarch.data.remote.RetrofitClient;
 import com.aditp.mdvkarch.data.remote.api_response.ResponseArray;
 import com.aditp.mdvkarch.data.remote.api_response.ResponseObject;
@@ -30,7 +30,7 @@ public class MainBL {
 
 
     {
-        Log.d("KVDM", "instance initializer: ");
+        Log.d("Business Logic", "instance initializer: ");
         adapter = new MainAdapter(context, null);
     }
 
@@ -43,8 +43,8 @@ public class MainBL {
         Dialog dialog = MDVK.DIALOG_TOOLS.showProgressDialog(context, "Load Data User ..");
         dialog.show();
         dialog.setCancelable(false);
-        GithubService githubService = RetrofitClient.getClient().create(GithubService.class);
-        Call<ResponseObject> call = githubService.getUser(username);
+        Endpoint endpoint = RetrofitClient.getClient().create(Endpoint.class);
+        Call<ResponseObject> call = endpoint.getUser(username);
         call.enqueue(new Callback<ResponseObject>() {
             @Override
             public void onResponse(@NonNull Call<ResponseObject> call, @NonNull Response<ResponseObject> response) {
@@ -71,8 +71,8 @@ public class MainBL {
         Dialog dialog = MDVK.DIALOG_TOOLS.showProgressDialog(context, "Load Repo User ..");
         dialog.show();
         dialog.setCancelable(false);
-        GithubService githubService = RetrofitClient.getClient().create(GithubService.class);
-        Call<List<ResponseArray>> call = githubService.listRepos(username);
+        Endpoint endpoint = RetrofitClient.getClient().create(Endpoint.class);
+        Call<List<ResponseArray>> call = endpoint.listRepos(username);
         call.enqueue(new Callback<List<ResponseArray>>() {
             @Override
             public void onResponse(Call<List<ResponseArray>> call, Response<List<ResponseArray>> response) {

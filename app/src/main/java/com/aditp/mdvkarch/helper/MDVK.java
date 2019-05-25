@@ -101,9 +101,7 @@ public class MDVK {
     private static Pattern pattern;
     private static Matcher matcher;
 
-    // ------------------------------------------------------------------------
-    // OK HTTP CLIENT
-    // ------------------------------------------------------------------------
+
     public static OkHttpClient MY_UNSAFE_OKHTTP_CLIENT() {
         try {
             // Create a trust manager that does not validate certificate chains
@@ -200,7 +198,7 @@ public class MDVK {
         }
     }
 
-    public static class TIME_PICKER {
+    public static class DATE_PICKER {
         public static void showDatePicker(Context context, TextView textView) {
             DatePickerDialog datePickerDialog;
             SimpleDateFormat dateFormatter = new SimpleDateFormat(formatDate, Locale.US);

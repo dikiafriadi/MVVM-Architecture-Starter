@@ -41,7 +41,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:fontFamily="sans-serif-light"
-                android:text="Hope you enjoy the stay"
+                android:text="Enter Your Github Username"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="@android:color/white" />
 
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/spacing_middle"
-                android:text="Log In"
+                android:text="MDVK"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
@@ -90,33 +90,6 @@
                     android:textColor="@color/mdvk_white"
                     android:textColorHint="@color/mdvk_white"
                     android:theme="@style/EditText.Flat.Grey" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_mlarge" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/EditText.White.Hint">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginRight="-4dp"
-                    android:hint="PASSWORD"
-                    android:inputType="textPassword"
-                    android:maxLength="50"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColor="@color/mdvk_white"
-                    android:textColorHint="@color/mdvk_white"
-                    android:theme="@style/EditText.Grey" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
