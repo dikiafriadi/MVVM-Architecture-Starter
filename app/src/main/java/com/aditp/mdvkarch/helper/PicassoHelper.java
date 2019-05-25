@@ -40,8 +40,6 @@ public class PicassoHelper {
     }
 
 
-
-
     public static class BitmapTransform implements Transformation {
 
         private final int maxWidth;

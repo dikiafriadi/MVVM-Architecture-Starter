@@ -1,18 +1,17 @@
 package com.aditp.mdvkarch.core;
 
 
-import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.helper.MDVK;
-import java.util.Objects;
 
+import java.util.Objects;
 
 
 public abstract class MyActivity extends AppCompatActivity implements BaseView {

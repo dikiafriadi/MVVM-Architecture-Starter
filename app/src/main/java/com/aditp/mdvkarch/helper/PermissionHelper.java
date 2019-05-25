@@ -31,7 +31,7 @@ public class PermissionHelper {
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
-                       if (report.isAnyPermissionPermanentlyDenied()) {
+                        if (report.isAnyPermissionPermanentlyDenied()) {
                             showMessageWarning(context, "Kami memerlukan Akses Lokasi .");
                         }
                     }
@@ -77,7 +77,7 @@ public class PermissionHelper {
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
-                       if (report.isAnyPermissionPermanentlyDenied()) {
+                        if (report.isAnyPermissionPermanentlyDenied()) {
                             showMessageWarning(context, "Kami memerlukan Akses ke kamera .");
                         }
                     }

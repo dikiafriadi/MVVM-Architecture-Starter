@@ -3,7 +3,6 @@ package com.aditp.mdvkarch.ui.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.databinding.DataBindingUtil;
@@ -39,6 +38,7 @@ public class MainActivity extends MyActivity {
         binding.rvList.setLayoutManager(new LinearLayoutManager(this));
         binding.rvList.addItemDecoration(new SpacesItemDecoration(5));
 
+
     }
 
     @Override
@@ -56,24 +56,6 @@ public class MainActivity extends MyActivity {
             mainBL.getDataUserRepos(getUsernameFromSharedPref);
         });
 
-        mainBL.adapter.setOnItemClickListener((view, obj, pos) -> {
-            MDVK.DIALOG_TOOLS.showCustomDialog(this,
-                    String.valueOf(obj.getFullName()),
-                    "Language : " + obj.getLanguage() + "\n" +
-                            "Star : " + obj.getSize(),
-                    R.drawable.flag_question,
-                    new MDVK.ActionDialogListener() {
-                        @Override
-                        public void executeNo() {
-                            // ignored
-                        }
-
-                        @Override
-                        public void executeYes() {
-                            Toast.makeText(MainActivity.this, "Direct to WebBrowser to open Link ~", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        });
 
     }
 

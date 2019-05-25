@@ -1,8 +1,6 @@
 package com.aditp.mdvkarch.data.remote;
 
 
-import com.aditp.mdvkarch.core.CONSTANT;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -10,8 +8,8 @@ import static com.aditp.mdvkarch.helper.MDVK.MY_UNSAFE_OKHTTP_CLIENT;
 
 
 public class RetrofitClient {
-    private static Retrofit retrofit;
     private static final String BASE_URL = "https://api.github.com/";
+    private static Retrofit retrofit;
 
     // ------------------------------------------------------------------------
     // SINGLETON PATTERN + synchronized

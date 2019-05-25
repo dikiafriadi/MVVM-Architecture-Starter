@@ -28,16 +28,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
     private int LAYOUT = R.layout.item_repo;
     private OnItemClickListener onItemClickListener;
 
-    // Trigger Technique
-    public void setOnItemClickListener(final OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
-
     public MainAdapter(Context context, List<ResponseArray> items) {
         this.context = context;
         this.items = items;
     }
 
+    // Trigger Technique
+    public void setOnItemClickListener(final OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     @NonNull
     @Override
@@ -67,9 +66,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
 
         holder.binding.lytParent.setOnClickListener(view1 -> {
             MDVK.DIALOG_TOOLS.showCustomDialog(context,
-                    String.valueOf(items.getId()),
+                    String.valueOf(items.getFullName()),
                     "Language : " + items.getLanguage() + "\n" +
-                            "Star :" + items.getStargazersCount(),
+                            "Star : " + items.getStargazersCount(),
                     R.drawable.flag_question,
                     new MDVK.ActionDialogListener() {
                         @Override
@@ -92,6 +91,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
     }
 
     // ------------------------------------------------------------------------
+    // INTERFACE
+    // ------------------------------------------------------------------------
+    public interface OnItemClickListener {
+        void onItemClick(View view, ResponseArray obj, int pos);
+    }
+
+    // ------------------------------------------------------------------------
     // INNER CLASS
     // ------------------------------------------------------------------------
     public class onSetUpBindingComponent extends RecyclerView.ViewHolder {
@@ -101,13 +107,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
             super(binding.getRoot());
             this.binding = binding;
         }
-    }
-
-    // ------------------------------------------------------------------------
-    // INTERFACE
-    // ------------------------------------------------------------------------
-    public interface OnItemClickListener {
-        void onItemClick(View view, ResponseArray obj, int pos);
     }
 
 }

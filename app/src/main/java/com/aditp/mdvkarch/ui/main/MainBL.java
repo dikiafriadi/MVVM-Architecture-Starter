@@ -25,8 +25,8 @@ import retrofit2.Response;
 public class MainBL {
     private Context context;
     private ActivityMainBinding binding;
-    MainAdapter adapter;
-    List<ResponseArray> items;
+    private MainAdapter adapter;
+    private List<ResponseArray> items;
 
 
     {

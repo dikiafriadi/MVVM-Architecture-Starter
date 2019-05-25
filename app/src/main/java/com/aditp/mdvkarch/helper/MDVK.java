@@ -156,7 +156,7 @@ public class MDVK {
                 Request request = chain.request();
                 okhttp3.Response response = chain.proceed(request);
                 // error case
-                if (response.code() != 200){
+                if (response.code() != 200) {
                     switch (response.code()) {
                         case 400:
                             Log.d("400", "400 Bad Request");
@@ -196,6 +196,15 @@ public class MDVK {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    // ------------------------------------------------------------------------
+    // INTERFACE
+    // ------------------------------------------------------------------------
+    public interface ActionDialogListener {
+        void executeNo();
+
+        void executeYes();
     }
 
     public static class DATE_PICKER {
@@ -1028,14 +1037,5 @@ public class MDVK {
             Notification notification = builder.build();
             notifManager.notify(NOTIFY_ID, notification);
         }
-    }
-
-    // ------------------------------------------------------------------------
-    // INTERFACE
-    // ------------------------------------------------------------------------
-    public interface ActionDialogListener {
-        void executeNo();
-
-        void executeYes();
     }
 }
