@@ -20,7 +20,7 @@
 
 #### CLEAN PROJECT STRUCTURE & EASY TO UNDERSTAND
 
-![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/profiling_test.png)
+![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/project_architecture.png.png)
 
   
   
