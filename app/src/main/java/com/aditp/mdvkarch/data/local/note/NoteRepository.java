@@ -1,14 +1,14 @@
 package com.aditp.mdvkarch.data.local.note;
 
 
-
 import android.app.Application;
-import androidx.lifecycle.LiveData;
 import android.os.AsyncTask;
+
+import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class NoteRepository {
+public class NoteRepository implements NoteDao {
     private NoteDao noteDao;
     private LiveData<List<Note>> allNotes;
 
@@ -18,22 +18,27 @@ public class NoteRepository {
         allNotes = noteDao.getAllNotes();
     }
 
+    @Override
     public void insert(Note note) {
         new InsertNoteAsyncTask(noteDao).execute(note);
     }
 
+    @Override
     public void update(Note note) {
         new UpdateNoteAsyncTask(noteDao).execute(note);
     }
 
+    @Override
     public void delete(Note note) {
         new DeleteNoteAsyncTask(noteDao).execute(note);
     }
 
+    @Override
     public void deleteAllNotes() {
         new DeleteAllNotesAsyncTask(noteDao).execute();
     }
 
+    @Override
     public LiveData<List<Note>> getAllNotes() {
         return allNotes;
     }

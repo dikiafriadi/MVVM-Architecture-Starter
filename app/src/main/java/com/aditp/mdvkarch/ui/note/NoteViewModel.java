@@ -7,12 +7,13 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.aditp.mdvkarch.data.local.note.Note;
+import com.aditp.mdvkarch.data.local.note.NoteDao;
 import com.aditp.mdvkarch.data.local.note.NoteRepository;
 
 import java.util.List;
 
 
-public class NoteViewModel extends AndroidViewModel {
+public class NoteViewModel extends AndroidViewModel implements NoteDao {
     private NoteRepository repository;
     private LiveData<List<Note>> allNotes;
 
@@ -22,22 +23,28 @@ public class NoteViewModel extends AndroidViewModel {
         allNotes = repository.getAllNotes();
     }
 
+
+    @Override
     public void insert(Note note) {
         repository.insert(note);
     }
 
+    @Override
     public void update(Note note) {
         repository.update(note);
     }
 
+    @Override
     public void delete(Note note) {
         repository.delete(note);
     }
 
+    @Override
     public void deleteAllNotes() {
         repository.deleteAllNotes();
     }
 
+    @Override
     public LiveData<List<Note>> getAllNotes() {
         return allNotes;
     }

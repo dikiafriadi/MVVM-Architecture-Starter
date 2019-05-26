@@ -46,7 +46,7 @@ public abstract class NoteDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            for (int i = 0; i < 25; i++) {
+            for (int i = 0; i < 3; i++) {
                 noteDao.insert(new Note(
                         MDVKHelper.STRING_TOOLS.randomString("MDVK", 4),
                         MDVKHelper.STRING_TOOLS.randomString("mdvkMDVK", 50), i));

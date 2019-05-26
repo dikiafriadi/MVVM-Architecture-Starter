@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements BaseView {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();
-            }, 2500);
+            }, 500);
 
         });
 
