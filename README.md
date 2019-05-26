@@ -95,3 +95,16 @@
     -  `PicassoHelper` Picasso Loader for load large images in Android and avoiding the out of memory error`
 
     - Item Adapter Animation / Effect : `ItemAdapterAnimation` , `SpacesItemDecoration` , `SpacingItemDecoration` , `ViewAnimation`
+
+
+## TODO
+- [x] Create example Retrofit get JSON Object
+- [x] Create example Retrofit get JSON Array
+- [x] Retrofit Error Handler & sample
+- [x] Room with MVVM
+- [x] Simple Custom toolbar & menu
+- [x] Right way SplashScreen
+- [ ] add library Data Binding Validator
+- [ ] Rx Java 2 + Rx Android
+- [ ] Documentation & Wiki
+- [ ] Analytics setup
