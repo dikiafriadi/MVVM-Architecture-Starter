@@ -16,11 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.MyActivity;
-import com.aditp.mdvkarch.data.local.note.Note;
+import com.aditp.mdvkarch.data.local.Note;
 import com.aditp.mdvkarch.databinding.ActivityNoteBinding;
 import com.aditp.mdvkarch.databinding.DialogAddNoteBinding;
 import com.aditp.mdvkarch.helper.MDVKHelper;
-import com.aditp.mdvkarch.utils.SpacesItemDecoration;
+import com.aditp.mdvkarch.helper.utils.SpacesItemDecoration;
 
 import java.util.Objects;
 
@@ -37,6 +37,7 @@ public class NoteActivity extends MyActivity {
         binding = DataBindingUtil.setContentView(this, LAYOUT);
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         initToolbar("Database Notes");
+
         // setup RecyclerView
         binding.rvList.setHasFixedSize(true);
         binding.rvList.setLayoutManager(new LinearLayoutManager(this));
@@ -46,41 +47,7 @@ public class NoteActivity extends MyActivity {
         adapter = new NoteAdapter(this);
         binding.rvList.setAdapter(adapter);
 
-        noteViewModel.getAllNotes().observe(this, notes -> {
-            adapter.setNotes(notes);
-            initToolbar("Database Notes (" + adapter.getItemCount() + ")");
-        });
 
-    }
-
-    @Override
-    public void onActionComponent() {
-        binding.btnFab.setOnClickListener(view -> showAddNoteDialog(this));
-        adapter.setOnItemClickListener((view, obj, pos) ->
-                MDVKHelper.DIALOG_TOOLS.showCustomDialog(this,
-                        "Delete Note " + obj.getTitle(),
-                        "Title : " + obj.getDescription() + "\n" +
-                                "Description : " + obj.getPriority(),
-                        R.drawable.flag_question,
-                        new MDVKHelper.ActionDialogListener() {
-                            @Override
-                            public void executeNo() {
-
-                            }
-
-                            @Override
-                            public void executeYes() {
-                                noteViewModel.delete(adapter.getNoteAt(pos));
-                            }
-                        }));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void showAddNoteDialog(Context context) {
@@ -122,4 +89,42 @@ public class NoteActivity extends MyActivity {
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
+
+
+    @Override
+    public void onActionComponent() {
+        noteViewModel.getAllNotes().observe(this, notes -> {
+            adapter.setNotes(notes);
+            initToolbar("Database Notes (" + adapter.getItemCount() + ")");
+        });
+
+        binding.btnFab.setOnClickListener(view -> showAddNoteDialog(this));
+        adapter.setOnItemClickListener((view, obj, pos) -> {
+            MDVKHelper.DIALOG_TOOLS.showCustomDialog(this,
+                    "Delete Note " + obj.getTitle(),
+                    "Title : " + obj.getDescription() + "\n" +
+                            "Description : " + obj.getPriority(),
+                    R.drawable.flag_question,
+                    new MDVKHelper.ActionDialogListener() {
+                        @Override
+                        public void executeNo() {
+
+                        }
+
+                        @Override
+                        public void executeYes() {
+                            noteViewModel.delete(adapter.getNoteAt(pos));
+                        }
+                    });
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

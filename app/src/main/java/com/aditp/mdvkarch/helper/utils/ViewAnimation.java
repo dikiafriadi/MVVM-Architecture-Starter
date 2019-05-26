@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.utils;
+package com.aditp.mdvkarch.helper.utils;
 
 
 import android.animation.Animator;

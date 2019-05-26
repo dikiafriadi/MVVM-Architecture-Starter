@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.data.local.note;
+package com.aditp.mdvkarch.data.local;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

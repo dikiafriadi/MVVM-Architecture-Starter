@@ -1,10 +1,14 @@
-package com.aditp.mdvkarch.data.local.note;
+package com.aditp.mdvkarch.data;
 
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+
+import com.aditp.mdvkarch.data.local.Note;
+import com.aditp.mdvkarch.data.local.NoteDao;
+import com.aditp.mdvkarch.data.local.NoteDatabase;
 
 import java.util.List;
 

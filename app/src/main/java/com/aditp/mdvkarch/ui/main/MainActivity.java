@@ -3,7 +3,6 @@ package com.aditp.mdvkarch.ui.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.databinding.DataBindingUtil;
@@ -15,9 +14,9 @@ import com.aditp.mdvkarch.core.MyActivity;
 import com.aditp.mdvkarch.core.SharedPref;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
 import com.aditp.mdvkarch.helper.MDVKHelper;
+import com.aditp.mdvkarch.helper.utils.SpacesItemDecoration;
 import com.aditp.mdvkarch.ui.login.LoginActivity;
 import com.aditp.mdvkarch.ui.note.NoteActivity;
-import com.aditp.mdvkarch.utils.SpacesItemDecoration;
 
 
 public class MainActivity extends MyActivity {

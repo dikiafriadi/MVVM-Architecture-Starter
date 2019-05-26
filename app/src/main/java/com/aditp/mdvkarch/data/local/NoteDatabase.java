@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.data.local.note;
+package com.aditp.mdvkarch.data.local;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -18,7 +18,7 @@ public abstract class NoteDatabase extends RoomDatabase {
 
     public abstract NoteDao noteDao();
 
-    static synchronized NoteDatabase getInstance(Context context) {
+    public static synchronized NoteDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     NoteDatabase.class, "note_database")

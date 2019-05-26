@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.aditp.mdvkarch.data.local.note.Note;
-import com.aditp.mdvkarch.data.local.note.NoteDao;
-import com.aditp.mdvkarch.data.local.note.NoteRepository;
+import com.aditp.mdvkarch.data.local.Note;
+import com.aditp.mdvkarch.data.local.NoteDao;
+import com.aditp.mdvkarch.data.NoteRepository;
 
 import java.util.List;
 
