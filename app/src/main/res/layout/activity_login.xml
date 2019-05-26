@@ -12,8 +12,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/overlay_dark_80" />
+            android:layout_height="match_parent" />
 
         <LinearLayout
             android:layout_width="330dp"
@@ -32,8 +31,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:text="Welcome!"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Display2"
-                android:textColor="@android:color/white" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Display2" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,7 +41,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="Enter Your Github Username"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textColor="@android:color/white" />
+                />
 
             <View
                 android:layout_width="0dp"
@@ -54,7 +52,7 @@
                 android:layout_width="50dp"
                 android:layout_height="3dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@android:color/white" />
+                android:background="@color/mdvk_black" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -63,7 +61,6 @@
                 android:layout_marginTop="@dimen/spacing_middle"
                 android:text="MDVK"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
             <View
@@ -87,9 +84,7 @@
                     android:maxLength="50"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="@color/mdvk_white"
-                    android:textColorHint="@color/mdvk_white"
-                    android:theme="@style/EditText.Flat.Grey" />
+                    android:theme="@style/EditText.Green" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
