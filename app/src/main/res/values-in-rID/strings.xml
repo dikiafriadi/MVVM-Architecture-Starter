@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MDVK ARCH</string>
+    <string name="app_ver">1.0</string>
+    <string name="app_desc">Cuma Demo Guys</string>
+    <string name="app_about">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend tincidunt turpis nec viverra.</string>
+    <string name="btn_login">M A S U K</string>
+    <string name="navigation_drawer_close">tutup</string>
+    <string name="navigation_drawer_open">buka</string>
+    <string name="pilih_bahasa">Pilih Bahasa</string>
+    <string name="msg_no_connection_title">Tidak Ada Koneksi</string>
+    <string name="msg_no_connection">Anda tampaknya tidak memiliki koneksi internet, aplikasi ini membutuhkan internet untuk memuat konten terbaru.</string>
+</resources>

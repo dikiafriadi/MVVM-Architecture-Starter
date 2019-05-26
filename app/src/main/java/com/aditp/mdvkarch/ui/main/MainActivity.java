@@ -3,6 +3,7 @@ package com.aditp.mdvkarch.ui.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.databinding.DataBindingUtil;
@@ -15,6 +16,7 @@ import com.aditp.mdvkarch.core.SharedPref;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
 import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.aditp.mdvkarch.ui.login.LoginActivity;
+import com.aditp.mdvkarch.ui.note.NoteActivity;
 import com.aditp.mdvkarch.utils.SpacesItemDecoration;
 
 
@@ -48,9 +50,8 @@ public class MainActivity extends MyActivity {
         mainBL.getDataUsers(getUsernameFromSharedPref);
         mainBL.getDataUserRepos(getUsernameFromSharedPref);
 
-        binding.btnFab.setOnClickListener(v -> {
-            MDVKHelper.DIALOG_TOOLS.showAboutDialog(this);
-        });
+        binding.btnFab.setOnClickListener(v -> MDVKHelper.DIALOG_TOOLS.showAboutDialog(this));
+        binding.btnOpenNotes.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, NoteActivity.class)));
         binding.swipeRefreshLayout.setOnRefreshListener(() -> {
             mainBL.getDataUsers(getUsernameFromSharedPref);
             mainBL.getDataUserRepos(getUsernameFromSharedPref);

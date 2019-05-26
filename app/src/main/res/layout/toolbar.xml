@@ -12,6 +12,6 @@
         app:contentInsetStartWithNavigation="0dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/Toolbar.Light"
-        app:title="MDVK"
+        app:title="@string/app_name"
         app:titleTextColor="#000" />
 </layout>

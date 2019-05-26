@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.ui.main;
+package com.aditp.mdvkarch.ui.note;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,27 +10,30 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aditp.mdvkarch.R;
-import com.aditp.mdvkarch.data.remote.api_response.ResponseArray;
+import com.aditp.mdvkarch.data.local.note.Note;
 import com.aditp.mdvkarch.databinding.ItemRepoBinding;
-import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBindingComponent> {
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.onSetUpBindingComponent> {
 
     private Context context;
-
-    // Select Type List Response
-    private List<ResponseArray> items;
+    private List<Note> notes = new ArrayList<>();
     private ItemRepoBinding binding;
     private int LAYOUT = R.layout.item_repo;
     private OnItemClickListener onItemClickListener;
 
-    public MainAdapter(Context context, List<ResponseArray> items) {
+
+    public NoteAdapter(Context context) {
         this.context = context;
-        this.items = items;
+    }
+
+    public NoteAdapter(Context context, List<Note> notes) {
+        this.context = context;
+        this.notes = notes;
     }
 
     // Trigger Technique
@@ -47,14 +50,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
 
     @Override
     public void onBindViewHolder(@NonNull onSetUpBindingComponent holder, final int position) {
-        final ResponseArray items = this.items.get(position);
-        holder.binding.tvRepoName.setText(items.getName());
+        final Note items = this.notes.get(position);
+        holder.binding.tvRepoName.setText(items.getTitle());
         holder.binding.tvRepoDesc.setText(items.getDescription());
 
 
         ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
         int color = generator.getRandomColor();
-        String firstWord = items.getName().substring(0, 1);
+        String firstWord = items.getTitle().substring(0, 1);
         TextDrawable drawable = TextDrawable.builder()
                 .beginConfig()
                 .bold()
@@ -65,36 +68,29 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
 
 
         holder.binding.lytParent.setOnClickListener(view1 -> {
-            MDVKHelper.DIALOG_TOOLS.showCustomDialog(context,
-                    String.valueOf(items.getFullName()),
-                        "Language : " + items.getLanguage() + "\n" +
-                              "Star : " + items.getStargazersCount(),
-                    R.drawable.flag_question,
-                    new MDVKHelper.ActionDialogListener() {
-                        @Override
-                        public void executeNo() {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(view1, this.notes.get(position), position);
+            }
 
-                        }
-
-                        @Override
-                        public void executeYes() {
-
-                        }
-                    });
         });
 
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return notes.size();
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+        notifyDataSetChanged();
     }
 
     // ------------------------------------------------------------------------
     // INTERFACE
     // ------------------------------------------------------------------------
     public interface OnItemClickListener {
-        void onItemClick(View view, ResponseArray obj, int pos);
+        void onItemClick(View view, Note obj, int pos);
     }
 
     // ------------------------------------------------------------------------

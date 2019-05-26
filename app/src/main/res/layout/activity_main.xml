@@ -160,6 +160,7 @@
                                                 android:layout_weight="1.0">
 
                                                 <androidx.cardview.widget.CardView
+                                                    android:id="@+id/btnOpenNotes"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="match_parent"
                                                     android:visibility="visible"
@@ -177,7 +178,6 @@
                                                         <ImageView
                                                             android:layout_width="44dp"
                                                             android:layout_height="44dp"
-                                                            android:contentDescription="TODO"
                                                             android:padding="8dp"
                                                             app:srcCompat="@color/mdvk_main" />
 
@@ -186,7 +186,7 @@
                                                             android:layout_height="wrap_content"
                                                             android:layout_alignParentBottom="true"
                                                             android:gravity="bottom"
-                                                            android:text="Working with Fragment" />
+                                                            android:text="MVVM + ROOM Example" />
                                                     </RelativeLayout>
                                                 </androidx.cardview.widget.CardView>
 

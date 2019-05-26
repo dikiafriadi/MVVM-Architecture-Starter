@@ -483,6 +483,16 @@ public class MDVKHelper {
     }
 
     public static class STRING_TOOLS {
+
+        public static String randomString(String field, int count) {
+            StringBuilder builder = new StringBuilder();
+            while (count-- != 0) {
+                int character = (int) (Math.random() * field.length());
+                builder.append(field.charAt(character));
+            }
+            return builder.toString();
+        }
+
         public static String getCurrentDateTime(String format) {
             return getTimeByFormat(format);
         }
@@ -506,45 +516,14 @@ public class MDVKHelper {
             return df.format(c.getTime());
         }
 
-        public static String getMonthName(String value) {
+        public static String getMonthName(int month) {
+            String[] months = new String[]{"JAN", "FEB", "MAR", "APR", "MEI", "JUN", "JUL", "AUG", "SEPT", "OKT", "NOV", "DES"};
+            return months[month];
+        }
 
-            if (value.equals("01") || value.equals("1")) {
-                return "Jan";
-            }
-            if (value.equals("02") || value.equals("2")) {
-                return "Feb";
-            }
-            if (value.equals("03") || value.equals("3")) {
-                return "Mar";
-            }
-            if (value.equals("04") || value.equals("4")) {
-                return "Apr";
-            }
-            if (value.equals("05") || value.equals("5")) {
-                return "May";
-            }
-            if (value.equals("06") || value.equals("6")) {
-                return "Jun";
-            }
-            if (value.equals("07") || value.equals("7")) {
-                return "Jul";
-            }
-            if (value.equals("08") || value.equals("8")) {
-                return "Aug";
-            }
-            if (value.equals("09") || value.equals("9")) {
-                return "Sep";
-            }
-            if (value.equals("10")) {
-                return "Oct";
-            }
-            if (value.equals("11")) {
-                return "Nov";
-            }
-            if (value.equals("12")) {
-                return "Dec";
-            }
-            return "Not Found";
+        public static String getDayName(int dayOfWeek) {
+            String[] days = {"Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"};
+            return days[dayOfWeek];
         }
 
         public static String toCamelCase(String input) {
@@ -618,7 +597,7 @@ public class MDVKHelper {
                 String tahun = utcTime.substring(0, 4);
                 String bulan = utcTime.substring(4, 6);
                 String hari = utcTime.substring(6, 8);
-                return hari + " " + getMonthName(bulan) + " " + tahun;
+                return hari + " " + getMonthName(Integer.parseInt(bulan)) + " " + tahun;
             } catch (Exception ignored) {
             }
             return "";
