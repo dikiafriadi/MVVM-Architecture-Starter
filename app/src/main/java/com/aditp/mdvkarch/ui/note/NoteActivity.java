@@ -35,9 +35,8 @@ public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewMode
     }
 
     @Override
-    public NoteViewModel setBLClass() {
+    public void setBLClass() {
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
-        return noteViewModel;
     }
 
     @Override

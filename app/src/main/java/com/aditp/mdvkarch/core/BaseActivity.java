@@ -33,7 +33,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, L> extends AppComp
     public abstract @LayoutRes
     int LAYOUT();
 
-    public abstract L setBLClass();
+    public abstract void setBLClass();
 
     // ------------------------------------------------------------------------
     // Inheritance Technique to apply on all class extends AppCompatActivity

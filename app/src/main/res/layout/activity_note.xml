@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto">
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,6 +31,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnFab"
             android:layout_width="55dp"

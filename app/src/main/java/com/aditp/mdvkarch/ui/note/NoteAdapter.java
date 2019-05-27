@@ -86,7 +86,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.onSetUpBinding
         notifyDataSetChanged();
     }
 
-    public Note getNoteAt(int position){
+    public Note getNoteAt(int position) {
         return notes.get(position);
     }
 

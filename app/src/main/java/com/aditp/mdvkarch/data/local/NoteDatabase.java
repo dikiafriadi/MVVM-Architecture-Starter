@@ -15,8 +15,13 @@ import com.aditp.mdvkarch.helper.MDVKHelper;
 public abstract class NoteDatabase extends RoomDatabase {
 
     private static NoteDatabase instance;
-
-    public abstract NoteDao noteDao();
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            new PopulateDbAsyncTask(instance).execute();
+        }
+    };
 
     public static synchronized NoteDatabase getInstance(Context context) {
         if (instance == null) {
@@ -29,13 +34,7 @@ public abstract class NoteDatabase extends RoomDatabase {
         return instance;
     }
 
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            new PopulateDbAsyncTask(instance).execute();
-        }
-    };
+    public abstract NoteDao noteDao();
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
         private NoteDao noteDao;

@@ -23,7 +23,7 @@ public class MDVK extends AppCompatActivity {
     // ------------------------------------------------------------------------
     protected void startApp(Class<?> cls) {
         startActivity(new Intent(MDVK.this, cls));
-        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         finish();
     }
 

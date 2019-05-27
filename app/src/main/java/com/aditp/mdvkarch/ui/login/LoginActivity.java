@@ -23,9 +23,8 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginBL> {
     }
 
     @Override
-    public LoginBL setBLClass() {
+    public void setBLClass() {
         loginBL = new LoginBL(this, binding);
-        return loginBL;
     }
 
     @Override

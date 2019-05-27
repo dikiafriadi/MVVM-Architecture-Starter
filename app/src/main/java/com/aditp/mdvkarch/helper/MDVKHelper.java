@@ -158,26 +158,9 @@ public class MDVKHelper {
                 // error case
                 if (response.code() != 200) {
                     switch (response.code()) {
+                        // Custom handle ~
                         case 400:
                             Log.d("400", "400 Bad Request");
-                            break;
-                        case 401:
-                            Log.d("401", " 401 Unauthorized");
-                            break;
-                        case 403:
-                            Log.d("403", " 401 Forbidden");
-                            break;
-                        case 404:
-                            Log.d("404", "404 Not Found");
-                            break;
-                        case 405:
-                            Log.d("405", "405 Method Not Allowed");
-                            break;
-                        case 415:
-                            Log.d("415", "415 Unsupported Media Type");
-                            break;
-                        case 500:
-                            Log.d("500", "500 Server Broken");
                             break;
                         default:
                             Log.d(String.valueOf(response.code()), response.message());
@@ -297,7 +280,7 @@ public class MDVKHelper {
             dialog.getWindow().setAttributes(lp);
         }
 
-        // with custome drawable
+        // with Custom drawable
         @SuppressLint("SetTextI18n")
         public static void showCustomDialog(Context context, String title, String msg, int drawable, final ActionDialogListener actionDialogListener) {
             final Dialog dialog = new Dialog(context);

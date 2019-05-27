@@ -27,9 +27,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainBL> {
     }
 
     @Override
-    public MainBL setBLClass() {
+    public void setBLClass() {
         mainBL = new MainBL(this, binding);
-        return mainBL;
     }
 
     @Override
