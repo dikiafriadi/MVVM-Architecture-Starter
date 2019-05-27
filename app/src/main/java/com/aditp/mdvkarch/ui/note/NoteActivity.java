@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.aditp.mdvkarch.R;
-import com.aditp.mdvkarch.core.MyActivity;
+import com.aditp.mdvkarch.core.BaseActivity;
 import com.aditp.mdvkarch.data.local.Note;
 import com.aditp.mdvkarch.databinding.ActivityNoteBinding;
 import com.aditp.mdvkarch.databinding.DialogAddNoteBinding;
@@ -24,18 +24,25 @@ import com.aditp.mdvkarch.helper.utils.SpacesItemDecoration;
 
 import java.util.Objects;
 
-public class NoteActivity extends MyActivity {
-    ActivityNoteBinding binding;
+public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewModel> {
+    // @Inject
     NoteViewModel noteViewModel;
     NoteAdapter adapter;
-    int LAYOUT = R.layout.activity_note;
 
+    @Override
+    public int LAYOUT() {
+        return R.layout.activity_note;
+    }
+
+    @Override
+    public NoteViewModel setBLClass() {
+        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
+        return noteViewModel;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, LAYOUT);
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         initToolbar("Database Notes");
 
         // setup RecyclerView
@@ -46,7 +53,6 @@ public class NoteActivity extends MyActivity {
         // setup adapter
         adapter = new NoteAdapter(this);
         binding.rvList.setAdapter(adapter);
-
 
     }
 

@@ -4,13 +4,11 @@ import android.content.Context;
 import android.os.Handler;
 import android.view.View;
 
-import androidx.lifecycle.ViewModel;
-
 import com.aditp.mdvkarch.core.CONSTANT;
 import com.aditp.mdvkarch.core.SharedPref;
 import com.aditp.mdvkarch.databinding.ActivityLoginBinding;
 
-public class LoginBL extends ViewModel {
+public class LoginBL {
     private Context context;
     private ActivityLoginBinding binding;
     private OnLoginSuccess onLoginSuccess;

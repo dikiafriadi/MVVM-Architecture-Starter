@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.aditp.mdvkarch.helper.MDVKHelper;
 
-@Database(entities = {Note.class}, version = 1)
+@Database(entities = {Note.class}, version = 1, exportSchema = false)
 public abstract class NoteDatabase extends RoomDatabase {
 
     private static NoteDatabase instance;

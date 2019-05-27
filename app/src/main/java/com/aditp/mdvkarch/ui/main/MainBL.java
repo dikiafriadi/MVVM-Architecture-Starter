@@ -2,7 +2,6 @@ package com.aditp.mdvkarch.ui.main;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,12 +26,6 @@ public class MainBL {
     private ActivityMainBinding binding;
     private MainAdapter adapter;
     private List<ResponseArray> items;
-
-
-    {
-        Log.d("Business Logic", "instance initializer: ");
-        adapter = new MainAdapter(context, null);
-    }
 
     public MainBL(Context context, ActivityMainBinding binding) {
         this.context = context;

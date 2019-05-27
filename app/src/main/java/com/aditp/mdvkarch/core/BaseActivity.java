@@ -4,9 +4,12 @@ package com.aditp.mdvkarch.core;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.helper.MDVKHelper;
@@ -14,9 +17,23 @@ import com.aditp.mdvkarch.helper.MDVKHelper;
 import java.util.Objects;
 
 
-public abstract class MyActivity extends AppCompatActivity implements BaseView {
-    protected String TAG = "DEBUG";
+/**
+ * ----------------------------
+ * A D I T Y A   P R A T A M A
+ * MEI 2019
+ * ----------------------------
+ *
+ * @param <T> ViewDataBinding
+ * @param <L> Business Logic
+ */
+public abstract class BaseActivity<T extends ViewDataBinding, L> extends AppCompatActivity implements BaseImpl {
+    protected T binding;
+    protected L bl;
 
+    public abstract @LayoutRes
+    int LAYOUT();
+
+    public abstract L setBLClass();
 
     // ------------------------------------------------------------------------
     // Inheritance Technique to apply on all class extends AppCompatActivity
@@ -27,8 +44,26 @@ public abstract class MyActivity extends AppCompatActivity implements BaseView {
         // change SystemBar UI
         MDVKHelper.WINDOW_TOOLS.setSystemBarColor(this, R.color.mdvk_white);
         MDVKHelper.WINDOW_TOOLS.setSystemBarLight(this);
+        performDataBinding();
+        setBLClass();
     }
 
+
+    private void performDataBinding() {
+        binding = DataBindingUtil.setContentView(this, LAYOUT());
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        onActionComponent();
+    }
+
+
+    // ------------------------------------------------------------------------
+    // BORING METHOD -__-
+    // ------------------------------------------------------------------------
     protected void initToolbar(String title) {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
@@ -49,15 +84,5 @@ public abstract class MyActivity extends AppCompatActivity implements BaseView {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        onActionComponent();
-    }
-
-//    @Override
-//    protected void attachBaseContext(Context newBase) {
-//        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-//    }
 
 }

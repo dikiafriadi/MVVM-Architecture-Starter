@@ -6,28 +6,32 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import com.aditp.mdvkarch.R;
-import com.aditp.mdvkarch.core.BaseView;
+import com.aditp.mdvkarch.core.BaseActivity;
 import com.aditp.mdvkarch.databinding.ActivityLoginBinding;
 import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.aditp.mdvkarch.ui.main.MainActivity;
 
 import java.util.Objects;
 
-public class LoginActivity extends AppCompatActivity implements BaseView {
-    ActivityLoginBinding binding;
+public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginBL> {
     LoginBL loginBL;
-    int LAYOUT = R.layout.activity_login;
+
+    @Override
+    public int LAYOUT() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    public LoginBL setBLClass() {
+        loginBL = new LoginBL(this, binding);
+        return loginBL;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MDVKHelper.WINDOW_TOOLS.setActivityToFullScreen(this);
-        binding = DataBindingUtil.setContentView(this, LAYOUT);
-        loginBL = new LoginBL(this, binding);
         onActionComponent();
 
     }

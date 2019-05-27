@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.aditp.mdvkarch.R;
+import com.aditp.mdvkarch.core.BaseActivity;
 import com.aditp.mdvkarch.core.CONSTANT;
-import com.aditp.mdvkarch.core.MyActivity;
 import com.aditp.mdvkarch.core.SharedPref;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
 import com.aditp.mdvkarch.helper.MDVKHelper;
@@ -19,17 +18,23 @@ import com.aditp.mdvkarch.ui.login.LoginActivity;
 import com.aditp.mdvkarch.ui.note.NoteActivity;
 
 
-public class MainActivity extends MyActivity {
-    ActivityMainBinding binding;
-    int LAYOUT = R.layout.activity_main;
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainBL> {
     MainBL mainBL;
 
+    @Override
+    public int LAYOUT() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public MainBL setBLClass() {
+        mainBL = new MainBL(this, binding);
+        return mainBL;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, LAYOUT);
-        mainBL = new MainBL(this, binding);
 
         initToolbar("Main Menu");
         initNavigationMenu();

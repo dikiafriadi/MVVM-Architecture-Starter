@@ -2,7 +2,7 @@ package com.aditp.mdvkarch.core;
 
 import android.app.Application;
 
-public class MyApplication extends Application {
+public class BaseApplication extends Application {
 
 
     // ------------------------------------------------------------------------

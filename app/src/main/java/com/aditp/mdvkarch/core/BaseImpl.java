@@ -1,5 +1,5 @@
 package com.aditp.mdvkarch.core;
 
-public interface BaseView {
+public interface BaseImpl {
     void onActionComponent();
 }
