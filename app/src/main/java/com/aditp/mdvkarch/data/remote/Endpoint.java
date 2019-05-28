@@ -12,11 +12,11 @@ import retrofit2.http.Path;
 
 public interface Endpoint {
 
+    @GET("/users/{user}")
+    Call<ResponseObject> getUsers(@Path("user") String user);
+
     @GET("users/{user}/repos")
     Call<List<ResponseArray>> getProjectList(@Path("user") String user);
-
-    @GET("/repos/{user}/{reponame}")
-    Call<ResponseArray> getProjectDetails(@Path("user") String user, @Path("reponame") String projectName);
 
 
 }

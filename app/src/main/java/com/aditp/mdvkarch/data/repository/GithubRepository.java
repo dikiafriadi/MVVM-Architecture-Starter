@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.aditp.mdvkarch.data.remote.Endpoint;
 import com.aditp.mdvkarch.data.remote.RetrofitClient;
 import com.aditp.mdvkarch.data.remote.api_response.ResponseArray;
+import com.aditp.mdvkarch.data.remote.api_response.ResponseObject;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class GithubRepository {
     // @Singleton
     private static GithubRepository githubRepository;
 
-    public GithubRepository() {
+    private GithubRepository() {
         endpoint = RetrofitClient.getClient().create(Endpoint.class);
     }
 
@@ -45,7 +46,6 @@ public class GithubRepository {
 
             @Override
             public void onFailure(Call<List<ResponseArray>> call, Throwable t) {
-                // TODO better error handling in part #2 ...
                 data.setValue(null);
             }
         });
@@ -53,17 +53,17 @@ public class GithubRepository {
         return data;
     }
 
-    public LiveData<ResponseArray> getProjectDetails(String userID, String projectName) {
-        final MutableLiveData<ResponseArray> data = new MutableLiveData<>();
+    public LiveData<ResponseObject> getUserProfile(String userID) {
+        final MutableLiveData<ResponseObject> data = new MutableLiveData<>();
 
-        endpoint.getProjectDetails(userID, projectName).enqueue(new Callback<ResponseArray>() {
+        endpoint.getUsers(userID).enqueue(new Callback<ResponseObject>() {
             @Override
-            public void onResponse(Call<ResponseArray> call, Response<ResponseArray> response) {
+            public void onResponse(Call<ResponseObject> call, Response<ResponseObject> response) {
                 data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<ResponseArray> call, Throwable t) {
+            public void onFailure(Call<ResponseObject> call, Throwable t) {
                 data.setValue(null);
             }
         });

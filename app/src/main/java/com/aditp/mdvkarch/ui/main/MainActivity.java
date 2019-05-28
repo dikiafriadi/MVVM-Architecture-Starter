@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -16,6 +14,7 @@ import com.aditp.mdvkarch.core.SharedPref;
 import com.aditp.mdvkarch.data.remote.api_response.ResponseArray;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
 import com.aditp.mdvkarch.helper.MDVKHelper;
+import com.aditp.mdvkarch.helper.PicassoHelper;
 import com.aditp.mdvkarch.helper.utils.SpacesItemDecoration;
 import com.aditp.mdvkarch.ui.login.LoginActivity;
 import com.aditp.mdvkarch.ui.note.NoteActivity;
@@ -49,36 +48,47 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         binding.rvList.setLayoutManager(new LinearLayoutManager(this));
         binding.rvList.addItemDecoration(new SpacesItemDecoration(5));
 
-        // init
+    }
+
+
+    @Override
+    public void onActionComponent() {
+        loadData();
+        binding.btnFab.setOnClickListener(v -> MDVKHelper.DIALOG_TOOLS.showAboutDialog(this));
+        binding.btnOpenNotes.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, NoteActivity.class)));
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
+            loadData();
+            binding.swipeRefreshLayout.setRefreshing(false);
+        });
 
 
     }
 
-    private void observeViewModel(MainViewModel bl) {
+    private void loadData() {
+        getProjectList(bl());
+        getUserProfile(bl());
+    }
+
+    private void getProjectList(MainViewModel bl) {
         // Update the list when the data changes
-        bl.getProjectListObservable().observe(this, new Observer<List<ResponseArray>>() {
-            @Override
-            public void onChanged(@Nullable List<ResponseArray> projects) {
-                if (projects != null) {
-                    adapter = new MainAdapter(MainActivity.this);
-                    adapter.setItems(projects);
-                    binding.rvList.setAdapter(adapter);
-                }
+        bl.getProjectListObservable().observe(this, projects -> {
+            if (projects != null) {
+                adapter = new MainAdapter(MainActivity.this);
+                adapter.setItems(projects);
+                binding.rvList.setAdapter(adapter);
             }
         });
     }
 
-    @Override
-    public void onActionComponent() {
-        observeViewModel(bl());
-        binding.btnFab.setOnClickListener(v -> MDVKHelper.DIALOG_TOOLS.showAboutDialog(this));
-        binding.btnOpenNotes.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, NoteActivity.class)));
-        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
-            observeViewModel(bl());
+    private void getUserProfile(MainViewModel bl) {
+        bl.getUserProfileObservable().observe(this, responseObject -> {
+            binding.tvname.setText(responseObject.getName());
+            binding.tvCompany.setText(responseObject.getCompany());
+            binding.tvBio.setText(responseObject.getBio());
+            PicassoHelper.load(responseObject.getAvatarUrl(), binding.ivSelfie);
         });
-
-
     }
+
 
     private void initNavigationMenu() {
         binding.navView.setVisibility(View.VISIBLE);

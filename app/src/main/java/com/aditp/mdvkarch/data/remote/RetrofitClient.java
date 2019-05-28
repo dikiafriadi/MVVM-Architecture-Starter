@@ -27,6 +27,7 @@ public class RetrofitClient {
         return retrofit;
     }
 
+    // use this just on case if your project have multiple uri
     public static Retrofit getClient(String url) {
         synchronized (RetrofitClient.class) {
             if (retrofit == null) {

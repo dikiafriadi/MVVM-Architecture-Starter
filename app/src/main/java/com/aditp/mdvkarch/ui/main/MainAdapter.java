@@ -70,7 +70,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
             MDVKHelper.DIALOG_TOOLS.showCustomDialog(context,
                     String.valueOf(items.getFullName()),
                     "Language : " + items.getLanguage() + "\n" +
-                            "Star : " + items.getStargazersCount(),
+                            "Star : " + items.getStargazersUrl(),
                     R.drawable.flag_question,
                     new MDVKHelper.ActionDialogListener() {
                         @Override
