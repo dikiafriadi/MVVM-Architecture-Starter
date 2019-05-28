@@ -47,8 +47,8 @@ public abstract class NoteDatabase extends RoomDatabase {
         protected Void doInBackground(Void... voids) {
             for (int i = 0; i < 3; i++) {
                 noteDao.insert(new Note(
-                        MDVKHelper.STRING_TOOLS.randomString("MDVK", 4),
-                        MDVKHelper.STRING_TOOLS.randomString("mdvkMDVK", 50), i));
+                        MDVKHelper.STRING_HELPER.randomString("MDVK", 4),
+                        MDVKHelper.STRING_HELPER.randomString("mdvkMDVK", 50), i));
             }
             return null;
         }

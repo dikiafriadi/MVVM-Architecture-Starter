@@ -67,7 +67,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
 
 
         holder.binding.lytParent.setOnClickListener(view1 -> {
-            MDVKHelper.DIALOG_TOOLS.showCustomDialog(context,
+            MDVKHelper.DIALOG_HELPER.showCustomDialog(context,
                     String.valueOf(items.getFullName()),
                     "Language : " + items.getLanguage() + "\n" +
                             "Star : " + items.getStargazersUrl(),

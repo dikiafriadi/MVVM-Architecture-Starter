@@ -190,7 +190,7 @@ public class MDVKHelper {
         void executeYes();
     }
 
-    public static class DATE_PICKER {
+    public static class DATE_PICKER_HELPER {
         public static void showDatePicker(Context context, TextView textView) {
             DatePickerDialog datePickerDialog;
             SimpleDateFormat dateFormatter = new SimpleDateFormat(formatDate, Locale.US);
@@ -218,7 +218,7 @@ public class MDVKHelper {
         }
     }
 
-    public static class DIALOG_TOOLS {
+    public static class DIALOG_HELPER {
         public static void showAlertDialog(Context context, String title, String msg, String buttonText) {
             AlertDialog alertDialog = new AlertDialog.Builder(context).create();
             alertDialog.setTitle(title);
@@ -402,7 +402,7 @@ public class MDVKHelper {
         }
     }
 
-    public static class NETWORK_TOOLS {
+    public static class NETWORK_HELPER {
         public static boolean isOnline(Context context) {
             ConnectivityManager cm = (ConnectivityManager)
                     context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -419,7 +419,7 @@ public class MDVKHelper {
         }
 
         public static void noConnection(final Context context) {
-            DIALOG_TOOLS.showAlertDialog(context,
+            DIALOG_HELPER.showAlertDialog(context,
                     "Servers unreachable",
                     "You seem to have no internet connection, this app requires internet to load the latest content.\n\nYou can continue to see your favorite/offline items!",
                     "OK");
@@ -465,7 +465,7 @@ public class MDVKHelper {
         }
     }
 
-    public static class STRING_TOOLS {
+    public static class STRING_HELPER {
 
         public static String randomString(String field, int count) {
             StringBuilder builder = new StringBuilder();
@@ -747,7 +747,7 @@ public class MDVKHelper {
         }
     }
 
-    public static class WINDOW_TOOLS {
+    public static class WINDOW_HELPER {
         // FULLSCREEN
         public static void setActivityToFullScreen(AppCompatActivity activity) {
             try {
@@ -927,7 +927,7 @@ public class MDVKHelper {
         }
     }
 
-    public static class LocalNotification {
+    public static class LOCAL_NOTIFICATION {
 
         private static NotificationManager notifManager;
 

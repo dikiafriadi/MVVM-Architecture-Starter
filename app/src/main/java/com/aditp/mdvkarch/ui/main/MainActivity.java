@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     public void onActionComponent() {
         loadData();
-        binding.btnFab.setOnClickListener(v -> MDVKHelper.DIALOG_TOOLS.showAboutDialog(this));
+        binding.btnFab.setOnClickListener(v -> MDVKHelper.DIALOG_HELPER.showAboutDialog(this));
         binding.btnOpenNotes.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, NoteActivity.class)));
         binding.swipeRefreshLayout.setOnRefreshListener(() -> {
             loadData();
@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 case R.id.nav_home:
                     break;
                 case R.id.nav_logout:
-                    MDVKHelper.DIALOG_TOOLS.showCustomDialog(MainActivity.this,
+                    MDVKHelper.DIALOG_HELPER.showCustomDialog(MainActivity.this,
                             "Logout",
                             "Would you really like to logout?",
                             new MDVKHelper.ActionDialogListener() {

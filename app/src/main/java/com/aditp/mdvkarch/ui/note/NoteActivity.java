@@ -104,7 +104,7 @@ public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewMode
 
         binding.btnFab.setOnClickListener(view -> showAddNoteDialog(this));
         adapter.setOnItemClickListener((view, obj, pos) -> {
-            MDVKHelper.DIALOG_TOOLS.showCustomDialog(this,
+            MDVKHelper.DIALOG_HELPER.showCustomDialog(this,
                     "Delete Note " + obj.getTitle(),
                     "Title : " + obj.getDescription() + "\n" +
                             "Description : " + obj.getPriority(),

@@ -90,7 +90,7 @@ public class PermissionHelper {
     }
 
     private static void showMessageWarning(Context context, String msg) {
-        MDVKHelper.DIALOG_TOOLS.showCustomDialog(context,
+        MDVKHelper.DIALOG_HELPER.showCustomDialog(context,
                 "Permissions required!", msg,
                 new MDVKHelper.ActionDialogListener() {
                     @Override

@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
             } else {
                 viewModel().getUserProfileObservable(owner).observe(this, responseObject -> {
                     if (responseObject == null) {
-                        MDVKHelper.DIALOG_TOOLS.showAlertDialog(
+                        MDVKHelper.DIALOG_HELPER.showAlertDialog(
                                 LoginActivity.this,
                                 "UPS",
                                 "Not Found",

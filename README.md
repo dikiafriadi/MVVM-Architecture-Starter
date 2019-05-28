@@ -1,10 +1,10 @@
 
-# MDVK-Arch-Starter 
+# MDVK-Android-Architecture-Starter 
 > PROJECT DATE			:		 **`APRIL 2019`**
 
 
 
-#### 💼 FLOW DIAGRAM
+#### 💼 FLOW DIAGRAM (MVVM)
 
 ![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/architecture.png)
 
@@ -108,4 +108,3 @@
 - [ ] add library Data Binding Validator
 - [ ] Rx Java 2 + Rx Android
 - [ ] Documentation & Wiki
-- [ ] Analytics setup

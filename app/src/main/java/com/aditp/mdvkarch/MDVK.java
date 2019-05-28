@@ -12,8 +12,8 @@ import com.aditp.mdvkarch.ui.login.LoginActivity;
 import com.aditp.mdvkarch.ui.main.MainActivity;
 
 import static com.aditp.mdvkarch.core.CONSTANT.KEY_USERNAME;
-import static com.aditp.mdvkarch.helper.MDVKHelper.DIALOG_TOOLS.showCustomDialog;
-import static com.aditp.mdvkarch.helper.MDVKHelper.NETWORK_TOOLS.isOnline;
+import static com.aditp.mdvkarch.helper.MDVKHelper.DIALOG_HELPER.showCustomDialog;
+import static com.aditp.mdvkarch.helper.MDVKHelper.NETWORK_HELPER.isOnline;
 
 public class MDVK extends AppCompatActivity {
 
@@ -30,7 +30,7 @@ public class MDVK extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MDVKHelper.WINDOW_TOOLS.setActivityToFullScreen(this);
+        MDVKHelper.WINDOW_HELPER.setActivityToFullScreen(this);
 
         // check device is online ? -> coz online require
         if (isOnline(this)) {

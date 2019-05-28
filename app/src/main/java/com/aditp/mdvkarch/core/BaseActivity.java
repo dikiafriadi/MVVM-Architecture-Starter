@@ -48,14 +48,14 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends ViewMode
 
     @Override
     public void isFullScreen(boolean val) {
-        if (val) MDVKHelper.WINDOW_TOOLS.setActivityToFullScreen(this);
+        if (val) MDVKHelper.WINDOW_HELPER.setActivityToFullScreen(this);
     }
 
     @Override
     public void isChangeSystemBarColor(boolean val) {
         if (val) {
-            MDVKHelper.WINDOW_TOOLS.setSystemBarColor(this, R.color.mdvk_white);
-            MDVKHelper.WINDOW_TOOLS.setSystemBarLight(this);
+            MDVKHelper.WINDOW_HELPER.setSystemBarColor(this, R.color.mdvk_white);
+            MDVKHelper.WINDOW_HELPER.setSystemBarLight(this);
         }
     }
 
