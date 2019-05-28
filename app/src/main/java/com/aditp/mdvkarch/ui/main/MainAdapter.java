@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aditp.mdvkarch.R;
-import com.aditp.mdvkarch.data.remote.api_response.ResponseArray;
+import com.aditp.mdvkarch.data.response.ResponseProjectList;
 import com.aditp.mdvkarch.databinding.ItemRepoBinding;
 import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.amulyakhare.textdrawable.TextDrawable;
@@ -21,7 +21,7 @@ import java.util.List;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBindingComponent> {
 
     private Context context;
-    private List<ResponseArray> items;
+    private List<ResponseProjectList> items;
     private ItemRepoBinding binding;
     private int LAYOUT = R.layout.item_repo;
     private OnItemClickListener onItemClickListener;
@@ -30,7 +30,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
         this.context = context;
     }
 
-    public MainAdapter(Context context, List<ResponseArray> items) {
+    public MainAdapter(Context context, List<ResponseProjectList> items) {
         this.context = context;
         this.items = items;
     }
@@ -49,7 +49,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
 
     @Override
     public void onBindViewHolder(@NonNull onSetUpBindingComponent holder, final int position) {
-        final ResponseArray items = this.items.get(position);
+        final ResponseProjectList items = this.items.get(position);
         holder.binding.tvRepoName.setText(items.getName());
         holder.binding.tvRepoDesc.setText(items.getDescription());
 
@@ -92,7 +92,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
         return items.size();
     }
 
-    public void setItems(List<ResponseArray> items) {
+    public void setItems(List<ResponseProjectList> items) {
         this.items = items;
         notifyDataSetChanged();
     }
@@ -101,7 +101,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
     // INTERFACE
     // ------------------------------------------------------------------------
     public interface OnItemClickListener {
-        void onItemClick(View view, ResponseArray obj, int pos);
+        void onItemClick(View view, ResponseProjectList obj, int pos);
     }
 
     // ------------------------------------------------------------------------

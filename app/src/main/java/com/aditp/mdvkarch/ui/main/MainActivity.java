@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.BaseActivity;
 import com.aditp.mdvkarch.core.SharedPref;
-import com.aditp.mdvkarch.data.remote.api_response.ResponseArray;
+import com.aditp.mdvkarch.data.response.ResponseProjectList;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
 import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.aditp.mdvkarch.helper.PicassoHelper;
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
     private MainAdapter adapter;
-    private List<ResponseArray> items;
+    private List<ResponseProjectList> items;
 
     @Override
     public int LAYOUT() {

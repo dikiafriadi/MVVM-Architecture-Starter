@@ -3,29 +3,22 @@ package com.aditp.mdvkarch.core;
 public class CONSTANT {
 
     // ------------------------------------------------------------------------
-    /**
-     * set as <b>false</b> if you want to <i>release</i> this apps .
-     */
+    // set as <b>false</b> if you want to <i>release</i> this apps .
     // ------------------------------------------------------------------------
+
+
+    // AREA BOOLEAN
     public static final boolean IS_DEV_MODE = true;
 
-    // ------------------------------------------------------------------------
     // AREA STRING
-    // ------------------------------------------------------------------------
+    public static final String KEY_USERNAME = "USERNAME";
+    public static final String PARSING_TOOLBAR_TITLE = "PARSING_TOOLBAR_TITLE";
+    public static final String PARSING_NAMA_CUSTOMER = "PARSING_NAMA_CUSTOMER";
 
-    // SHARED PREF
-    public static final String KEY_USERNAME = "KEY_USERNAME";
-
-    // ------------------------------------------------------------------------
     // AREA INTEGER
-    // ------------------------------------------------------------------------
-    public static final int CODE_SERVER_400 = 400;
-    public static final int CODE_SERVER_415 = 415;
-    public static final int CODE_SERVER_500 = 500;
 
-    // ------------------------------------------------------------------------
+
     // AREA ENUM
-    // ------------------------------------------------------------------------
     public enum NETWORK_TYPE {
         NETWORK_ETHERNET,
         NETWORK_WIFI,

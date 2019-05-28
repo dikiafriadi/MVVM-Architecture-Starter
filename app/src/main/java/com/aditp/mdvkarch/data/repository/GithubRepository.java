@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.aditp.mdvkarch.data.remote.Endpoint;
 import com.aditp.mdvkarch.data.remote.RetrofitClient;
-import com.aditp.mdvkarch.data.remote.api_response.ResponseArray;
-import com.aditp.mdvkarch.data.remote.api_response.ResponseObject;
+import com.aditp.mdvkarch.data.response.ResponseProjectList;
+import com.aditp.mdvkarch.data.response.ResponseProfileUser;
 
 import java.util.List;
 
@@ -35,17 +35,17 @@ public class GithubRepository {
     }
 
 
-    public LiveData<List<ResponseArray>> getProjectList(String userId) {
-        final MutableLiveData<List<ResponseArray>> data = new MutableLiveData<>();
+    public LiveData<List<ResponseProjectList>> getProjectList(String userId) {
+        final MutableLiveData<List<ResponseProjectList>> data = new MutableLiveData<>();
 
-        endpoint.getProjectList(userId).enqueue(new Callback<List<ResponseArray>>() {
+        endpoint.getProjectList(userId).enqueue(new Callback<List<ResponseProjectList>>() {
             @Override
-            public void onResponse(Call<List<ResponseArray>> call, Response<List<ResponseArray>> response) {
+            public void onResponse(Call<List<ResponseProjectList>> call, Response<List<ResponseProjectList>> response) {
                 data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<ResponseArray>> call, Throwable t) {
+            public void onFailure(Call<List<ResponseProjectList>> call, Throwable t) {
                 data.setValue(null);
             }
         });
@@ -53,17 +53,17 @@ public class GithubRepository {
         return data;
     }
 
-    public LiveData<ResponseObject> getUserProfile(String userID) {
-        final MutableLiveData<ResponseObject> data = new MutableLiveData<>();
+    public LiveData<ResponseProfileUser> getUserProfile(String userID) {
+        final MutableLiveData<ResponseProfileUser> data = new MutableLiveData<>();
 
-        endpoint.getUsers(userID).enqueue(new Callback<ResponseObject>() {
+        endpoint.getUsers(userID).enqueue(new Callback<ResponseProfileUser>() {
             @Override
-            public void onResponse(Call<ResponseObject> call, Response<ResponseObject> response) {
+            public void onResponse(Call<ResponseProfileUser> call, Response<ResponseProfileUser> response) {
                 data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<ResponseObject> call, Throwable t) {
+            public void onFailure(Call<ResponseProfileUser> call, Throwable t) {
                 data.setValue(null);
             }
         });

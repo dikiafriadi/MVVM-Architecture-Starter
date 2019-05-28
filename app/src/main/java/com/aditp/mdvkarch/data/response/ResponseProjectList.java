@@ -1,8 +1,9 @@
-package com.aditp.mdvkarch.data.remote.api_response;
+package com.aditp.mdvkarch.data.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseArray {
+@SuppressWarnings("unused")
+public class ResponseProjectList {
 
     @SerializedName("stargazers_count")
     private int stargazersCount;
@@ -151,8 +152,6 @@ public class ResponseArray {
     @SerializedName("has_pages")
     private boolean hasPages;
 
-    @SerializedName("owner")
-    private Owner owner;
 
     @SerializedName("commits_url")
     private String commitsUrl;
@@ -613,14 +612,6 @@ public class ResponseArray {
 
     public void setHasPages(boolean hasPages) {
         this.hasPages = hasPages;
-    }
-
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
     }
 
     public String getCommitsUrl() {

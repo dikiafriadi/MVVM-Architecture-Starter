@@ -22,11 +22,8 @@ import java.util.Objects;
  * CREATED BY   : A D I T Y A  P R A T A M A
  * DATE         : MEI 2019
  * ------------------------------------------------------------------------------------
- * // Inheritance Technique to apply on all class extends AppCompatActivity
- * ------------------------------------------------------------------------------------
- *
  * @param <T> ViewDataBinding
- * @param <V> BusinessLogic
+ * @param <V> ViewModel
  */
 public abstract class BaseActivity<T extends ViewDataBinding, V extends ViewModel> extends AppCompatActivity implements BaseImpl {
     protected T binding;
@@ -36,6 +33,18 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends ViewMode
 
     public abstract V viewModel();
 
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        isChangeSystemBarColor(true);
+        performDataBinding();
+
+    }
+
+    private void performDataBinding() {
+        binding = DataBindingUtil.setContentView(this, LAYOUT());
+    }
 
     @Override
     public void isFullScreen(boolean val) {
@@ -48,20 +57,6 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends ViewMode
             MDVKHelper.WINDOW_TOOLS.setSystemBarColor(this, R.color.mdvk_white);
             MDVKHelper.WINDOW_TOOLS.setSystemBarLight(this);
         }
-    }
-
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        isChangeSystemBarColor(true);
-        performDataBinding();
-
-    }
-
-
-    private void performDataBinding() {
-        binding = DataBindingUtil.setContentView(this, LAYOUT());
     }
 
 

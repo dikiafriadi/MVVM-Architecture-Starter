@@ -1,8 +1,9 @@
-package com.aditp.mdvkarch.data.remote.api_response;
+package com.aditp.mdvkarch.data.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseObject {
+@SuppressWarnings("unused")
+public class ResponseProfileUser {
 
     @SerializedName("gists_url")
     private String gistsUrl;
