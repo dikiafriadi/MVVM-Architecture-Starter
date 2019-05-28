@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 
 import com.aditp.mdvkarch.R;
@@ -23,19 +22,19 @@ import java.util.Objects;
  * CREATED BY   : A D I T Y A  P R A T A M A
  * DATE         : MEI 2019
  * ------------------------------------------------------------------------------------
- // Inheritance Technique to apply on all class extends AppCompatActivity
+ * // Inheritance Technique to apply on all class extends AppCompatActivity
  * ------------------------------------------------------------------------------------
  *
  * @param <T> ViewDataBinding
  * @param <V> BusinessLogic
  */
-public abstract class BaseActivity<T extends ViewDataBinding, V> extends AppCompatActivity implements BaseImpl {
+public abstract class BaseActivity<T extends ViewDataBinding, V extends ViewModel> extends AppCompatActivity implements BaseImpl {
     protected T binding;
 
     public abstract @LayoutRes
     int LAYOUT();
 
-    public abstract V bl();
+    public abstract V viewModel();
 
 
     @Override

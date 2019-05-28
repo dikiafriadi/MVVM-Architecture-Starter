@@ -33,7 +33,7 @@ public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewMode
     }
 
     @Override
-    public NoteViewModel bl() {
+    public NoteViewModel viewModel() {
         return ViewModelProviders.of(this).get(NoteViewModel.class);
     }
 
@@ -81,13 +81,13 @@ public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewMode
             if ((title.isEmpty()) || (desc.isEmpty())) {
                 Toast.makeText(context, "Field still empty", Toast.LENGTH_SHORT).show();
             } else {
-                bl().insert(new Note(title, desc, 100));
+                viewModel().insert(new Note(title, desc, 100));
             }
             dialog.dismiss();
         });
 
         binding.btnNo.setOnClickListener(v -> {
-            bl().deleteAllNotes();
+            viewModel().deleteAllNotes();
             dialog.dismiss();
         });
         dialog.show();
@@ -97,7 +97,7 @@ public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewMode
 
     @Override
     public void onActionComponent() {
-        bl().getAllNotes().observe(this, notes -> {
+        viewModel().getAllNotes().observe(this, notes -> {
             adapter.setNotes(notes);
             initToolbar("Database Notes (" + adapter.getItemCount() + ")");
         });
@@ -117,7 +117,7 @@ public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewMode
 
                         @Override
                         public void executeYes() {
-                            bl().delete(adapter.getNoteAt(pos));
+                            viewModel().delete(adapter.getNoteAt(pos));
                         }
                     });
         });

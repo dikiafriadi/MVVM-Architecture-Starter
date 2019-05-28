@@ -1,64 +1,68 @@
 package com.aditp.mdvkarch.ui.login;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
+
+import androidx.lifecycle.ViewModelProviders;
 
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.BaseActivity;
+import com.aditp.mdvkarch.core.CONSTANT;
+import com.aditp.mdvkarch.core.SharedPref;
 import com.aditp.mdvkarch.databinding.ActivityLoginBinding;
 import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.aditp.mdvkarch.ui.main.MainActivity;
 
 import java.util.Objects;
 
-public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginBL> {
+public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewModel> {
     @Override
     public int LAYOUT() {
         return R.layout.activity_login;
     }
 
     @Override
-    public LoginBL bl() {
-        return new LoginBL(this, binding);
+    public LoginViewModel viewModel() {
+        return ViewModelProviders.of(this).get(LoginViewModel.class);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         isFullScreen(true);
         super.onCreate(savedInstanceState);
-        onActionComponent();
 
     }
 
     @Override
     public void onActionComponent() {
         binding.btnLogin.setOnClickListener(view -> {
-            String username = Objects.requireNonNull(binding.etUsername.getText()).toString();
-            if (TextUtils.isEmpty(username)) {
+            String owner = Objects.requireNonNull(binding.etUsername.getText()).toString();
+            if (TextUtils.isEmpty(owner)) {
                 binding.etUsername.setError("cannot be Empty");
                 binding.etUsername.requestFocus();
-            } else if (username.length() <= 3) {
+            } else if (owner.length() <= 3) {
                 binding.etUsername.setError("The Word min 3 Character");
                 binding.etUsername.requestFocus();
             } else {
-                bl().doLogin(username);
+                viewModel().getUserProfileObservable(owner).observe(this, responseObject -> {
+                    Log.d("KONTOL", "onActionComponent: " + responseObject);
+                    if (responseObject == null) {
+                        MDVKHelper.DIALOG_TOOLS.showAlertDialog(
+                                LoginActivity.this,
+                                "UPS",
+                                "Not Found",
+                                "ok");
+                    } else {
+                        SharedPref.getInstance().saveString(CONSTANT.KEY_USERNAME, owner);
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    }
+                });
             }
         });
 
-        bl().setOnLoginSuccess(() -> {
-            Dialog dialog = MDVKHelper.DIALOG_TOOLS.showProgressDialog(this);
-            dialog.show();
-            Handler handler = new Handler();
-            handler.postDelayed(() -> {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                finish();
-            }, 500);
-
-        });
 
     }
 

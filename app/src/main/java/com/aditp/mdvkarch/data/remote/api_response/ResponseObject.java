@@ -97,6 +97,23 @@ public class ResponseObject {
     @SerializedName("node_id")
     private String nodeId;
 
+    @SerializedName("message")
+    private String message;
+
+
+    // ------------------------------------------------------------------------
+    // Setter Getter
+    // ------------------------------------------------------------------------
+
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public String getGistsUrl() {
         return gistsUrl;
     }

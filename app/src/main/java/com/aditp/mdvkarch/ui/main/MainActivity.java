@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     @Override
-    public MainViewModel bl() {
+    public MainViewModel viewModel() {
         return ViewModelProviders.of(this).get(MainViewModel.class);
     }
 
@@ -65,13 +65,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     private void loadData() {
-        getProjectList(bl());
-        getUserProfile(bl());
+        getProjectList(viewModel());
+        getUserProfile(viewModel());
     }
 
-    private void getProjectList(MainViewModel bl) {
+    private void getProjectList(MainViewModel viewModel) {
         // Update the list when the data changes
-        bl.getProjectListObservable().observe(this, projects -> {
+        viewModel.getProjectListObservable().observe(this, projects -> {
             if (projects != null) {
                 adapter = new MainAdapter(MainActivity.this);
                 adapter.setItems(projects);
@@ -80,8 +80,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         });
     }
 
-    private void getUserProfile(MainViewModel bl) {
-        bl.getUserProfileObservable().observe(this, responseObject -> {
+    private void getUserProfile(MainViewModel viewModel) {
+        viewModel.getUserProfileObservable().observe(this, responseObject -> {
             binding.tvname.setText(responseObject.getName());
             binding.tvCompany.setText(responseObject.getCompany());
             binding.tvBio.setText(responseObject.getBio());
