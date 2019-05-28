@@ -21,6 +21,8 @@ import com.aditp.mdvkarch.ui.note.NoteActivity;
 
 import java.util.List;
 
+import static com.aditp.mdvkarch.helper.MDVKHelper.DIALOG_HELPER.showAlertDialog;
+
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
     private MainAdapter adapter;
@@ -61,6 +63,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             binding.swipeRefreshLayout.setRefreshing(false);
         });
 
+        adapter.setOnItemClick((view, obj, pos) -> showAlertDialog(this, obj.getFullName(), "STAR : " + obj.getStargazersUrl(), "OK"));
 
     }
 
@@ -73,8 +76,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         // Update the list when the data changes
         viewModel.getProjectListObservable().observe(this, projects -> {
             if (projects != null) {
-                adapter = new MainAdapter(MainActivity.this);
-                adapter.setItems(projects);
+                adapter = new MainAdapter(MainActivity.this, projects);
                 binding.rvList.setAdapter(adapter);
             }
         });

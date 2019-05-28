@@ -21,7 +21,7 @@ import java.util.List;
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.onSetUpBindingComponent> {
 
     private Context context;
-    private List<Note> notes = new ArrayList<>();
+    private List<Note> notes;
     private ItemRepoBinding binding;
     private int LAYOUT = R.layout.item_repo;
     private OnItemClickListener onItemClickListener;

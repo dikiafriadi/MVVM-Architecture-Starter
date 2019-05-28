@@ -1,5 +1,9 @@
 package com.aditp.mdvkarch.core;
 
+import android.os.Build;
+
+import com.aditp.mdvkarch.BuildConfig;
+
 public class CONSTANT {
 
     // ------------------------------------------------------------------------
@@ -13,7 +17,7 @@ public class CONSTANT {
     // AREA STRING
     public static final String KEY_USERNAME = "USERNAME";
     public static final String PARSING_TOOLBAR_TITLE = "PARSING_TOOLBAR_TITLE";
-    public static final String PARSING_NAMA_CUSTOMER = "PARSING_NAMA_CUSTOMER";
+    public static final String PARSING_NAMA_CUSTOMER = "PARSING_NAMA_CUSTOMER";;
 
     // AREA INTEGER
 

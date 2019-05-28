@@ -12,51 +12,47 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.data.response.ResponseProjectList;
 import com.aditp.mdvkarch.databinding.ItemRepoBinding;
-import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import java.util.List;
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBindingComponent> {
-
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onBindingViewHolder> {
     private Context context;
     private List<ResponseProjectList> items;
-    private ItemRepoBinding binding;
-    private int LAYOUT = R.layout.item_repo;
-    private OnItemClickListener onItemClickListener;
 
-    public MainAdapter(Context context) {
-        this.context = context;
+    private setOnItemClick onItemClick;
+
+
+    public void setOnItemClick(final setOnItemClick onItemClick) {
+        this.onItemClick = onItemClick;
     }
+
 
     public MainAdapter(Context context, List<ResponseProjectList> items) {
         this.context = context;
         this.items = items;
     }
 
-    // Trigger Technique
-    public void setOnItemClickListener(final OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
-
     @NonNull
     @Override
-    public onSetUpBindingComponent onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public onBindingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        int LAYOUT = R.layout.item_repo;
+        ItemRepoBinding binding;
         binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), LAYOUT, parent, false);
-        return new onSetUpBindingComponent(binding);
+        return new onBindingViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull onSetUpBindingComponent holder, final int position) {
-        final ResponseProjectList items = this.items.get(position);
-        holder.binding.tvRepoName.setText(items.getName());
-        holder.binding.tvRepoDesc.setText(items.getDescription());
+    public void onBindViewHolder(@NonNull onBindingViewHolder holder, int position) {
+        final ResponseProjectList obj = this.items.get(position);
+        holder.binding.tvRepoName.setText(obj.getName());
+        holder.binding.tvRepoDesc.setText(obj.getDescription());
 
 
         ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
         int color = generator.getRandomColor();
-        String firstWord = items.getName().substring(0, 1);
+        String firstWord = obj.getName().substring(0, 1);
         TextDrawable drawable = TextDrawable.builder()
                 .beginConfig()
                 .bold()
@@ -67,22 +63,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
 
 
         holder.binding.lytParent.setOnClickListener(view1 -> {
-            MDVKHelper.DIALOG_HELPER.showCustomDialog(context,
-                    String.valueOf(items.getFullName()),
-                    "Language : " + items.getLanguage() + "\n" +
-                            "Star : " + items.getStargazersUrl(),
-                    R.drawable.flag_question,
-                    new MDVKHelper.ActionDialogListener() {
-                        @Override
-                        public void executeNo() {
-
-                        }
-
-                        @Override
-                        public void executeYes() {
-
-                        }
-                    });
+            if (onItemClick != null) {
+                onItemClick.onClicked(view1, obj, position);
+            }
         });
 
     }
@@ -92,28 +75,23 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
         return items.size();
     }
 
-    public void setItems(List<ResponseProjectList> items) {
-        this.items = items;
-        notifyDataSetChanged();
-    }
-
-    // ------------------------------------------------------------------------
-    // INTERFACE
-    // ------------------------------------------------------------------------
-    public interface OnItemClickListener {
-        void onItemClick(View view, ResponseProjectList obj, int pos);
-    }
-
     // ------------------------------------------------------------------------
     // INNER CLASS
     // ------------------------------------------------------------------------
-    public class onSetUpBindingComponent extends RecyclerView.ViewHolder {
-        public ItemRepoBinding binding;
+    public class onBindingViewHolder extends RecyclerView.ViewHolder {
+        ItemRepoBinding binding;
 
-        onSetUpBindingComponent(ItemRepoBinding binding) {
+        public onBindingViewHolder(ItemRepoBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
     }
 
+
+    // ------------------------------------------------------------------------
+    // LISTENER
+    // ------------------------------------------------------------------------
+    public interface setOnItemClick {
+        void onClicked(View view, ResponseProjectList obj, int pos);
+    }
 }
