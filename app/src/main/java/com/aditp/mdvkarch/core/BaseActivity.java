@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.ViewModel;
 
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.helper.MDVKHelper;
@@ -18,34 +20,44 @@ import java.util.Objects;
 
 
 /**
- * ----------------------------
- * A D I T Y A   P R A T A M A
- * MEI 2019
- * ----------------------------
+ * CREATED BY   : A D I T Y A  P R A T A M A
+ * DATE         : MEI 2019
+ * ------------------------------------------------------------------------------------
+ // Inheritance Technique to apply on all class extends AppCompatActivity
+ * ------------------------------------------------------------------------------------
  *
  * @param <T> ViewDataBinding
- * @param <L> Business Logic
+ * @param <V> BusinessLogic
  */
-public abstract class BaseActivity<T extends ViewDataBinding, L> extends AppCompatActivity implements BaseImpl {
+public abstract class BaseActivity<T extends ViewDataBinding, V> extends AppCompatActivity implements BaseImpl {
     protected T binding;
-    protected L bl;
 
     public abstract @LayoutRes
     int LAYOUT();
 
-    public abstract void setBLClass();
+    public abstract V bl();
 
-    // ------------------------------------------------------------------------
-    // Inheritance Technique to apply on all class extends AppCompatActivity
-    // ------------------------------------------------------------------------
+
+    @Override
+    public void isFullScreen(boolean val) {
+        if (val) MDVKHelper.WINDOW_TOOLS.setActivityToFullScreen(this);
+    }
+
+    @Override
+    public void isChangeSystemBarColor(boolean val) {
+        if (val) {
+            MDVKHelper.WINDOW_TOOLS.setSystemBarColor(this, R.color.mdvk_white);
+            MDVKHelper.WINDOW_TOOLS.setSystemBarLight(this);
+        }
+    }
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // change SystemBar UI
-        MDVKHelper.WINDOW_TOOLS.setSystemBarColor(this, R.color.mdvk_white);
-        MDVKHelper.WINDOW_TOOLS.setSystemBarLight(this);
+        isChangeSystemBarColor(true);
         performDataBinding();
-        setBLClass();
+
     }
 
 
@@ -83,6 +95,4 @@ public abstract class BaseActivity<T extends ViewDataBinding, L> extends AppComp
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
-
-
 }

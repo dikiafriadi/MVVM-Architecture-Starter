@@ -5,9 +5,7 @@ import android.app.Application;
 public class BaseApplication extends Application {
 
 
-    // ------------------------------------------------------------------------
-    // Custom Font Application
-    // ------------------------------------------------------------------------
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -17,8 +15,6 @@ public class BaseApplication extends Application {
 //                .build()
 //        );
 
-
-        // SharedPref (Shared Pref Helper)
         SharedPref.init(getApplicationContext());
 
     }

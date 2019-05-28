@@ -31,10 +31,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.onSetUpBinding
         this.context = context;
     }
 
-    public NoteAdapter(Context context, List<Note> notes) {
-        this.context = context;
-        this.notes = notes;
-    }
 
     // Trigger Technique
     public void setOnItemClickListener(final OnItemClickListener onItemClickListener) {

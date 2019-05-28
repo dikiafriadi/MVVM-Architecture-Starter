@@ -15,22 +15,20 @@ import com.aditp.mdvkarch.ui.main.MainActivity;
 import java.util.Objects;
 
 public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginBL> {
-    LoginBL loginBL;
-
     @Override
     public int LAYOUT() {
         return R.layout.activity_login;
     }
 
     @Override
-    public void setBLClass() {
-        loginBL = new LoginBL(this, binding);
+    public LoginBL bl() {
+        return new LoginBL(this, binding);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        isFullScreen(true);
         super.onCreate(savedInstanceState);
-        MDVKHelper.WINDOW_TOOLS.setActivityToFullScreen(this);
         onActionComponent();
 
     }
@@ -46,11 +44,11 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginBL> {
                 binding.etUsername.setError("The Word min 3 Character");
                 binding.etUsername.requestFocus();
             } else {
-                loginBL.doLogin(username);
+                bl().doLogin(username);
             }
         });
 
-        loginBL.setOnLoginSuccess(() -> {
+        bl().setOnLoginSuccess(() -> {
             Dialog dialog = MDVKHelper.DIALOG_TOOLS.showProgressDialog(this);
             dialog.show();
             Handler handler = new Handler();

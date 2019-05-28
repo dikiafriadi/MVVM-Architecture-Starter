@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.data;
+package com.aditp.mdvkarch.data.repository;
 
 
 import android.app.Application;
@@ -12,6 +12,9 @@ import com.aditp.mdvkarch.data.local.NoteDatabase;
 
 import java.util.List;
 
+// ------------------------------------------------------------------------
+// SINGLETON
+// ------------------------------------------------------------------------
 public class NoteRepository implements NoteDao {
     private NoteDao noteDao;
     private LiveData<List<Note>> allNotes;

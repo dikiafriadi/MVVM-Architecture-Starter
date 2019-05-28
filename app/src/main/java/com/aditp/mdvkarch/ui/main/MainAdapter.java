@@ -21,12 +21,14 @@ import java.util.List;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBindingComponent> {
 
     private Context context;
-
-    // Select Type List Response
     private List<ResponseArray> items;
     private ItemRepoBinding binding;
     private int LAYOUT = R.layout.item_repo;
     private OnItemClickListener onItemClickListener;
+
+    public MainAdapter(Context context) {
+        this.context = context;
+    }
 
     public MainAdapter(Context context, List<ResponseArray> items) {
         this.context = context;
@@ -88,6 +90,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onSetUpBinding
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public void setItems(List<ResponseArray> items) {
+        this.items = items;
+        notifyDataSetChanged();
     }
 
     // ------------------------------------------------------------------------

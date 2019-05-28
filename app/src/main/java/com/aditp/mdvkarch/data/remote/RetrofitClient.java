@@ -8,8 +8,8 @@ import static com.aditp.mdvkarch.helper.MDVKHelper.MY_UNSAFE_OKHTTP_CLIENT;
 
 
 public class RetrofitClient {
-    private static final String BASE_URL = "https://api.github.com/";
     private static Retrofit retrofit;
+    private static final String BASE_URL = "https://api.github.com/";
 
     // ------------------------------------------------------------------------
     // SINGLETON PATTERN + synchronized
@@ -38,6 +38,4 @@ public class RetrofitClient {
         }
         return retrofit;
     }
-
-
 }

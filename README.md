@@ -1,37 +1,32 @@
 
-# MDVK-Arch-Starter
-
-> AUTHOR			:		 **`ADITYA PRATAMA`**
-
-> DATE : **`April 2019`**
+# MDVK-Arch-Starter 
+> PROJECT DATE			:		 **`APRIL 2019`**
 
 
-#### FLOW DIAGRAM
+
+#### 💼 FLOW DIAGRAM
 
 ![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/architecture.png)
 
   
 
-#### PROFLING RESULT
+#### 📷 PROFLING RESULT
 
 ![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/profiling_test.png)
 
   
 
-#### CLEAN PROJECT STRUCTURE & EASY TO UNDERSTAND
+#### 💎 CLEAN PROJECT STRUCTURE & EASY TO UNDERSTAND
 
 ![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/project_architecture.png)
 
-  
-  
 
-#### Setup included :
-
+#### Setup included : 📦
 ---
 
 -  **UI**
 
-    - Adaptation from `MaterialX`
+    - Adaptation from <u>**`MaterialX`**</u> 🍺
 
 -  **Data Binding**
 
@@ -43,32 +38,28 @@
 
 -  **SharedPreference**
 
-    -  `Singleton` SharedPreference with `synchronized` easy to use.
+    -  *Singleton* SharedPreference with *synchronized* easy to use.
+    
+    get value example :
+    ```javascript
+    object = SharedPref.getInstance().getString(KEY_USERNAME, "");
+    ```
 
-    - get value example :
-
-    `object = SharedPref.getInstance().getString(KEY_USERNAME, "");`
-
-    - set value example :
-
-    `SharedPref.getInstance().saveString(object);`
+    set value example :
+    ```javascript
+    SharedPref.getInstance().saveString(object);
+    ```
 
 -  **Authentication Flow**
 
     - Using Retrofit & ResponseInterceptor for request & response handling
-
     - Dummy API using `https://api.github.com/`
 
 -  **Room**
-
     - Using room for data persistance
 
 -  **RecyclerView Sample**
-
-    - Sample recyclerview implementation using viewholder & databinding
-
-    - Using `User` as dummy object representation
-
+      - Sample recyclerview implementation using viewholder & databinding
     - See `MainAdapter` for details
 
 -  **Android M permission handler using `Dexter`**
@@ -84,20 +75,30 @@
 -  **Utilities and Helper classes**
 
     -  `MDVKHelper` this class have 6 inner class :
-      ```DIALOG_TOOLS, NETWORK_TOOLS, STRING_TOOLS, WINDOW_TOOLS, DATE_PICKER```
+        -  DIALOG_TOOLS
+        -  NETWORK_TOOLS
+        -  STRING_TOOLS
+        -  WINDOW_TOOLS
+        -  DATE_PICKER
+        -  LOCAL_NOTIFICATION
+        
+ **Tools** means **helpers** , just *grouping* by type helper
 
-      LocalNotification
+  -  **PermissionHelper**
+  handler request permission with dexter
+  
+  -  **PicassoHelper**
+  Picasso Loader for load large images in Android and avoiding the out of memory error
+  
+  -  **Item Adapter Utils :**
+      - ItemAdapterAnimation
+      - SpacesItemDecoration
+      - SpacingItemDecoration
+      - ViewAnimation
 
-    *Tools means `helpers`* , just grouping by type helper ~
+---
 
-    -  `PermissionHelper` handler request permission with dexter
-
-    -  `PicassoHelper` Picasso Loader for load large images in Android and avoiding the out of memory error`
-
-    - Item Adapter Animation / Effect : `ItemAdapterAnimation` , `SpacesItemDecoration` , `SpacingItemDecoration` , `ViewAnimation`
-
-
-## TODO
+## ✅ TODO
 - [x] Create example Retrofit get JSON Object
 - [x] Create example Retrofit get JSON Array
 - [x] Retrofit Error Handler & sample

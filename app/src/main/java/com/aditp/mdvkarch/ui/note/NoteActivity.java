@@ -25,9 +25,7 @@ import com.aditp.mdvkarch.helper.utils.SpacesItemDecoration;
 import java.util.Objects;
 
 public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewModel> {
-    // @Inject
-    NoteViewModel noteViewModel;
-    NoteAdapter adapter;
+    private NoteAdapter adapter;
 
     @Override
     public int LAYOUT() {
@@ -35,9 +33,10 @@ public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewMode
     }
 
     @Override
-    public void setBLClass() {
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
+    public NoteViewModel bl() {
+        return ViewModelProviders.of(this).get(NoteViewModel.class);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +81,13 @@ public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewMode
             if ((title.isEmpty()) || (desc.isEmpty())) {
                 Toast.makeText(context, "Field still empty", Toast.LENGTH_SHORT).show();
             } else {
-                noteViewModel.insert(new Note(title, desc, 100));
+                bl().insert(new Note(title, desc, 100));
             }
             dialog.dismiss();
         });
 
         binding.btnNo.setOnClickListener(v -> {
-            noteViewModel.deleteAllNotes();
+            bl().deleteAllNotes();
             dialog.dismiss();
         });
         dialog.show();
@@ -98,7 +97,7 @@ public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewMode
 
     @Override
     public void onActionComponent() {
-        noteViewModel.getAllNotes().observe(this, notes -> {
+        bl().getAllNotes().observe(this, notes -> {
             adapter.setNotes(notes);
             initToolbar("Database Notes (" + adapter.getItemCount() + ")");
         });
@@ -118,7 +117,7 @@ public class NoteActivity extends BaseActivity<ActivityNoteBinding, NoteViewMode
 
                         @Override
                         public void executeYes() {
-                            noteViewModel.delete(adapter.getNoteAt(pos));
+                            bl().delete(adapter.getNoteAt(pos));
                         }
                     });
         });
