@@ -8,13 +8,12 @@ import com.aditp.mdvkarch.data.repository.GithubRepository;
 
 public class LoginViewModel extends ViewModel {
 
-    private LiveData<ResponseObject> userProfileObservable;
 
-
+    // ------------------------------------------------------------------------
+    // Expose the LiveData query so the UI can observe it.
+    // ------------------------------------------------------------------------
     public LiveData<ResponseObject> getUserProfileObservable(String owner) {
-        userProfileObservable = GithubRepository.getInstance().getUserProfile(owner);
-
-        return userProfileObservable;
+        return GithubRepository.getInstance().getUserProfile(owner);
     }
 
 }

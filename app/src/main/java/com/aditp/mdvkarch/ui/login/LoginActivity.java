@@ -3,7 +3,6 @@ package com.aditp.mdvkarch.ui.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -47,7 +46,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
                 binding.etUsername.requestFocus();
             } else {
                 viewModel().getUserProfileObservable(owner).observe(this, responseObject -> {
-                    Log.d("KONTOL", "onActionComponent: " + responseObject);
                     if (responseObject == null) {
                         MDVKHelper.DIALOG_TOOLS.showAlertDialog(
                                 LoginActivity.this,
@@ -58,6 +56,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
                         SharedPref.getInstance().saveString(CONSTANT.KEY_USERNAME, owner);
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                        finish();
                     }
                 });
             }
