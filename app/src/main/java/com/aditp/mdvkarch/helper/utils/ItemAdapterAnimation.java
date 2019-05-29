@@ -4,7 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-public class ItemAdapterAnimation {
+public final class ItemAdapterAnimation {
 
     /* animation type */
     public static final int BOTTOM_UP = 1;

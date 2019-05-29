@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -48,25 +49,21 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
             } else {
                 Dialog dialog = MDVKHelper.DIALOG_HELPER.showProgressDialog(this);
                 dialog.show();
-                viewModel().getUserProfileObservable(owner).observe(this, responseObject -> {
-                    if (responseObject != null) {
-                        SharedPref.getInstance().saveString(CONSTANT.KEY_USERNAME, owner);
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                        finish();
-                    } else {
-                        MDVKHelper.DIALOG_HELPER.showAlertDialog(
-                                LoginActivity.this,
-                                "UPS",
-                                "Not Found",
-                                "ok");
+                viewModel().getUserProfileObservable(this, owner).observe(this, responseObject -> {
+                    try {
+                        if (responseObject.getLogin() != null) {
+                            SharedPref.getInstance().saveString(CONSTANT.KEY_USERNAME, owner);
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                            finish();
+                        }
+                    } catch (Exception e) {
+                        Log.d("KONTOL", "onActionComponent: " + e.getMessage());
                     }
                     dialog.dismiss();
                 });
             }
         });
-
-
     }
 
 }

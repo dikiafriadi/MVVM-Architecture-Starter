@@ -17,7 +17,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.TlsVersion;
 
-public class OKDIT {
+public final class OKDIT {
 
     public static OkHttpClient CLIENT() {
         try {

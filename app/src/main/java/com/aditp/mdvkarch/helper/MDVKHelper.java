@@ -414,7 +414,7 @@ public class MDVKHelper {
             return getTimeByFormat("hh:mm");
         }
 
-        private static String getTimeByFormat(String format) {
+        public static String getTimeByFormat(String format) {
             Calendar c = Calendar.getInstance();
             @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat(format);
             df.setTimeZone(TimeZone.getTimeZone(TimeZone.getDefault().getID()));
