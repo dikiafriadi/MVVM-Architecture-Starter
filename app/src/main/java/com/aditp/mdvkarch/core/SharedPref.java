@@ -12,22 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * ------------------------------------------------------------------------------------
+ *
+ * @author <Aditya Pratama>
+ * @implNote <getData : object = SharedPref.getInstance().getString(KEY_USERNAME, "");>
+ * @implNote <saveData :SharedPref.getInstance().saveString(object);>
+ * @implSpec <Simple KeyValue Storage>
+ * @since <April 2019>
+ */
 public class SharedPref {
 
-    /**
-     * -------------------------------------------------
-     * AUTHOR       : ADITYA PRATAMA
-     * YEAR         : 2018
-     * Singleton SharedPreference
-     * -------------------------------------------------
-     * using example :
-     * <p>
-     * GET DATA
-     * object = SharedPref.getInstance().getString(KEY_USERNAME, "");
-     * <p>
-     * SAVE DATA
-     * SharedPref.getInstance().saveString(object);
-     */
 
     private static SharedPref instance;
     private static SharedPreferences mSharedPreferences;

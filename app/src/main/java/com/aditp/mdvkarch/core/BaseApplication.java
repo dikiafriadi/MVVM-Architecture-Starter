@@ -2,6 +2,13 @@ package com.aditp.mdvkarch.core;
 
 import androidx.multidex.MultiDexApplication;
 
+/**
+ * ------------------------------------------------------------------------------------
+ *
+ * @author : <Aditya Pratama>
+ * @since : Mei 2019
+ * ------------------------------------------------------------------------------------
+ */
 public class BaseApplication extends MultiDexApplication {
 
     @Override

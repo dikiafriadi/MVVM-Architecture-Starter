@@ -13,11 +13,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 
 /**
- * CREATED BY   : A D I T Y A  P R A T A M A
- * DATE         : MEI 2019
  * ------------------------------------------------------------------------------------
+ *
  * @param <T> ViewDataBinding
  * @param <V> ViewModel
+ *            _______________
+ * @author : <Aditya Pratama>
+ * @since : Mei 2019
+ * ------------------------------------------------------------------------------------
  */
 public abstract class BaseFragment<T extends ViewDataBinding, V extends ViewModel> extends Fragment implements BaseImpl {
     private static final String TAG = "BaseFragment";
