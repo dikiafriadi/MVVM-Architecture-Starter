@@ -15,22 +15,22 @@ import androidx.lifecycle.ViewModel;
 /**
  * ------------------------------------------------------------------------------------
  *
- * @param <T> ViewDataBinding
- * @param <V> ViewModel
+ * @param <VDB> ViewDataBinding
+ * @param <VM> ViewModel
  *            _______________
  * @author : <Aditya Pratama>
  * @since : Mei 2019
  * ------------------------------------------------------------------------------------
  */
-public abstract class BaseFragment<T extends ViewDataBinding, V extends ViewModel> extends Fragment implements BaseImpl {
+public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends ViewModel> extends Fragment implements BaseImpl {
     private static final String TAG = "BaseFragment";
-    protected T binding;
+    protected VDB binding;
     private View view;
 
     public abstract @LayoutRes
     int LAYOUT();
 
-    public abstract V viewModel();
+    public abstract VM viewModel();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

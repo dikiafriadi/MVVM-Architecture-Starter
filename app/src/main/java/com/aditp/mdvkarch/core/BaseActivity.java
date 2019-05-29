@@ -23,20 +23,20 @@ import java.util.Objects;
 /**
  * ------------------------------------------------------------------------------------
  *
- * @param <T> ViewDataBinding
- * @param <V> ViewModel
+ * @param <VDB> ViewDataBinding
+ * @param <VM> ViewModel
  *            _______________
  * @author : <Aditya Pratama>
  * @since : Mei 2019
  * ------------------------------------------------------------------------------------
  */
-public abstract class BaseActivity<T extends ViewDataBinding, V extends ViewModel> extends AppCompatActivity implements BaseImpl {
-    protected T binding;
+public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends ViewModel> extends AppCompatActivity implements BaseImpl {
+    protected VDB binding;
 
     public abstract @LayoutRes
     int LAYOUT();
 
-    public abstract V viewModel();
+    public abstract VM viewModel();
 
 
     @Override
