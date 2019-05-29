@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.data.repository;
+package com.aditp.mdvkarch.data.local;
 
 
 import android.app.Application;

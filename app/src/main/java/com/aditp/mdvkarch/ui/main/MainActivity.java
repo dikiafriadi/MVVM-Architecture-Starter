@@ -11,10 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.BaseActivity;
 import com.aditp.mdvkarch.core.SharedPref;
-import com.aditp.mdvkarch.data.response.ResponseProjectList;
+import com.aditp.mdvkarch.data.remote.response.ResponseProjectList;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
 import com.aditp.mdvkarch.helper.MDVKHelper;
-import com.aditp.mdvkarch.helper.PicassoHelper;
 import com.aditp.mdvkarch.helper.utils.SpacesItemDecoration;
 import com.aditp.mdvkarch.ui.login.LoginActivity;
 import com.aditp.mdvkarch.ui.note.NoteActivity;
@@ -63,7 +62,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             binding.swipeRefreshLayout.setRefreshing(false);
         });
 
-        adapter.setOnItemClick((view, obj, pos) -> showAlertDialog(this, obj.getFullName(), "STAR : " + obj.getStargazersUrl(), "OK"));
 
     }
 
@@ -74,12 +72,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     private void getProjectList(MainViewModel viewModel) {
         // Update the list when the data changes
-        viewModel.getProjectListObservable().observe(this, projects -> {
-            if (projects != null) {
-                adapter = new MainAdapter(MainActivity.this, projects);
-                binding.rvList.setAdapter(adapter);
-            }
-        });
+//        viewModel.getProjectListObservable().observe(this, projects -> {
+//            if (projects != null) {
+//                adapter = new MainAdapter(MainActivity.this, projects);
+//                binding.rvList.setAdapter(adapter);
+//            }
+//        });
     }
 
     private void getUserProfile(MainViewModel viewModel) {
@@ -87,7 +85,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             binding.tvname.setText(responseObject.getName());
             binding.tvCompany.setText(responseObject.getCompany());
             binding.tvBio.setText(responseObject.getBio());
-            PicassoHelper.load(responseObject.getAvatarUrl(), binding.ivSelfie);
         });
     }
 

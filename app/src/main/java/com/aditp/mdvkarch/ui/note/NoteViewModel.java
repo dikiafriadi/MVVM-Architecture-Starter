@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.aditp.mdvkarch.data.repository.NoteRepository;
+import com.aditp.mdvkarch.data.local.NoteRepository;
 import com.aditp.mdvkarch.data.local.Note;
 import com.aditp.mdvkarch.data.local.NoteDao;
 

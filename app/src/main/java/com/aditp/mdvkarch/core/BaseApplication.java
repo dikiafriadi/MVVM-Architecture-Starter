@@ -1,10 +1,8 @@
 package com.aditp.mdvkarch.core;
 
-import android.app.Application;
+import androidx.multidex.MultiDexApplication;
 
-public class BaseApplication extends Application {
-
-
+public class BaseApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {
@@ -14,6 +12,7 @@ public class BaseApplication extends Application {
 //                .setFontAttrId(R.attr.fontPath)
 //                .build()
 //        );
+
 
         SharedPref.init(getApplicationContext());
 
