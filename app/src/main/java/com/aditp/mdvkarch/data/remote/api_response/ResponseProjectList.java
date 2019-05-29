@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.data.response;
+package com.aditp.mdvkarch.data.remote.api_response;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -221,6 +221,17 @@ public class ResponseProjectList {
 
     @SerializedName("forks_count")
     private int forksCount;
+
+    @SerializedName("message")
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public int getStargazersCount() {
         return stargazersCount;

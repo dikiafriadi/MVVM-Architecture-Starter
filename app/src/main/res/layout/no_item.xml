@@ -7,7 +7,7 @@
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@android:color/transparent"
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
@@ -105,7 +105,7 @@
 
 
                 <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btnAddCustomer"
+                    android:id="@+id/btnRefresh"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="@dimen/spacing_xlarge"
@@ -114,7 +114,6 @@
                     android:focusable="true"
                     android:paddingStart="6dp"
                     android:paddingEnd="6dp"
-                    fancy:fb_borderColor="@color/mdvk_main"
                     fancy:fb_borderWidth="1dp"
                     fancy:fb_defaultColor="@color/transparent"
                     fancy:fb_focusColor="@color/mdvk_main"

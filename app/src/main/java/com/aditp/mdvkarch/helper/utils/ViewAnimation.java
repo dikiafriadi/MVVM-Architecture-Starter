@@ -10,7 +10,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-public class ViewAnimation {
+public final class ViewAnimation {
 
     public static void expand(final View v, final AnimListener animListener) {
         Animation a = expandAction(v);

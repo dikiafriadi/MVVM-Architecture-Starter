@@ -2,6 +2,7 @@ package com.aditp.mdvkarch.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -11,17 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.BaseActivity;
 import com.aditp.mdvkarch.core.SharedPref;
-import com.aditp.mdvkarch.data.response.ResponseProjectList;
+import com.aditp.mdvkarch.data.remote.api_response.ResponseProjectList;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
 import com.aditp.mdvkarch.helper.MDVKHelper;
-import com.aditp.mdvkarch.helper.PicassoHelper;
 import com.aditp.mdvkarch.helper.utils.SpacesItemDecoration;
 import com.aditp.mdvkarch.ui.login.LoginActivity;
-import com.aditp.mdvkarch.ui.note.NoteActivity;
 
 import java.util.List;
-
-import static com.aditp.mdvkarch.helper.MDVKHelper.DIALOG_HELPER.showAlertDialog;
 
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
@@ -55,39 +52,35 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void onActionComponent() {
-        loadData();
+        updateUI();
         binding.btnFab.setOnClickListener(v -> MDVKHelper.DIALOG_HELPER.showAboutDialog(this));
-        binding.btnOpenNotes.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, NoteActivity.class)));
-        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
-            loadData();
-            binding.swipeRefreshLayout.setRefreshing(false);
-        });
+        binding.swipeRefreshLayout.setOnRefreshListener(this::updateUI);
 
-        adapter.setOnItemClick((view, obj, pos) -> showAlertDialog(this, obj.getFullName(), "STAR : " + obj.getStargazersUrl(), "OK"));
 
     }
 
-    private void loadData() {
-        getProjectList(viewModel());
+    private synchronized void updateUI() {
         getUserProfile(viewModel());
+        getProjectList(viewModel());
+        binding.swipeRefreshLayout.setRefreshing(false);
+
     }
 
-    private void getProjectList(MainViewModel viewModel) {
-        // Update the list when the data changes
-        viewModel.getProjectListObservable().observe(this, projects -> {
-            if (projects != null) {
+    private synchronized void getProjectList(MainViewModel viewModel) {
+        viewModel.getUserProjectListObservable(this).observe(this, projects -> {
+            if (projects.size() > 0) {
+                binding.noItem.root.setVisibility(View.GONE);
                 adapter = new MainAdapter(MainActivity.this, projects);
                 binding.rvList.setAdapter(adapter);
             }
         });
     }
 
-    private void getUserProfile(MainViewModel viewModel) {
-        viewModel.getUserProfileObservable().observe(this, responseObject -> {
+    private synchronized void getUserProfile(MainViewModel viewModel) {
+        viewModel.getUserProfileObservable(this).observe(this, responseObject -> {
             binding.tvname.setText(responseObject.getName());
             binding.tvCompany.setText(responseObject.getCompany());
             binding.tvBio.setText(responseObject.getBio());
-            PicassoHelper.load(responseObject.getAvatarUrl(), binding.ivSelfie);
         });
     }
 

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * RecyclerView item decoration - give equal margin around grid item
  */
-public class SpacingItemDecoration extends RecyclerView.ItemDecoration {
+public final class SpacingItemDecoration extends RecyclerView.ItemDecoration {
 
     private int spanCount;
     private int spacingPx;

@@ -14,29 +14,37 @@ import androidx.lifecycle.ViewModel;
 
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.helper.MDVKHelper;
+import com.aditp.mdvkarch.helper.utils.OKDIT;
+import com.androidnetworking.AndroidNetworking;
 
 import java.util.Objects;
 
 
 /**
- * CREATED BY   : A D I T Y A  P R A T A M A
- * DATE         : MEI 2019
  * ------------------------------------------------------------------------------------
- * @param <T> ViewDataBinding
- * @param <V> ViewModel
+ *
+ * @param <VDB> ViewDataBinding
+ * @param <VM> ViewModel
+ *            _______________
+ * @author : <Aditya Pratama>
+ * @since : Mei 2019
+ * ------------------------------------------------------------------------------------
  */
-public abstract class BaseActivity<T extends ViewDataBinding, V extends ViewModel> extends AppCompatActivity implements BaseImpl {
-    protected T binding;
+public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends ViewModel> extends AppCompatActivity implements BaseImpl {
+    protected VDB binding;
 
     public abstract @LayoutRes
     int LAYOUT();
 
-    public abstract V viewModel();
+    public abstract VM viewModel();
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AndroidNetworking.initialize(getApplicationContext(), OKDIT.CLIENT());
+        AndroidNetworking.enableLogging(); // todo : remove this line when you release this apps
+
         isChangeSystemBarColor(true);
         performDataBinding();
 

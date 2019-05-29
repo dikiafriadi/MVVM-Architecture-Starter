@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.data.response;
+package com.aditp.mdvkarch.data.remote.api_response;
 
 import com.google.gson.annotations.SerializedName;
 

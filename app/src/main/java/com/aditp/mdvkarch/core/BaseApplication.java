@@ -1,26 +1,29 @@
 package com.aditp.mdvkarch.core;
 
-import android.app.Application;
+import androidx.multidex.MultiDexApplication;
 
-public class BaseApplication extends Application {
+import com.squareup.leakcanary.LeakCanary;
 
-
+/**
+ * ------------------------------------------------------------------------------------
+ *
+ * @author : <Aditya Pratama>
+ * @since : Mei 2019
+ * ------------------------------------------------------------------------------------
+ */
+public class BaseApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {
         super.onCreate();
-//        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-//                .setDefaultFontPath("fonts/Ubuntu-Light.ttf")
-//                .setFontAttrId(R.attr.fontPath)
-//                .build()
-//        );
+        // LeakCanary
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
 
+        // SharedPreference
         SharedPref.init(getApplicationContext());
 
-    }
-
-    @Override
-    public void onTerminate() {
-        super.onTerminate();
     }
 }
