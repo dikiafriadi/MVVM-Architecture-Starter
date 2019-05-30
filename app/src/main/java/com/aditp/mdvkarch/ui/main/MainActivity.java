@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.lifecycle.ViewModelProviders;
@@ -14,16 +15,14 @@ import com.aditp.mdvkarch.core.BaseActivity;
 import com.aditp.mdvkarch.core.SharedPref;
 import com.aditp.mdvkarch.data.remote.api_response.ResponseProjectList;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
+import com.aditp.mdvkarch.helper.GlideHelper;
 import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.aditp.mdvkarch.helper.utils.SpacesItemDecoration;
 import com.aditp.mdvkarch.ui.login.LoginActivity;
 
-import java.util.List;
-
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
     private MainAdapter adapter;
-    private List<ResponseProjectList> items;
 
     @Override
     public int LAYOUT() {
@@ -57,6 +56,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         binding.swipeRefreshLayout.setOnRefreshListener(this::updateUI);
 
 
+
     }
 
     private synchronized void updateUI() {
@@ -68,19 +68,36 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     private synchronized void getProjectList(MainViewModel viewModel) {
         viewModel.getUserProjectListObservable(this).observe(this, projects -> {
-            if (projects.size() > 0) {
-                binding.noItem.root.setVisibility(View.GONE);
-                adapter = new MainAdapter(MainActivity.this, projects);
-                binding.rvList.setAdapter(adapter);
+            try {
+                if (projects.size() > 0) {
+                    binding.noItem.root.setVisibility(View.GONE);
+                    adapter = new MainAdapter(MainActivity.this, projects);
+                    binding.rvList.setAdapter(adapter);
+                    // item adapter click
+                    adapter.setOnItemClick((view, obj, pos) -> {
+                        Toast.makeText(this, obj.getLanguage(), Toast.LENGTH_SHORT).show();
+                    });
+
+                } else {
+                    binding.noItem.root.setVisibility(View.VISIBLE);
+                }
+            } catch (Exception e) {
+                Log.d("err", "onActionComponent: " + e.getMessage());
             }
+
         });
     }
 
     private synchronized void getUserProfile(MainViewModel viewModel) {
         viewModel.getUserProfileObservable(this).observe(this, responseObject -> {
-            binding.tvname.setText(responseObject.getName());
-            binding.tvCompany.setText(responseObject.getCompany());
-            binding.tvBio.setText(responseObject.getBio());
+            try {
+                binding.tvname.setText(responseObject.getName());
+                binding.tvCompany.setText(responseObject.getCompany());
+                binding.tvBio.setText(responseObject.getBio());
+                GlideHelper.loadRound(this, responseObject.getAvatarUrl(), binding.ivSelfie);
+            } catch (Exception e) {
+                Log.d("err", "onActionComponent: " + e.getMessage());
+            }
         });
     }
 

@@ -75,14 +75,12 @@
                                         android:layout_height="130dp"
                                         android:background="@color/mdvk_second" />
 
-                                    <de.hdodenhof.circleimageview.CircleImageView
+                                    <ImageView
                                         android:id="@+id/iv_selfie"
                                         android:layout_width="60dp"
                                         android:layout_height="60dp"
                                         android:layout_margin="@dimen/spacing_large"
-                                        android:src="@color/mdvk_main"
-                                        app:civ_border_color="@color/mdvk_white"
-                                        app:civ_border_width="2dp" />
+                                        android:src="@drawable/ic_logo_app" />
 
 
                                     <LinearLayout

@@ -58,7 +58,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
                             finish();
                         }
                     } catch (Exception e) {
-                        Log.d("KONTOL", "onActionComponent: " + e.getMessage());
+                        Log.d("err", "onActionComponent: " + e.getMessage());
                     }
                     dialog.dismiss();
                 });
