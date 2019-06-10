@@ -1,6 +1,7 @@
 package com.aditp.mdvkarch.core;
 
 
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 
@@ -18,6 +19,8 @@ import com.aditp.mdvkarch.helper.utils.OKDIT;
 import com.androidnetworking.AndroidNetworking;
 
 import java.util.Objects;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 /**
@@ -38,6 +41,10 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends ViewM
 
     public abstract VM viewModel();
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +54,8 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends ViewM
 
         isChangeSystemBarColor(true);
         performDataBinding();
+        onActionComponent();
+
 
     }
 
@@ -67,18 +76,10 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends ViewM
         }
     }
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        onActionComponent();
-    }
-
-
     // ------------------------------------------------------------------------
     // BORING METHOD -__-
     // ------------------------------------------------------------------------
-    protected void initToolbar(String title) {
+    public void initToolbar(String title) {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.grey_60), PorterDuff.Mode.SRC_ATOP);
@@ -88,11 +89,11 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends ViewM
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
-    protected void initToolbar(String title, int drawable) {
+    public void initToolbar(String title, int drawable) {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(drawable);
-        Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.grey_60), PorterDuff.Mode.SRC_ATOP);
         toolbar.setTitle(title);
+        Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.grey_60), PorterDuff.Mode.SRC_ATOP);
         toolbar.setTitleTextColor(getResources().getColor(R.color.grey_60));
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

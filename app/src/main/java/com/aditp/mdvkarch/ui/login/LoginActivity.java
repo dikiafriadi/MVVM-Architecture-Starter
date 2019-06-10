@@ -1,20 +1,18 @@
 package com.aditp.mdvkarch.ui.login;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import com.adit.mdvklibrary.MDVKOkHttpClient;
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.BaseActivity;
-import com.aditp.mdvkarch.core.CONSTANT;
-import com.aditp.mdvkarch.core.SharedPref;
 import com.aditp.mdvkarch.databinding.ActivityLoginBinding;
+import com.aditp.mdvkarch.helper.CONSTANT;
 import com.aditp.mdvkarch.helper.MDVKHelper;
-import com.aditp.mdvkarch.ui.main.MainActivity;
+import com.aditp.mdvkarch.helper.utils.SharedPref;
 
 import java.util.Objects;
 
@@ -39,28 +37,24 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     @Override
     public void onActionComponent() {
         binding.btnLogin.setOnClickListener(view -> {
-            String owner = Objects.requireNonNull(binding.etUsername.getText()).toString();
-            if (TextUtils.isEmpty(owner)) {
+            String username = Objects.requireNonNull(binding.etUsername.getText()).toString();
+            String password = Objects.requireNonNull(binding.etPassword.getText()).toString();
+            if (TextUtils.isEmpty(username)) {
                 binding.etUsername.setError("cannot be Empty");
                 binding.etUsername.requestFocus();
-            } else if (owner.length() <= 3) {
+            } else if (username.length() <= 3) {
                 binding.etUsername.setError("The Word min 3 Character");
                 binding.etUsername.requestFocus();
             } else {
                 Dialog dialog = MDVKHelper.DIALOG_HELPER.showProgressDialog(this);
                 dialog.show();
-                viewModel().getUserProfileObservable(this, owner).observe(this, responseObject -> {
-                    try {
-                        if (responseObject.getLogin() != null) {
-                            SharedPref.getInstance().saveString(CONSTANT.KEY_USERNAME, owner);
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                            finish();
-                        }
-                    } catch (Exception e) {
-                        Log.d("err", "onActionComponent: " + e.getMessage());
+                viewModel().getUserProfileObservable(this, username, password).observe(this, responseLogin -> {
+                    if (responseLogin.getErrors().size() == 0) {
+                        SharedPref.getInstance().saveString(CONSTANT.KEY_TOKEN, responseLogin.getData().getToken());
+                        MDVKHelper.DIALOG_HELPER.showAlertDialog(this,"200",responseLogin.getData().getToken(),"ok");
+                    }else {
+                        MDVKHelper.DIALOG_HELPER.showAlertDialog(this,"400",responseLogin.getErrors().get(0).getCode(),"ok");
                     }
-                    dialog.dismiss();
                 });
             }
         });

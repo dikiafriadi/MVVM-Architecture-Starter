@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.data.remote;
+package com.aditp.mdvkarch.data.repository;
 
 final class Endpoint {
 
@@ -7,5 +7,4 @@ final class Endpoint {
 
     // ENDPOINT
     static final String KEY_USERNAME = "username";
-    static final String USER = "users/{" + KEY_USERNAME + "}";
 }

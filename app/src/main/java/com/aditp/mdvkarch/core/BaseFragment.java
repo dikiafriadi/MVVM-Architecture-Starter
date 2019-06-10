@@ -25,7 +25,6 @@ import androidx.lifecycle.ViewModel;
 public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends ViewModel> extends Fragment implements BaseImpl {
     private static final String TAG = "BaseFragment";
     protected VDB binding;
-    private View view;
 
     public abstract @LayoutRes
     int LAYOUT();
@@ -35,7 +34,9 @@ public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends ViewM
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, LAYOUT(), container, false);
-        view = binding.getRoot();
+        View view = binding.getRoot();
+        onActionComponent();
+
         return view;
     }
 
@@ -49,9 +50,4 @@ public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends ViewM
         // ignored
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        onActionComponent();
-    }
 }

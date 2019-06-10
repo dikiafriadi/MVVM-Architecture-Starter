@@ -44,7 +44,7 @@ public final class OKDIT {
             };
 
             //Using TLS 1_2 & 1_1 for HTTP/2 Server requests
-            // Note : The following is suitable for my Server. Please change accordingly
+            // ResponseProfile : The following is suitable for my Server. Please change accordingly
             ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.COMPATIBLE_TLS)
                     .tlsVersions(TlsVersion.TLS_1_2, TlsVersion.TLS_1_1, TlsVersion.TLS_1_0)
                     .cipherSuites(
@@ -69,25 +69,6 @@ public final class OKDIT {
 
 
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            builder.addInterceptor(chain -> {
-                Request request = chain.request();
-                okhttp3.Response response = chain.proceed(request);
-                // error case
-                if (response.code() != 200) {
-                    switch (response.code()) {
-                        // Custom handle ~
-                        case 400:
-                            Log.d("400", "400 Bad Request");
-                            break;
-                        default:
-                            Log.d(String.valueOf(response.code()), response.message());
-                            break;
-                    }
-                }
-                return response;
-            });
-            builder.readTimeout(15, TimeUnit.SECONDS);
-            builder.writeTimeout(15, TimeUnit.SECONDS);
             builder.connectTimeout(15, TimeUnit.SECONDS);
             builder.sslSocketFactory(sslSocketFactory);
             builder.connectionSpecs(Collections.singletonList(spec));

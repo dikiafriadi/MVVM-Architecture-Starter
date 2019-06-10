@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.core;
+package com.aditp.mdvkarch.helper;
 
 public class CONSTANT {
 
@@ -6,6 +6,7 @@ public class CONSTANT {
     public static final boolean IS_DEV_MODE = true;
 
     // KEY VALUE STORAGE ------------------------------------------------------------------------
+    public static final String KEY_TOKEN = "TOKEN";
     public static final String KEY_USERNAME = "USERNAME";
 
     // INTEGER ------------------------------------------------------------------------

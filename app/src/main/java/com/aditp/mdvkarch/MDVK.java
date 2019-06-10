@@ -5,13 +5,13 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aditp.mdvkarch.core.SharedPref;
+import com.aditp.mdvkarch.helper.utils.SharedPref;
 import com.aditp.mdvkarch.helper.MDVKHelper;
 import com.aditp.mdvkarch.helper.MDVKHelper.ActionDialogListener;
 import com.aditp.mdvkarch.ui.login.LoginActivity;
 import com.aditp.mdvkarch.ui.main.MainActivity;
 
-import static com.aditp.mdvkarch.core.CONSTANT.KEY_USERNAME;
+import static com.aditp.mdvkarch.helper.CONSTANT.KEY_USERNAME;
 import static com.aditp.mdvkarch.helper.MDVKHelper.DIALOG_HELPER.showCustomDialog;
 import static com.aditp.mdvkarch.helper.MDVKHelper.NETWORK_HELPER.isOnline;
 
@@ -23,7 +23,6 @@ public class MDVK extends AppCompatActivity {
     // ------------------------------------------------------------------------
     protected void startApp(Class<?> cls) {
         startActivity(new Intent(MDVK.this, cls));
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         finish();
     }
 
@@ -38,7 +37,7 @@ public class MDVK extends AppCompatActivity {
             // check user login session
             String token = SharedPref.getInstance().getString(KEY_USERNAME, "");
             if (token.isEmpty()) {
-                startApp(LoginActivity.class);
+                startApp(MainActivity.class);
             } else {
                 startApp(MainActivity.class);
             }

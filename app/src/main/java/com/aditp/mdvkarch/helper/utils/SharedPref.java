@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.core;
+package com.aditp.mdvkarch.helper.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

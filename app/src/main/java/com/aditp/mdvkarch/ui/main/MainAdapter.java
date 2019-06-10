@@ -10,7 +10,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aditp.mdvkarch.R;
-import com.aditp.mdvkarch.data.remote.api_response.ResponseProjectList;
+import com.aditp.mdvkarch.data.remote.model_response.ItemsItem;
+import com.aditp.mdvkarch.data.remote.model_response.ResponseSearchRepositories;
 import com.aditp.mdvkarch.databinding.ItemRepoBinding;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onBindingViewHolder> {
     private Context context;
-    private List<ResponseProjectList> items;
+    private List<ItemsItem> items;
 
     private setOnItemClick onItemClick;
 
@@ -29,7 +30,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onBindingViewH
     }
 
 
-    public MainAdapter(Context context, List<ResponseProjectList> items) {
+    public MainAdapter(Context context, List<ItemsItem> items) {
         this.context = context;
         this.items = items;
     }
@@ -45,7 +46,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onBindingViewH
 
     @Override
     public void onBindViewHolder(@NonNull onBindingViewHolder holder, int position) {
-        final ResponseProjectList obj = this.items.get(position);
+        final ItemsItem obj = this.items.get(position);
         holder.binding.tvRepoName.setText(obj.getName());
         holder.binding.tvRepoDesc.setText(obj.getDescription());
 
@@ -92,6 +93,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.onBindingViewH
     // LISTENER
     // ------------------------------------------------------------------------
     public interface setOnItemClick {
-        void onClicked(View view, ResponseProjectList obj, int pos);
+        void onClicked(View view, ItemsItem obj, int pos);
     }
 }

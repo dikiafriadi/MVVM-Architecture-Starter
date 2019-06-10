@@ -4,7 +4,9 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {User.class}, version = 1, exportSchema = false)
+import com.aditp.mdvkarch.data.remote.model_response.ResponseProfileUser;
+
+@Database(entities = {ResponseProfileUser.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class MyDatabase extends RoomDatabase {
 
@@ -12,5 +14,5 @@ public abstract class MyDatabase extends RoomDatabase {
     private static volatile MyDatabase INSTANCE;
 
     // --- DAO ---
-    public abstract UserDao userDao();
+    public abstract DaoProfileUser userDao();
 }

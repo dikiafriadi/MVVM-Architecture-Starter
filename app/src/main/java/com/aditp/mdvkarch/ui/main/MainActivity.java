@@ -1,27 +1,30 @@
 package com.aditp.mdvkarch.ui.main;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.BaseActivity;
-import com.aditp.mdvkarch.core.SharedPref;
-import com.aditp.mdvkarch.data.remote.api_response.ResponseProjectList;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
+import com.aditp.mdvkarch.helper.CONSTANT;
 import com.aditp.mdvkarch.helper.GlideHelper;
 import com.aditp.mdvkarch.helper.MDVKHelper;
+import com.aditp.mdvkarch.helper.utils.SharedPref;
 import com.aditp.mdvkarch.helper.utils.SpacesItemDecoration;
-import com.aditp.mdvkarch.ui.login.LoginActivity;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
+    private boolean isBackExit = false;
     private MainAdapter adapter;
 
     @Override
@@ -37,9 +40,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        initToolbar("Main Menu");
-        initNavigationMenu();
+        MainPartialMethod method = new MainPartialMethod(this, binding);
+        method.initNavigationMenu();
+        String usernameSaved = SharedPref.getInstance().getString(CONSTANT.KEY_USERNAME, "abehbatre");
+        binding.searchBar.searchText.setText(usernameSaved);
 
         // setup RecyclerView
         binding.rvList.setHasFixedSize(true);
@@ -48,96 +52,94 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     }
 
-
     @Override
     public void onActionComponent() {
-        updateUI();
-        binding.btnFab.setOnClickListener(v -> MDVKHelper.DIALOG_HELPER.showAboutDialog(this));
+        binding.swipeRefreshLayout.setRefreshing(true);
+        binding.swipeRefreshLayout.post(this::updateUI);
         binding.swipeRefreshLayout.setOnRefreshListener(this::updateUI);
 
+        // bt click
+        binding.btnFab.setOnClickListener(v -> MDVKHelper.DIALOG_HELPER.showAboutDialog(this));
+        binding.toolbarContainer.ivSelfie.setOnClickListener(view -> binding.drawerLayout.openDrawer(GravityCompat.START));
 
-
+        // saerch repo
+        binding.searchBar.searchText.setOnKeyListener((v, keyCode, event) -> {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                String cat = binding.searchBar.category.getText().toString();
+                if (cat.equalsIgnoreCase("user")) getUserProfile(viewModel());
+                getProjectList(viewModel());
+                MDVKHelper.WINDOW_HELPER.forceCloseKeyboard(this, binding.searchBar.searchText);
+                return true;
+            }
+            return false;
+        });
     }
 
     private synchronized void updateUI() {
+        // ui
+        ColorGenerator generator = ColorGenerator.MATERIAL;
+        int color1 = generator.getRandomColor();
+        binding.btnFab.setBackgroundColor(color1);
+        binding.lytParent.setBackgroundColor(color1);
+        binding.toolbarContainer.toolbarTitle.setText(getResources().getString(R.string.app_title_dashboard));
+        YoYo.with(Techniques.SlideInUp).duration(1500).playOn(binding.toolbarContainer.toolbarTitle);
+        YoYo.with(Techniques.SlideInUp).duration(1500).playOn(binding.toolbarContainer.ivSelfie);
+        // set Data
         getUserProfile(viewModel());
         getProjectList(viewModel());
-        binding.swipeRefreshLayout.setRefreshing(false);
 
     }
 
     private synchronized void getProjectList(MainViewModel viewModel) {
-        viewModel.getUserProjectListObservable(this).observe(this, projects -> {
-            try {
-                if (projects.size() > 0) {
-                    binding.noItem.root.setVisibility(View.GONE);
-                    adapter = new MainAdapter(MainActivity.this, projects);
-                    binding.rvList.setAdapter(adapter);
-                    // item adapter click
-                    adapter.setOnItemClick((view, obj, pos) -> {
-                        Toast.makeText(this, obj.getLanguage(), Toast.LENGTH_SHORT).show();
-                    });
-
-                } else {
-                    binding.noItem.root.setVisibility(View.VISIBLE);
-                }
-            } catch (Exception e) {
-                Log.d("err", "onActionComponent: " + e.getMessage());
+        binding.rvList.showShimmerAdapter();
+        String cat = binding.searchBar.category.getText().toString();
+        String q = binding.searchBar.searchText.getText().toString();
+        SharedPref.getInstance().saveString(CONSTANT.KEY_USERNAME, q);
+        String finalSearch = cat;
+        if (cat.isEmpty()) {
+            finalSearch = "user";
+        }
+        viewModel.getSearchRepoObservable(this, finalSearch + ":" + q).observe(this, responseSearchRepositories -> {
+            if (responseSearchRepositories != null) {
+                binding.noItem.root.setVisibility(View.GONE);
+                adapter = new MainAdapter(MainActivity.this, responseSearchRepositories.getItems());
+                binding.rvList.setAdapter(adapter);
+                // item adapter click
+                adapter.setOnItemClick((view, obj, pos) -> {
+                    Toast.makeText(MainActivity.this, obj.getLanguage(), Toast.LENGTH_SHORT).show();
+                });
+            } else { // <- show noData Layout
+                binding.noItem.root.setVisibility(View.VISIBLE);
+                binding.noItem.btnNoData.setOnClickListener(view -> updateUI());
             }
-
+            binding.rvList.hideShimmerAdapter();
+            binding.swipeRefreshLayout.setRefreshing(false);
         });
     }
 
     private synchronized void getUserProfile(MainViewModel viewModel) {
-        viewModel.getUserProfileObservable(this).observe(this, responseObject -> {
-            try {
-                binding.tvname.setText(responseObject.getName());
-                binding.tvCompany.setText(responseObject.getCompany());
-                binding.tvBio.setText(responseObject.getBio());
-                GlideHelper.loadRound(this, responseObject.getAvatarUrl(), binding.ivSelfie);
-            } catch (Exception e) {
-                Log.d("err", "onActionComponent: " + e.getMessage());
-            }
+        String q = binding.searchBar.searchText.getText().toString();
+        viewModel.getUserProfileObservable(this, q).observe(this, responseObject -> {
+            binding.tvname.setText(responseObject.getName());
+            binding.tvBio.setText(responseObject.getBio());
+            GlideHelper.loadRound(this, responseObject.getAvatarUrl(), binding.toolbarContainer.ivSelfie);
+            GlideHelper.loadRound(this, responseObject.getAvatarUrl(), binding.ivSelfie);
         });
     }
 
-
-    private void initNavigationMenu() {
-        binding.navView.setVisibility(View.VISIBLE);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbar.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
+    @Override
+    public void onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            if (isBackExit) {
+                super.onBackPressed();
+                return;
             }
-        };
-        //noinspection deprecation
-        binding.drawerLayout.setDrawerListener(toggle);
-        toggle.syncState();
-        binding.navView.setNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.nav_home:
-                    break;
-                case R.id.nav_logout:
-                    MDVKHelper.DIALOG_HELPER.showCustomDialog(MainActivity.this,
-                            "Logout",
-                            "Would you really like to logout?",
-                            new MDVKHelper.ActionDialogListener() {
-                                @Override
-                                public void executeNo() {
-                                    // ignore
-                                }
-
-                                @Override
-                                public void executeYes() {
-                                    SharedPref.getInstance().clearSession();
-                                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                                    finish();
-                                }
-                            });
-                    break;
-            }
-            binding.drawerLayout.closeDrawers();
-            return true;
-        });
+            this.isBackExit = true;
+            Toast.makeText(this, "Klik sekali lagi untuk keluar", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(() -> isBackExit = false, 2000);
+        }
     }
 
 }

@@ -80,7 +80,7 @@ public class GlideHelper extends AppGlideModule {
         Glide.with(context)
                 .load(url)
                 .transition(withCrossFade(factory))
-                .placeholder(R.drawable.ic_logo_app)
+                .placeholder(R.color.grey_200)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }
@@ -89,7 +89,7 @@ public class GlideHelper extends AppGlideModule {
         Glide.with(context)
                 .load(drawable)
                 .transition(withCrossFade(factory))
-                .placeholder(R.drawable.ic_logo_app)
+                .placeholder(R.color.grey_200)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(imageView);
     }
@@ -99,7 +99,7 @@ public class GlideHelper extends AppGlideModule {
         Glide.with(context)
                 .load(url)
                 .transition(withCrossFade(factory))
-                .placeholder(R.drawable.ic_logo_app)
+                .placeholder(R.color.grey_200)
                 .apply(requestOptionsRound)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
@@ -110,7 +110,7 @@ public class GlideHelper extends AppGlideModule {
                 .load(drawable)
                 .transition(withCrossFade(factory))
                 .apply(requestOptionsRound)
-                .placeholder(R.drawable.ic_logo_app)
+                .placeholder(R.color.grey_200)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(imageView);
     }

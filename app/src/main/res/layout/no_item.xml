@@ -7,7 +7,8 @@
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
+        android:visibility="gone"
+        android:background="@color/transparent"
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
@@ -32,7 +33,6 @@
                         android:layout_height="50dp"
                         android:layout_marginEnd="@dimen/spacing_mlarge"
                         android:layout_marginRight="@dimen/spacing_mlarge"
-                        android:contentDescription="TODO"
                         android:src="@drawable/shape_circle"
                         android:tint="@color/grey_20" />
 
@@ -73,7 +73,6 @@
                         android:layout_height="50dp"
                         android:layout_marginEnd="@dimen/spacing_mlarge"
                         android:layout_marginRight="@dimen/spacing_xlarge"
-                        android:contentDescription="TODO"
                         android:src="@drawable/shape_circle"
                         android:tint="@color/grey_10" />
 
@@ -105,7 +104,7 @@
 
 
                 <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btnRefresh"
+                    android:id="@+id/btnNoData"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="@dimen/spacing_xlarge"
@@ -119,7 +118,7 @@
                     fancy:fb_focusColor="@color/mdvk_main"
                     fancy:fb_radius="5dp"
                     fancy:fb_text=".: NO DATA :."
-                    fancy:fb_textColor="@color/mdvk_main" />
+                    fancy:fb_textColor="@color/mdvk_black" />
 
             </LinearLayout>
 

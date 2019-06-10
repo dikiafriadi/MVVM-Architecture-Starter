@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:drawable="@color/mdvk_white" />
 
     <item
         android:width="150dp"
         android:height="150dp"
-        android:gravity="center"
-        tools:ignore="UnusedAttribute">
-
-        <shape android:shape="oval">
-            <stroke
-                android:width="4dp"
-                android:color="@color/colorPrimary" />
-        </shape>
-
+        android:gravity="center">
         <bitmap
             android:width="150dp"
             android:height="150dp"
             android:gravity="fill_horizontal|fill_vertical"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_logo_app" />
-
+            android:src="@drawable/aditlogo" />
     </item>
 
 

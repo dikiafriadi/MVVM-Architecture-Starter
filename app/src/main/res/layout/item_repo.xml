@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.balysv.materialripple.MaterialRippleLayout
-        style="@style/RippleStyleMain"
+        style="@style/RippleStyleDark"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="@dimen/spacing_large"
