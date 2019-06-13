@@ -5,7 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.aditp.mdvkarch.data.remote.model_response.ResponseProfileUser;
+import com.aditp.mdvkarch.data.model.ResponseProfileUser;
 
 import java.util.List;
 

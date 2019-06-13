@@ -5,17 +5,23 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.aditp.mdvkarch.data.remote.model_response.ResponseProfileUser;
-import com.aditp.mdvkarch.data.remote.model_response.ResponseSearchRepositories;
-import com.aditp.mdvkarch.data.remote.model_response.login.ResponseLogin;
+import com.aditp.mdvkarch.data.model.ResponseProfileUser;
+import com.aditp.mdvkarch.data.model.ResponseSearchRepositories;
+import com.aditp.mdvkarch.data.model.login.ResponseLogin;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.rx2androidnetworking.Rx2AndroidNetworking;
 
-import static com.aditp.mdvkarch.helper.MDVKHelper.DIALOG_HELPER.showAlertDialog;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.ResourceObserver;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.adit.mdvklibrary.MDVKHelper.DIALOG_HELPER.showAlertDialog;
+import static com.aditp.mdvkarch.data.repository.Endpoint.BASE_URL;
 
 /**
  * @author <aditya pratama>
@@ -49,24 +55,68 @@ public class RepositoryGithub {
     // ------------------------------------------------------------------------
     public LiveData<ResponseProfileUser> refreshUserProfile(Context context, String username) {
         final MutableLiveData<ResponseProfileUser> data = new MutableLiveData<>();
-        AndroidNetworking.get(Endpoint.BASE_URL + "users/{username}")
-                .addPathParameter(Endpoint.KEY_USERNAME, username)
-                .setPriority(Priority.LOW)
+        Rx2AndroidNetworking.get(BASE_URL.concat("users/{username}"))
+                .addPathParameter("username", username)
                 .build()
-                .getAsParsed(new TypeToken<ResponseProfileUser>() {
-                }, new ParsedRequestListener<ResponseProfileUser>() {
+                .getObjectObservable(ResponseProfileUser.class)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ResourceObserver<ResponseProfileUser>() {
                     @Override
-                    public void onResponse(ResponseProfileUser response) {
-                        data.setValue(response);
+                    public void onNext(ResponseProfileUser responseProfileUser) {
+                        data.setValue(responseProfileUser);
                     }
 
                     @Override
-                    public void onError(ANError anError) {
+                    public void onError(Throwable e) {
+                        ANError anError = (ANError) e;
                         ResponseProfileUser err = gson.fromJson(anError.getErrorBody(), ResponseProfileUser.class);
                         data.setValue(err);
-                        showAlertDialog(context, String.valueOf(anError.getErrorCode()), err.getMessage(), "OK");
+                        showAlertDialog(context, String.valueOf(anError.getErrorCode()), err.getMessage(), "ok");
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
+
+
+        return data;
+    }
+
+    // ------------------------------------------------------------------------
+    // SEARCH_REPO
+    // ------------------------------------------------------------------------
+    public LiveData<ResponseSearchRepositories> refreshSearchRepo(Context context, String query) {
+        final MutableLiveData<ResponseSearchRepositories> data = new MutableLiveData<>();
+        Rx2AndroidNetworking.get(BASE_URL.concat("search/repositories"))
+                .addQueryParameter("q", query)
+                .addHeaders("User-Agent", "MDVK")
+                .build()
+                .getObjectObservable(ResponseSearchRepositories.class)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ResourceObserver<ResponseSearchRepositories>() {
+                    @Override
+                    public void onNext(ResponseSearchRepositories responseSearchRepositories) {
+                        data.setValue(responseSearchRepositories);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ANError anError = (ANError) e;
+                        ResponseSearchRepositories err = gson.fromJson(anError.getErrorBody(), ResponseSearchRepositories.class);
+                        data.setValue(err);
+                        showAlertDialog(context, String.valueOf(anError.getErrorCode()), err.getMessage(), "ok");
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
 
         return data;
     }
@@ -98,34 +148,5 @@ public class RepositoryGithub {
 
         return data;
     }
-
-    // ------------------------------------------------------------------------
-    // SEARCH_REPO
-    // ------------------------------------------------------------------------
-    public LiveData<ResponseSearchRepositories> refreshSearchRepo(Context context, String query) {
-        final MutableLiveData<ResponseSearchRepositories> data = new MutableLiveData<>();
-        AndroidNetworking.get(Endpoint.BASE_URL + "search/repositories")
-                .addQueryParameter("q", query)
-                .addHeaders("User-Agent", "MDVK-ARCH")
-                .setPriority(Priority.LOW)
-                .build()
-                .getAsParsed(new TypeToken<ResponseSearchRepositories>() {
-                }, new ParsedRequestListener<ResponseSearchRepositories>() {
-                    @Override
-                    public void onResponse(ResponseSearchRepositories response) {
-                        data.setValue(response);
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        ResponseSearchRepositories err = gson.fromJson(anError.getErrorBody(), ResponseSearchRepositories.class);
-                        data.postValue(null);
-                        showAlertDialog(context, String.valueOf(anError.getErrorCode()), anError.getErrorBody(), "OK");
-                    }
-                });
-
-        return data;
-    }
-
 
 }

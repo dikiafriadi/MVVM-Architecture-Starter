@@ -13,9 +13,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModel;
 
+import com.adit.mdvklibrary.MDVKHelper;
+import com.adit.mdvklibrary.MDVKOkHttpClient;
+import com.aditp.mdvkarch.MDVK;
 import com.aditp.mdvkarch.R;
-import com.aditp.mdvkarch.helper.MDVKHelper;
-import com.aditp.mdvkarch.helper.utils.OKDIT;
 import com.androidnetworking.AndroidNetworking;
 
 import java.util.Objects;
@@ -27,8 +28,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * ------------------------------------------------------------------------------------
  *
  * @param <VDB> ViewDataBinding
- * @param <VM> ViewModel
- *            _______________
+ * @param <VM>  ViewModel
+ *              _______________
  * @author : <Aditya Pratama>
  * @since : Mei 2019
  * ------------------------------------------------------------------------------------
@@ -49,8 +50,8 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends ViewM
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AndroidNetworking.initialize(getApplicationContext(), OKDIT.CLIENT());
-        AndroidNetworking.enableLogging(); // todo : remove this line when you release this apps
+        AndroidNetworking.initialize(getApplicationContext(), MDVKOkHttpClient.CLIENT());
+        if (MDVK.IS_DEV_MODE) AndroidNetworking.enableLogging();
 
         isChangeSystemBarColor(true);
         performDataBinding();

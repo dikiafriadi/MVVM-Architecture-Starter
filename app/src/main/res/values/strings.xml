@@ -10,5 +10,4 @@
     <string name="msg_no_connection_title">No Connection</string>
     <string name="msg_no_connection">You seen no have internet connection, this app need internet connection for load content :(</string>
     <string name="add">Add</string>
-    <string name="app_title_dashboard">MdvK</string>
 </resources>

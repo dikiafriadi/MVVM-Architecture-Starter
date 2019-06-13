@@ -10,8 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aditp.mdvkarch.R;
-import com.aditp.mdvkarch.data.remote.model_response.ItemsItem;
-import com.aditp.mdvkarch.data.remote.model_response.ResponseSearchRepositories;
+import com.aditp.mdvkarch.data.model.ItemsItem;
 import com.aditp.mdvkarch.databinding.ItemRepoBinding;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;

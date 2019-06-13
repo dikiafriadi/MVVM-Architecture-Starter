@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.data.remote.model_response.login;
+package com.aditp.mdvkarch.data.model.login;
 
 public class Error {
     private String code;

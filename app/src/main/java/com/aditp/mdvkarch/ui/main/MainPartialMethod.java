@@ -9,10 +9,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 
+import com.adit.mdvklibrary.MDVKHelper;
+import com.adit.mdvklibrary.MDVKPref;
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
-import com.aditp.mdvkarch.helper.MDVKHelper;
-import com.aditp.mdvkarch.helper.utils.SharedPref;
 import com.aditp.mdvkarch.ui.login.LoginActivity;
 
 import java.util.Objects;
@@ -42,7 +42,7 @@ public class MainPartialMethod {
             }
         };
         toggle.setDrawerIndicatorEnabled(false);
-        Drawable drawable = ResourcesCompat.getDrawable(activity.getResources(), R.drawable.ic_apps, activity.getTheme());
+        Drawable drawable = ResourcesCompat.getDrawable(activity.getResources(), R.drawable.ic_menu, activity.getTheme());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             Objects.requireNonNull(drawable).setTint(activity.getColor(R.color.mdvk_black));
         }
@@ -70,7 +70,7 @@ public class MainPartialMethod {
 
                                 @Override
                                 public void executeYes() {
-                                    SharedPref.getInstance().clearSession();
+                                    MDVKPref.getInstance().clearSession();
                                     activity.startActivity(new Intent(activity, LoginActivity.class));
                                     activity.finish();
                                 }

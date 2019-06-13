@@ -16,8 +16,8 @@ import androidx.lifecycle.ViewModel;
  * ------------------------------------------------------------------------------------
  *
  * @param <VDB> ViewDataBinding
- * @param <VM> ViewModel
- *            _______________
+ * @param <VM>  ViewModel
+ *              _______________
  * @author : <Aditya Pratama>
  * @since : Mei 2019
  * ------------------------------------------------------------------------------------

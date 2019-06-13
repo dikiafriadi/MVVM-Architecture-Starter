@@ -6,5 +6,7 @@ public interface BaseImpl {
     void isChangeSystemBarColor(boolean val);
 
     void onActionComponent();
+
+    void updateUI();
 }
 

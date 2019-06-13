@@ -32,7 +32,7 @@
                     android:id="@+id/category"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
-                    android:background="@color/grey_100"
+                    android:background="@color/materialGrey100"
                     android:drawableEnd="@drawable/shape_circle"
                     android:gravity="center_vertical"
                     android:text="user"
@@ -43,7 +43,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/grey_200" />
+                    android:background="@color/materialGrey200" />
 
                 <EditText
                     android:id="@+id/search_text"

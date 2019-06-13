@@ -2,8 +2,9 @@ package com.aditp.mdvkarch.core;
 
 import androidx.multidex.MultiDexApplication;
 
+import com.adit.mdvklibrary.MDVKPref;
+import com.aditp.mdvkarch.MDVK;
 import com.aditp.mdvkarch.R;
-import com.aditp.mdvkarch.helper.utils.SharedPref;
 import com.squareup.leakcanary.LeakCanary;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -21,12 +22,13 @@ public class BaseApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
 
-        // Leak Canary
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return;
-        }
-        LeakCanary.install(this);
 
+        if (MDVK.IS_DEV_MODE) {
+            if (LeakCanary.isInAnalyzerProcess(this)) {
+                return;
+            }
+            LeakCanary.install(this);
+        }
 
         // CalligraphyConfig
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -36,7 +38,7 @@ public class BaseApplication extends MultiDexApplication {
         );
 
         // SharedPreference
-        SharedPref.init(getApplicationContext());
+        MDVKPref.init(getApplicationContext());
 
     }
 }

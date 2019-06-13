@@ -12,7 +12,7 @@ import com.aditp.mdvkarch.databinding.ActivityCleanBinding;
  * ------------------------------
  *
  * @author : <Aditya Pratama>
- * @since  : Mei 2019
+ * @since : Mei 2019
  * ------------------------------
  */
 public class CleanActivity extends BaseActivity<ActivityCleanBinding, CleanViewModel> {
@@ -35,6 +35,12 @@ public class CleanActivity extends BaseActivity<ActivityCleanBinding, CleanViewM
 
     @Override
     public void onActionComponent() {
+        this.updateUI();
+    }
+
+    @Override
+    public void updateUI() {
         viewModel().logicName(this);
+
     }
 }

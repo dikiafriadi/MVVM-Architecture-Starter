@@ -1,4 +1,4 @@
-package com.aditp.mdvkarch.data.remote.model_response;
+package com.aditp.mdvkarch.data.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -110,10 +110,22 @@ public class ResponseProfileUser {
 
     private Date lastRefresh;
 
+    @SerializedName("documentation_url")
+    private String documentationUrl;
+
+
     // ------------------------------------------------------------------------
     // Setter Getter
     // ------------------------------------------------------------------------
 
+
+    public String getDocumentationUrl() {
+        return documentationUrl;
+    }
+
+    public void setDocumentationUrl(String documentationUrl) {
+        this.documentationUrl = documentationUrl;
+    }
 
     public String getEmail() {
         return email;

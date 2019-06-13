@@ -42,12 +42,12 @@
     
     get value example :
     ```javascript
-    object = SharedPref.getInstance().getString(KEY_USERNAME, "");
+    object = MDVKPref.getInstance().getString(KEY_USERNAME, "");
     ```
 
     set value example :
     ```javascript
-    SharedPref.getInstance().saveString(object);
+    MDVKPref.getInstance().saveString(object);
     ```
 
 -  **Authentication Flow**

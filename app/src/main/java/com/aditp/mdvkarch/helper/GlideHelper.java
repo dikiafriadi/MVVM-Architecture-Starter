@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 
+import com.adit.mdvklibrary.MDVKOkHttpClient;
 import com.aditp.mdvkarch.R;
-import com.aditp.mdvkarch.helper.utils.OKDIT;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.Registry;
@@ -57,10 +57,13 @@ public class GlideHelper extends AppGlideModule {
         builder.setDefaultRequestOptions(requestOptions());
     }
 
-    @Override
-    public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
-        OkHttpUrlLoader.Factory factory = new OkHttpUrlLoader.Factory(OKDIT.CLIENT());
-        glide.getRegistry().replace(GlideUrl.class, InputStream.class, factory);
+    public static void loadOriginal(Context context, String url, ImageView imageView) {
+        Glide.with(context)
+                .load(url)
+                .transition(withCrossFade(factory))
+                .placeholder(R.color.materialGrey200)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageView);
     }
 
     private static RequestOptions requestOptions() {
@@ -75,31 +78,20 @@ public class GlideHelper extends AppGlideModule {
                 .skipMemoryCache(false);
     }
 
-
-    public static void loadOriginal(Context context, String url, ImageView imageView) {
-        Glide.with(context)
-                .load(url)
-                .transition(withCrossFade(factory))
-                .placeholder(R.color.grey_200)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imageView);
-    }
-
     public static void loadOriginal(Context context, @DrawableRes int drawable, ImageView imageView) {
         Glide.with(context)
                 .load(drawable)
                 .transition(withCrossFade(factory))
-                .placeholder(R.color.grey_200)
+                .placeholder(R.color.materialGrey200)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(imageView);
     }
-
 
     public static void loadRound(Context context, String url, ImageView imageView) {
         Glide.with(context)
                 .load(url)
                 .transition(withCrossFade(factory))
-                .placeholder(R.color.grey_200)
+                .placeholder(R.color.materialGrey200)
                 .apply(requestOptionsRound)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
@@ -110,9 +102,15 @@ public class GlideHelper extends AppGlideModule {
                 .load(drawable)
                 .transition(withCrossFade(factory))
                 .apply(requestOptionsRound)
-                .placeholder(R.color.grey_200)
+                .placeholder(R.color.materialGrey200)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(imageView);
+    }
+
+    @Override
+    public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
+        OkHttpUrlLoader.Factory factory = new OkHttpUrlLoader.Factory(MDVKOkHttpClient.CLIENT());
+        glide.getRegistry().replace(GlideUrl.class, InputStream.class, factory);
     }
 
 }

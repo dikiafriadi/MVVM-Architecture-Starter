@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/blue_5">
+        android:layout_height="match_parent">
 
-        <com.flaviofaria.kenburnsview.KenBurnsView
+        <ImageView
             android:id="@+id/bgImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/bg_gradient_very_soft" />
+            android:src="@drawable/wg_witch_dance" />
 
         <View
             android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="github USERNAME"
+                        android:text="username"
                         android:textAlignment="center"
                         android:textAllCaps="true"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
@@ -74,14 +74,14 @@
                         android:maxLines="1"
                         android:singleLine="true"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textColor="@color/blue_600"
+                        android:textColor="@color/materialBlue600"
                         android:textStyle="bold"
                         android:theme="@style/EditText.Grey" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="github Password"
+                        android:text="password"
                         android:textAlignment="center"
                         android:textAllCaps="true"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
@@ -98,7 +98,7 @@
                         android:maxLines="1"
                         android:singleLine="true"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textColor="@color/blue_600"
+                        android:textColor="@color/materialBlue600"
                         android:textStyle="bold"
                         android:theme="@style/EditText.Grey" />
 
@@ -107,35 +107,23 @@
                         android:layout_height="@dimen/spacing_mlarge" />
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="DEMO\nabehbatre" />
-
-                    <View
-                        android:layout_width="fill_parent"
-                        android:layout_height="@dimen/spacing_xxlarge" />
-
-
-                    <com.balysv.materialripple.MaterialRippleLayout
+                    <mehdi.sakout.fancybuttons.FancyButton
                         android:id="@+id/btnLogin"
-                        style="@style/RippleStyleWhite"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:background="@color/mdvk_main"
-                            android:gravity="center"
-                            android:paddingStart="6dp"
-                            android:paddingEnd="6dp"
-                            android:text="LOG IN"
-                            android:textColor="@color/mdvk_white" />
-
-                    </com.balysv.materialripple.MaterialRippleLayout>
+                        android:layout_height="50dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="10dp"
+                        fancy:fb_borderColor="@color/materialBlue600"
+                        fancy:fb_borderWidth="1dp"
+                        fancy:fb_defaultColor="@color/white"
+                        fancy:fb_focusColor="@color/materialBlue600"
+                        fancy:fb_fontIconResource="&#xf04b;"
+                        fancy:fb_iconPosition="left"
+                        fancy:fb_radius="5dp"
+                        fancy:fb_text="LOG IN"
+                        fancy:fb_textColor="@color/materialBlue600" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

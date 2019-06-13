@@ -2,20 +2,20 @@ package com.aditp.mdvkarch;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aditp.mdvkarch.helper.utils.SharedPref;
-import com.aditp.mdvkarch.helper.MDVKHelper;
-import com.aditp.mdvkarch.helper.MDVKHelper.ActionDialogListener;
-import com.aditp.mdvkarch.ui.login.LoginActivity;
+import com.adit.mdvklibrary.MDVKHelper;
+import com.adit.mdvklibrary.MDVKPref;
 import com.aditp.mdvkarch.ui.main.MainActivity;
 
-import static com.aditp.mdvkarch.helper.CONSTANT.KEY_USERNAME;
-import static com.aditp.mdvkarch.helper.MDVKHelper.DIALOG_HELPER.showCustomDialog;
-import static com.aditp.mdvkarch.helper.MDVKHelper.NETWORK_HELPER.isOnline;
+import static com.aditp.mdvkarch.helper.constant.K.KEY_USERNAME;
+
 
 public class MDVK extends AppCompatActivity {
+
+    public static final boolean IS_DEV_MODE = true;
 
     // ------------------------------------------------------------------------
     // Splash Screens the Right Way :
@@ -31,11 +31,15 @@ public class MDVK extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         MDVKHelper.WINDOW_HELPER.setActivityToFullScreen(this);
 
-        // check device is online ? -> coz online require
-        if (isOnline(this)) {
+        // isDevMode?
+        if (IS_DEV_MODE) {
+            Toast.makeText(this, "DEV_MODE IS TRUE, DONT FORGET TO DISABLE WHEN RELEASE ..", Toast.LENGTH_SHORT).show();
+        }
 
+        // isOnline?
+        if (MDVKHelper.NETWORK_HELPER.isOnline(this)) {
             // check user login session
-            String token = SharedPref.getInstance().getString(KEY_USERNAME, "");
+            String token = MDVKPref.getInstance().getString(KEY_USERNAME, "");
             if (token.isEmpty()) {
                 startApp(MainActivity.class);
             } else {
@@ -43,12 +47,12 @@ public class MDVK extends AppCompatActivity {
             }
 
         } else {
-            showCustomDialog(
+            MDVKHelper.DIALOG_HELPER.showCustomDialog(
                     this,
                     getResources().getString(R.string.msg_no_connection_title),
                     getResources().getString(R.string.msg_no_connection),
-                    R.drawable.flag_question,
-                    new ActionDialogListener() {
+                    R.drawable.wg_sharp_blues,
+                    new MDVKHelper.ActionDialogListener() {
                         @Override
                         public void executeNo() {
                             // ignored

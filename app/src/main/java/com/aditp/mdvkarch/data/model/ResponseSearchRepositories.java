@@ -1,7 +1,8 @@
-package com.aditp.mdvkarch.data.remote.model_response;
+package com.aditp.mdvkarch.data.model;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-import com.google.gson.annotations.SerializedName;
 
 public class ResponseSearchRepositories{
 
@@ -14,7 +15,22 @@ public class ResponseSearchRepositories{
 	@SerializedName("items")
 	private List<ItemsItem> items;
 
-	public void setTotalCount(int totalCount){
+    @SerializedName("message")
+    private String message;
+
+    @SerializedName("documentation_url")
+    private String documentationUrl;
+
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
 

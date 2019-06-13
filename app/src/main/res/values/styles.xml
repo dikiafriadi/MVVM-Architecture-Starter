@@ -17,7 +17,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="android:actionModeBackground">@color/blue_grey_600</item>
+        <item name="android:actionModeBackground">@color/materialBlueGrey600</item>
         <item name="android:dialogTheme">@style/Dialog.Theme</item>
 
         <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
@@ -31,7 +31,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="android:actionModeBackground">@color/blue_grey_600</item>
+        <item name="android:actionModeBackground">@color/materialBlueGrey600</item>
         <item name="android:dialogTheme">@style/Dialog.Theme</item>
     </style>
 
@@ -50,7 +50,7 @@
     </style>
 
     <style name="Button.Green" parent="@style/Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">@color/light_green_500</item>
+        <item name="colorButtonNormal">@color/materialLightGreen500</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
@@ -72,7 +72,7 @@
     </style>
 
     <style name="Button.White.Primary" parent="@style/Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">@color/green_600</item>
+        <item name="colorButtonNormal">@color/materialGreen600</item>
         <item name="android:textColor">@color/mdvk_white</item>
     </style>
 
@@ -82,7 +82,7 @@
     </style>
 
     <style name="Button.White.Accent" parent="@style/Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">@color/green_600</item>
+        <item name="colorButtonNormal">@color/materialGreen600</item>
         <item name="android:textColor">@color/mdvk_white</item>
     </style>
     <!--style for ripple library-->
@@ -123,12 +123,12 @@
 
     <style name="Yellow.Small.AppCompatRatingBar" parent="Base.Widget.AppCompat.RatingBar.Small">
         <item name="colorControlNormal">@color/grey_60</item>
-        <item name="colorControlActivated">@color/yellow_600</item>
+        <item name="colorControlActivated">@color/materialYellow600</item>
     </style>
 
     <style name="Yellow.Small.AppCompatRatingBar.White" parent="Base.Widget.AppCompat.RatingBar.Small">
         <item name="colorControlNormal">@color/grey_20</item>
-        <item name="colorControlActivated">@color/yellow_600</item>
+        <item name="colorControlActivated">@color/materialYellow600</item>
     </style>
 
     <style name="Yellow.Very.Small.AppCompatRatingBar" parent="@style/Yellow.Small.AppCompatRatingBar">
@@ -138,7 +138,7 @@
 
     <style name="Yellow.AppCompatRatingBar" parent="Base.Widget.AppCompat.RatingBar.Indicator">
         <item name="colorControlNormal">@color/grey_60</item>
-        <item name="colorControlActivated">@color/yellow_600</item>
+        <item name="colorControlActivated">@color/materialYellow600</item>
     </style>
 
 
@@ -163,8 +163,8 @@
     <!-- Base application theme. -->
     <style name="EditText.Yellow" parent="@style/AppTheme">
         <item name="colorControlNormal">@color/grey_5</item>
-        <item name="colorControlActivated">@color/amber_500</item>
-        <item name="colorControlHighlight">@color/amber_500</item>
+        <item name="colorControlActivated">@color/materialAmber500</item>
+        <item name="colorControlHighlight">@color/materialAmber500</item>
     </style>
 
     <style name="EditText.White" parent="@style/AppTheme">
@@ -195,9 +195,9 @@
     </style>
 
     <style name="EditText.Green" parent="@style/AppTheme">
-        <item name="colorControlActivated">@color/green_500</item>
-        <item name="colorControlHighlight">@color/green_500</item>
-        <item name="colorControlNormal">@color/green_400</item>
+        <item name="colorControlActivated">@color/materialGreen500</item>
+        <item name="colorControlHighlight">@color/materialGreen500</item>
+        <item name="colorControlNormal">@color/materialGreen400</item>
     </style>
 
     <style name="EditText.Flat.Grey" parent="@style/AppTheme">
@@ -219,10 +219,10 @@
     </style>
 
     <style name="Checkbox.Blue" parent="@style/AppTheme">
-        <item name="colorPrimary">@color/blue_600</item>
-        <item name="colorAccent">@color/blue_600</item>
-        <item name="colorControlActivated">@color/blue_600</item>
-        <item name="colorControlHighlight">@color/blue_600</item>
+        <item name="colorPrimary">@color/materialBlue600</item>
+        <item name="colorAccent">@color/materialBlue600</item>
+        <item name="colorControlActivated">@color/materialBlue600</item>
+        <item name="colorControlHighlight">@color/materialBlue600</item>
         <item name="colorControlNormal">@color/grey_40</item>
     </style>
 

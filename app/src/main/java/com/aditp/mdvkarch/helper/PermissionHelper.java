@@ -8,6 +8,7 @@ import android.provider.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.adit.mdvklibrary.MDVKHelper;
 import com.aditp.mdvkarch.BuildConfig;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;

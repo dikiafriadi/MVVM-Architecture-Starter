@@ -6,13 +6,13 @@ import android.text.TextUtils;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import com.adit.mdvklibrary.MDVKOkHttpClient;
+import com.adit.mdvklibrary.MDVKHelper;
+import com.adit.mdvklibrary.MDVKPref;
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.core.BaseActivity;
 import com.aditp.mdvkarch.databinding.ActivityLoginBinding;
-import com.aditp.mdvkarch.helper.CONSTANT;
-import com.aditp.mdvkarch.helper.MDVKHelper;
-import com.aditp.mdvkarch.helper.utils.SharedPref;
+import com.aditp.mdvkarch.helper.constant.K;
+import com.aditp.mdvkarch.ui.main.MainActivity;
 
 import java.util.Objects;
 
@@ -49,15 +49,23 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
                 Dialog dialog = MDVKHelper.DIALOG_HELPER.showProgressDialog(this);
                 dialog.show();
                 viewModel().getUserProfileObservable(this, username, password).observe(this, responseLogin -> {
-                    if (responseLogin.getErrors().size() == 0) {
-                        SharedPref.getInstance().saveString(CONSTANT.KEY_TOKEN, responseLogin.getData().getToken());
-                        MDVKHelper.DIALOG_HELPER.showAlertDialog(this,"200",responseLogin.getData().getToken(),"ok");
-                    }else {
-                        MDVKHelper.DIALOG_HELPER.showAlertDialog(this,"400",responseLogin.getErrors().get(0).getCode(),"ok");
+                    // just test ~
+                    if (responseLogin.getStatus().equalsIgnoreCase("ok")) {
+                        MDVKPref.getInstance().saveString(K.KEY_TOKEN, responseLogin.getData().getToken());
+                        MDVKHelper.DIALOG_HELPER.showAlertDialog(this, "200", responseLogin.getData().getToken(), "ok");
+                        MDVKHelper.openActivity(this, MainActivity.class);
+                        finish();
+                    } else {
+                        MDVKHelper.DIALOG_HELPER.showAlertDialog(this, "400", responseLogin.getErrors().get(0).getCode(), "ok");
                     }
                 });
             }
         });
+    }
+
+    @Override
+    public void updateUI() {
+
     }
 
 }
