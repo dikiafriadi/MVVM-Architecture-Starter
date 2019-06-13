@@ -1,6 +1,7 @@
 package com.aditp.mdvkarch.ui.clean_example;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -30,17 +31,19 @@ public class CleanActivity extends BaseActivity<ActivityCleanBinding, CleanViewM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        initToolbar("Clean Activity");
     }
 
     @Override
     public void onActionComponent() {
         this.updateUI();
+        binding.tvFullname.setOnClickListener(v -> Toast.makeText(this, "Hello World ...", Toast.LENGTH_SHORT).show());
     }
 
     @Override
     public void updateUI() {
-        viewModel().logicName(this);
-
+        viewModel().getUserGithub("abehbatre").observe(this, responseProfileUser -> {
+            binding.tvFullname.setText(responseProfileUser.getName());
+        });
     }
 }

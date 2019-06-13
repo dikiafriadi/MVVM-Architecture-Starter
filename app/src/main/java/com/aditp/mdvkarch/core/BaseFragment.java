@@ -23,7 +23,7 @@ import androidx.lifecycle.ViewModel;
  * ------------------------------------------------------------------------------------
  */
 public abstract class BaseFragment<VDB extends ViewDataBinding, VM extends ViewModel> extends Fragment implements BaseImpl {
-    private static final String TAG = "BaseFragment";
+    protected String TAG = BaseActivity.class.getSimpleName();
     protected VDB binding;
 
     public abstract @LayoutRes

@@ -35,6 +35,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * ------------------------------------------------------------------------------------
  */
 public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends ViewModel> extends AppCompatActivity implements BaseImpl {
+    protected String TAG = BaseActivity.class.getSimpleName();
     protected VDB binding;
 
     public abstract @LayoutRes

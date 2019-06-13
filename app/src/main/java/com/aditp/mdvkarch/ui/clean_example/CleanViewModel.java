@@ -1,20 +1,17 @@
 package com.aditp.mdvkarch.ui.clean_example;
 
-import android.content.Context;
-import android.widget.Toast;
-
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.aditp.mdvkarch.data.model.ResponseProfileUser;
+import com.aditp.mdvkarch.data.repository.RepositoryGithub;
 
 /**
  * @implSpec BusinessLogic Here ...
  */
 public class CleanViewModel extends ViewModel {
 
-    // ------------------------------------------------------------------------
-    // logicName
-    // ------------------------------------------------------------------------
-    public void logicName(Context context){
-        Toast.makeText(context, "Hi Am Adit ~", Toast.LENGTH_SHORT).show();
+    public LiveData<ResponseProfileUser> getUserGithub(String username) {
+        return RepositoryGithub.getInstance().refreshUserProfile(username);
     }
-
 }

@@ -48,7 +48,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
             } else {
                 Dialog dialog = MDVKHelper.DIALOG_HELPER.showProgressDialog(this);
                 dialog.show();
-                viewModel().getUserProfileObservable(this, username, password).observe(this, responseLogin -> {
+                viewModel().getUserProfileObservable(username, password).observe(this, responseLogin -> {
                     // just test ~
                     if (responseLogin.getStatus().equalsIgnoreCase("ok")) {
                         MDVKPref.getInstance().saveString(K.KEY_TOKEN, responseLogin.getData().getToken());

@@ -103,8 +103,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         if (cat.isEmpty()) {
             finalSearch = "user";
         }
-        viewModel.getSearchRepoObservable(this, finalSearch + ":" + q).observe(this, responseSearchRepositories -> {
-            if (responseSearchRepositories.getTotalCount() != 0) {
+        viewModel.getSearchRepoObservable(finalSearch + ":" + q).observe(this, responseSearchRepositories -> {
+            binding.rvList.showShimmerAdapter();
+
+            if (!responseSearchRepositories.getMessage().isEmpty()) {
+                Toast.makeText(this, responseSearchRepositories.getMessage(), Toast.LENGTH_SHORT).show();
+            } else if (responseSearchRepositories.getItems() != null) {
                 binding.noItem.root.setVisibility(View.GONE);
                 binding.rvList.setVisibility(View.VISIBLE);
                 adapter = new MainAdapter(MainActivity.this, responseSearchRepositories.getItems());
@@ -125,7 +129,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     private void getUserProfile(MainViewModel viewModel) {
         String q = binding.searchBar.searchText.getText().toString();
-        viewModel.getUserProfileObservable(this, q).observe(this, responseObject -> {
+        viewModel.getUserProfileObservable(q).observe(this, responseObject -> {
             binding.tvname.setText(responseObject.getName());
             binding.tvBio.setText(responseObject.getBio());
             GlideHelper.loadRound(this, responseObject.getAvatarUrl(), binding.toolbarContainer.ivSelfie);

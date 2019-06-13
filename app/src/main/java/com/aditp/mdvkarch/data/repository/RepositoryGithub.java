@@ -1,6 +1,6 @@
 package com.aditp.mdvkarch.data.repository;
 
-import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -20,7 +20,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.ResourceObserver;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.adit.mdvklibrary.MDVKHelper.DIALOG_HELPER.showAlertDialog;
 import static com.aditp.mdvkarch.data.repository.Endpoint.BASE_URL;
 
 /**
@@ -53,7 +52,7 @@ public class RepositoryGithub {
     // ------------------------------------------------------------------------
     // GET_USER_PROFILE
     // ------------------------------------------------------------------------
-    public LiveData<ResponseProfileUser> refreshUserProfile(Context context, String username) {
+    public LiveData<ResponseProfileUser> refreshUserProfile(String username) {
         final MutableLiveData<ResponseProfileUser> data = new MutableLiveData<>();
         Rx2AndroidNetworking.get(BASE_URL.concat("users/{username}"))
                 .addPathParameter("username", username)
@@ -72,7 +71,6 @@ public class RepositoryGithub {
                         ANError anError = (ANError) e;
                         ResponseProfileUser err = gson.fromJson(anError.getErrorBody(), ResponseProfileUser.class);
                         data.setValue(err);
-                        showAlertDialog(context, String.valueOf(anError.getErrorCode()), err.getMessage(), "ok");
                     }
 
                     @Override
@@ -88,7 +86,7 @@ public class RepositoryGithub {
     // ------------------------------------------------------------------------
     // SEARCH_REPO
     // ------------------------------------------------------------------------
-    public LiveData<ResponseSearchRepositories> refreshSearchRepo(Context context, String query) {
+    public LiveData<ResponseSearchRepositories> refreshSearchRepo(String query) {
         final MutableLiveData<ResponseSearchRepositories> data = new MutableLiveData<>();
         Rx2AndroidNetworking.get(BASE_URL.concat("search/repositories"))
                 .addQueryParameter("q", query)
@@ -105,10 +103,16 @@ public class RepositoryGithub {
 
                     @Override
                     public void onError(Throwable e) {
+
                         ANError anError = (ANError) e;
+                        if (anError.getErrorCode() == 403) {
+                            Log.d("DEBUX", "onError: 403");
+                        } else if (anError.getErrorCode() == 404) {
+                            Log.d("DEBUX", "onError: 404");
+
+                        }
                         ResponseSearchRepositories err = gson.fromJson(anError.getErrorBody(), ResponseSearchRepositories.class);
                         data.setValue(err);
-                        showAlertDialog(context, String.valueOf(anError.getErrorCode()), err.getMessage(), "ok");
                     }
 
                     @Override
@@ -125,7 +129,7 @@ public class RepositoryGithub {
     // ------------------------------------------------------------------------
     // test login (post)
     // ------------------------------------------------------------------------
-    public LiveData<ResponseLogin> refreshLogin(Context context, String username, String password) {
+    public LiveData<ResponseLogin> refreshLogin(String username, String password) {
         final MutableLiveData<ResponseLogin> data = new MutableLiveData<>();
         AndroidNetworking.post("https://trial.gaji.id/gaji/rest/ess/login")
                 .addHeaders("username", username)
