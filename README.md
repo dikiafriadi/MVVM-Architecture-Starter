@@ -9,12 +9,12 @@
 ![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/ss/architecture.png)
 
 
-#### 💎 PROJECT STRUCTURE & EASY TO UNDERSTAND
+#### 💎 CLEAN PROJECT STRUCTURE
 
 ![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/ss/project_architecture.png)
 
   
-#### 📷 PROFLING RESULT
+#### 📷 PROFLING RESULT (VERY STABLE)
 
 ![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/ss/profiling_test.png)
 
@@ -47,6 +47,10 @@
 -  **MDVK-KIT Library**
 
     - Awesome Library for UI/UX and Utilities Helper. check it : [here...](https://github.com/abehbatre/MDVK-Kit)
+
+-  **Leak Canary**
+
+    - For Tracking Memory Leak
 
 -  **Splash Screen**
 
