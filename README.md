@@ -1,7 +1,8 @@
 
 # MVVM-Architecture-Starter (Android) 
 > PROJECT DATE			:		 **`APRIL 2019`**
-> MOTO              : Like a bow tie (MDVK-Logo) i love clean code and easy to use like a boss . 
+
+> MOTO              : Like a **Bow-Tie** (MDVK-Logo) i love clean code and easy to use like a boss . 
 
 
 #### 💼 FLOW ARCHITECTURE (MVVM)
