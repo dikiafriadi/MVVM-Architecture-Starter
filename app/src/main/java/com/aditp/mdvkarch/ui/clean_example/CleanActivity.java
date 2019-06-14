@@ -31,7 +31,7 @@ public class CleanActivity extends BaseActivity<ActivityCleanBinding, CleanViewM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initToolbar("Clean Activity");
+        initToolbar("simplify");
     }
 
     @Override

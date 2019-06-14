@@ -4,97 +4,77 @@
 
 
 
-#### 💼 FLOW DIAGRAM (MVVM)
+#### 💼 FLOW ARCHITECTURE (MVVM)
 
-![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/architecture.png)
+![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/ss/architecture.png)
+
+
+#### 💎 PROJECT STRUCTURE & EASY TO UNDERSTAND
+
+![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/ss/project_architecture.png)
 
   
-
 #### 📷 PROFLING RESULT
 
-![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/profiling_test.png)
+![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/ss/profiling_test.png)
+
+
+#### 📷 CLEAN ACTIVITY (EXAMPLE)
+
+![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/ss/structure_code.png)
 
   
-
-#### 💎 CLEAN PROJECT STRUCTURE & EASY TO UNDERSTAND
-
-![MD|VK](https://raw.githubusercontent.com/abehbatre/MDVK-Arch-Starter/master/project_architecture.png)
-
 
 #### Setup included : 📦
 ---
 
--  **UI**
+-  **MVVM Starter**
 
-    - Adaptation from <u>**`MaterialX`**</u> 🍺
+    - Base on MindorksOpenSource i just simplify the code .
+
+-  **AndroidX**
+
+    - Using AndroidX
+
+-  **Fast Android Networking (FAN) with RXJava2**
+
+    - Using FAN + RXJava2 to http request, so easy to use .
 
 -  **Data Binding**
 
-    - Using Android Data Binding Library
+    - Using Android Data Binding
+
+-  **MDVK-KIT Library**
+
+    - Awesome Library for UI/UX and Utilities Helper. check it : [here...](https://github.com/abehbatre/MDVK-Kit)
 
 -  **Splash Screen**
 
     - Right way to implement splash screen [[see detail](https://www.bignerdranch.com/blog/splash-screens-the-right-way/)]
 
--  **SharedPreference**
-
-    -  *Singleton* SharedPreference with *synchronized* easy to use.
-    
-    get value example :
-    ```javascript
-    object = MDVKPref.getInstance().getString(KEY_USERNAME, "");
-    ```
-
-    set value example :
-    ```javascript
-    MDVKPref.getInstance().saveString(object);
-    ```
 
 -  **Authentication Flow**
 
-    - Using Retrofit & ResponseInterceptor for request & response handling
-    - Dummy API using `https://api.github.com/`
+    - Using FAN & ResponseInterceptor for request & response handling
+    - Dummy API using `https://my-json-server.typicode.com/`
 
 -  **Room**
+
     - Using room for data persistance
 
 -  **RecyclerView Sample**
-      - Sample recyclerview implementation using viewholder & databinding
+    
+    - Sample recyclerview implementation using viewholder & databinding
     - See `MainAdapter` for details
 
--  **Android M permission handler using `Dexter`**
+-  **Android Permission handler using `Dexter`**
 
     - Handle permission for Android M and above
-
--  **Reusable Style**
-
-    - All colors are available inside `colors.xml`
-
-    - Styles are available inside `styles.xml`
-
--  **Utilities and Helper classes**
-
-    -  `MDVKHelper` this class have 6 inner class :
-        -  DIALOG_TOOLS
-        -  NETWORK_TOOLS
-        -  STRING_TOOLS
-        -  WINDOW_TOOLS
-        -  DATE_PICKER
-        -  LOCAL_NOTIFICATION
-        
- **Tools** means **helpers** , just *grouping* by type helper
-
-  -  **PermissionHelper**
-  handler request permission with dexter
   
-  -  **PicassoHelper**
-  Picasso Loader for load large images in Android and avoiding the out of memory error
+  -  **GlideHelper**
+    
+    - Glide Image Loader with simple module 
   
-  -  **Item Adapter Utils :**
-      - ItemAdapterAnimation
-      - SpacesItemDecoration
-      - SpacingItemDecoration
-      - ViewAnimation
 
 ---
 
