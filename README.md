@@ -1,5 +1,5 @@
 
-# MDVK-Android-Architecture-Starter 
+# MVVM-Architecture-Starter (Android) 
 > PROJECT DATE			:		 **`APRIL 2019`**
 
 
@@ -89,6 +89,6 @@
 - [x] Room with MVVM
 - [x] Simple Custom toolbar & menu
 - [x] Right way SplashScreen
+- [x] Rx Java 2 + Rx Android
 - [ ] add library Data Binding Validator
-- [ ] Rx Java 2 + Rx Android
 - [ ] Documentation & Wiki
