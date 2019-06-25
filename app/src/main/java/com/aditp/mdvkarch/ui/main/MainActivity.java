@@ -24,6 +24,10 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
 
+/**
+ * @implNote this just example, delete this package
+ * @see com.aditp.mdvkarch.ui.clean_example.CleanActivity to see clean architecture
+ */
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
     private static final String[] CAT = new String[]{"user", "repositories", "commit"};
     private boolean isBackExit = false;
@@ -53,10 +57,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     @Override
-    public void onActionComponent() {/* updateUI*/
+    public void onActionComponent() {
         binding.swipeRefreshLayout.setRefreshing(true);
         binding.swipeRefreshLayout.post(this::updateUI);
-        binding.swipeRefreshLayout.setOnRefreshListener(this::updateUI);/* click*/
+        binding.swipeRefreshLayout.setOnRefreshListener(this::updateUI);
+
         binding.toolbarContainer.ivSelfie.setOnClickListener(view -> binding.drawerLayout.openDrawer(GravityCompat.START));
         binding.searchBar.category.setOnClickListener(v -> showCategory());
         binding.searchBar.searchText.setOnKeyListener((v, keyCode, event) -> {
@@ -72,7 +77,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     @Override
-    public void updateUI() {/* ui*/
+    public void updateUI() {
         ColorGenerator generator = ColorGenerator.MATERIAL;
         int color1 = generator.getRandomColor();
         binding.btnFab.setBackgroundColor(color1);

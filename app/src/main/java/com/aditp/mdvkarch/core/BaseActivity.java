@@ -1,6 +1,7 @@
 package com.aditp.mdvkarch.core;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends ViewModel> extends AppCompatActivity implements BaseImpl {
     protected String TAG = BaseActivity.class.getSimpleName();
     protected VDB binding;
+    private Dialog dialog;
 
     public abstract @LayoutRes
     int LAYOUT();
@@ -100,4 +102,15 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, VM extends ViewM
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
+
+    protected void showLoading(Context context, boolean isCancelable) {
+        dialog = MDVKHelper.DIALOG_HELPER.showProgressDialog(context);
+        dialog.show();
+        dialog.setCancelable(isCancelable);
+    }
+
+    protected void hideLoading() {
+        dialog.dismiss();
+    }
+
 }

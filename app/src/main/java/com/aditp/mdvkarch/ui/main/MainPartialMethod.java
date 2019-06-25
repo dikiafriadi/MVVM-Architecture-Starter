@@ -1,6 +1,5 @@
 package com.aditp.mdvkarch.ui.main;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
@@ -9,11 +8,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 
-import com.adit.mdvklibrary.MDVKHelper;
-import com.adit.mdvklibrary.MDVKPref;
 import com.aditp.mdvkarch.R;
 import com.aditp.mdvkarch.databinding.ActivityMainBinding;
-import com.aditp.mdvkarch.ui.login.LoginActivity;
 
 import java.util.Objects;
 
@@ -61,21 +57,6 @@ public class MainPartialMethod {
                 case R.id.nav_calender:
                     break;
                 case R.id.nav_logout:
-                    MDVKHelper.DIALOG_HELPER.showCustomDialog(activity, "Logout", "Would you really like to logout?",
-                            new MDVKHelper.ActionDialogListener() {
-                                @Override
-                                public void executeNo() {
-                                    // ignore
-                                }
-
-                                @Override
-                                public void executeYes() {
-                                    MDVKPref.getInstance().clearSession();
-                                    activity.startActivity(new Intent(activity, LoginActivity.class));
-                                    activity.finish();
-                                }
-                            });
-
                     break;
 
             }

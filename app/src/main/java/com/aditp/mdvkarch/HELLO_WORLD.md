@@ -1,18 +1,56 @@
 # Getting Started
 
-#### Before started, I recommend you to Install Plugin
+~ Hello World ~ 
 
-- RoboPOJOGenerator
-    
-    see on `data/remote/api_response` this packages auto generate by Robo POJO Generator .
+> Learn Reference :
+- https://developer.android.com/topic/libraries/architecture/lifecycle
+- https://developer.android.com/topic/libraries/architecture/viewmodel
+- https://developer.android.com/topic/libraries/data-binding/
+- https://developer.android.com/topic/libraries/architecture/livedata
+- https://developer.android.com/topic/libraries/architecture/room
+- https://developer.android.com/jetpack/#architecture-components
+- https://amitshekhar.me/Fast-Android-Networking/
 
-- DataBinding Support
 
-    to convert all layout `(XML)` to databinding
+##### Basic Explained
 
+| architecture      | description                   |
+|---                | ---                           |
+| Model             | Response / Entity             |
+| View              | Activity / Fragment (UI)      |
+| ViewModel         | Business Logic                |
+
+
+##### Basic Rules
+- UI can't access Repository directly, let alone a model, **access via `viewModel`** ~
+- every UI should have `ViewModel`
+- do not edit  **abstract class** | example: `BaseActivity` .
+
+
+### explained structure package
+
+| package           | description                                               |
+|---                | ---                                                       |
+| core              |  inti dari struktur codingan                              |
+| data              |  pusat management data                                    |
+| data/local        |  data local (database)                                    |
+| data/remote       |  data remote (internet / server)                          |
+| data/model        |  entity                                                   |
+| helper            |  class helper                                             |
+| helper/utils      |  tool utility yang harusnya tidak perlu di modifikasi lagi|
+| ui                |  activity, fragment, viewModel                            |
+
+
+
+### plugin support (recommend to install)
+> robopojo generator
+> databinding converter
+> Exynap (optional)
 ---
 
-## Rename Application Package Name
+# TODO
+
+#### 1.) Rename Application Package Name
 
 - First click one on your package and then click setting icon on Android Studio
 - Close / Unselect Compact Empty Middle Packages
@@ -20,25 +58,23 @@
 - Right click on the root folder of your project
 - Click "Open Module Setting"
 - Go to the Flavours tab
-- Change the application ID with same name of your package name before > Pres OK
-- Open Android studio > app > java > com.your.project > errorhandler > CustomActivityOnCrash.java
-- Change "PACKAGE_NAME" with your package name
+- Change the application ID with same name of your package name before > Press OK
+- Change `"PACKAGE_NAME"` with your package name
 
-> reference : [ [click me] (http://stackoverflow.com/questions/16804093/android-studio-rename-package/29092698#29092698)]
+> reference : [ [click me ...](https://stackoverflow.com/questions/16804093/android-studio-rename-package/29092698#29092698)]
 
-## Change Application Name
+#### 2.) Change Application Name
 - Open Android studio > app > res > values > string.xml
 - Select 'strings.xml'
 - Enter your app name inside "app_name" string tag :
 - `<string name="app_name">YOUR APP NAME</string>`
 
-## Reflector **MDVK** to your appname
+#### 3.) Reflector **MDVK** to your appname
 
-`MDVK` class -> app starter, reflector, and re-configure this class .
+- `MDVK` class -> app starter, reflector, and re-configure this class .
      
-## Update CONSTANT
-`core/CONSTANT` -> app constant, reconfigure this class. 
+#### 4.) Remove Unused Class 
 
 ---
 
-## Last? remove this file :D
+Ask something? [write here ...](https://github.com/abehbatre/MVVM-Architecture-Starter/issues)
